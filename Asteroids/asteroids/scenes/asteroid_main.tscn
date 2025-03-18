@@ -1,9 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://dr5b3tnjfwilj"]
+[gd_scene load_steps=13 format=3 uid="uid://dr5b3tnjfwilj"]
 
 [ext_resource type="Script" path="res://scripts/asteroid_main.gd" id="1_y8mp3"]
 [ext_resource type="PackedScene" uid="uid://bouvkbj40hi8j" path="res://scenes/explosion.tscn" id="2_qy673"]
 [ext_resource type="PackedScene" uid="uid://4tkt0uhcv7jl" path="res://scenes/laser_explosion.tscn" id="3_q28hn"]
+[ext_resource type="PackedScene" uid="uid://ce5mofn3atpe4" path="res://scenes/asteroid_second_1.tscn" id="4_5uff6"]
 [ext_resource type="Texture2D" uid="uid://fbwnbsnp3uni" path="res://assets/asteroids/asteroid_01_with_cracks.png" id="4_ej2jq"]
+[ext_resource type="PackedScene" uid="uid://dyytpbk62so1r" path="res://scenes/asteroid_second_2.tscn" id="5_aw4d6"]
+[ext_resource type="PackedScene" uid="uid://bla7bujkm2b5g" path="res://scenes/asteroid_second_3.tscn" id="6_nvodn"]
+[ext_resource type="PackedScene" uid="uid://bdsurow08ybeq" path="res://scenes/asteroid_second_4.tscn" id="7_p868y"]
 
 [sub_resource type="Animation" id="Animation_ek27t"]
 length = 0.001
@@ -67,6 +71,10 @@ script = ExtResource("1_y8mp3")
 explosion_scene = ExtResource("2_qy673")
 laser_explosion = ExtResource("3_q28hn")
 fade_duration = 0.0
+asteroid_second_1 = ExtResource("4_5uff6")
+asteroid_second_2 = ExtResource("5_aw4d6")
+asteroid_second_3 = ExtResource("6_nvodn")
+asteroid_second_4 = ExtResource("7_p868y")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)

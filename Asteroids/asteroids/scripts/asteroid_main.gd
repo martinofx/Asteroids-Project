@@ -8,6 +8,11 @@ extends RigidBody2D  # Cambio de CharacterBody2D a Rigidbody2D para física real
 @export var push_force: float = 500.0  # Fuerza con la que empuja a otros objetos
 @export var fade_duration: float = 0.1  # Duración del desvanecimiento
 
+@export var asteroid_second_1 : PackedScene
+@export var asteroid_second_2 : PackedScene
+@export var asteroid_second_3 : PackedScene
+@export var asteroid_second_4 : PackedScene
+
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var screen_size: Vector2 = get_viewport_rect().size
 
@@ -116,9 +121,48 @@ func explode():
 
 	else:
 		print("Error: explosion_scene es null")
+	
+	# **Fragmentar el asteroide en 3 partes más pequeñas**
+	spawn_fragments()
 
+	# **Eliminar el asteroide grande**
 	queue_free()
 
+# **Función que genera los 3 asteroides más pequeños**
+func spawn_fragments():
+	var spread_angle = PI / 4  # Ángulo de separación entre fragmentos (~60°)
+	var base_direction = linear_velocity.normalized() if linear_velocity.length() > 0 else Vector2.RIGHT
+
+	var directions = [
+		base_direction.rotated(-spread_angle * 1.5),
+		base_direction.rotated(-spread_angle * 0.5),
+		base_direction.rotated(spread_angle * 0.5),
+		base_direction.rotated(spread_angle * 1.5)
+	]
+
+	var asteroides_medianos = [
+		asteroid_second_1.instantiate(),
+		asteroid_second_2.instantiate(),
+		asteroid_second_3.instantiate(),
+		asteroid_second_4.instantiate()
+	]
+
+	for i in range(4):
+		if asteroides_medianos[i]:
+			get_parent().add_child(asteroides_medianos[i])
+
+			# Posición cerca del asteroide original
+			asteroides_medianos[i].global_position = global_position + directions[i] * 20  
+
+			# Impulso más fuerte en distintas direcciones
+			var extra_force = randf_range(400, 700)  
+			asteroides_medianos[i].linear_velocity = directions[i] * extra_force + (linear_velocity * 0.5)
+			
+			# Rotación aleatoria
+			asteroides_medianos[i].angular_velocity = randf_range(-5, 5)
+
+	print("¡Asteroide fragmentado en 4 partes con mayor fuerza y dirección!")
+	
 func check_screen_wrap():
 	var new_position = global_position
 	var crossed = false
