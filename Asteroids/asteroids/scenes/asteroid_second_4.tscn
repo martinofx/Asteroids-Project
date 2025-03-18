@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/asteroid_main.gd" id="1_8hany"]
 [ext_resource type="PackedScene" uid="uid://bxw5kklv4v2ch" path="res://scenes/explosion_small.tscn" id="2_iw7c7"]
 [ext_resource type="PackedScene" uid="uid://4tkt0uhcv7jl" path="res://scenes/laser_explosion.tscn" id="3_y0s20"]
-[ext_resource type="Texture2D" uid="uid://dja6cwhth8glp" path="res://assets/asteroids/asteroid_05_with_cracks.png" id="5_2asxt"]
+[ext_resource type="Texture2D" uid="uid://dja6cwhth8glp" path="res://assets/asteroids/Asteroid Second 4.png" id="5_2asxt"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fvh85"]
 radius = 155.35

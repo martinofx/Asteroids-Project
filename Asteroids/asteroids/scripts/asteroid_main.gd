@@ -130,16 +130,10 @@ func explode():
 
 # **Función que genera los 3 asteroides más pequeños**
 func spawn_fragments():
-	var spread_angle = PI / 4  # Ángulo de separación entre fragmentos (~60°)
+	var spread_angle = PI / 6  # Ángulo de separación base
 	var base_direction = linear_velocity.normalized() if linear_velocity.length() > 0 else Vector2.RIGHT
-
-	var directions = [
-		base_direction.rotated(-spread_angle * 1.5),
-		base_direction.rotated(-spread_angle * 0.5),
-		base_direction.rotated(spread_angle * 0.5),
-		base_direction.rotated(spread_angle * 1.5)
-	]
-
+	
+	# Lista de prefabs de asteroides
 	var asteroides_medianos = [
 		asteroid_second_1.instantiate(),
 		asteroid_second_2.instantiate(),
@@ -147,21 +141,37 @@ func spawn_fragments():
 		asteroid_second_4.instantiate()
 	]
 
+	# **Generar direcciones aleatorias en lugar de seguir una base fija**
+	var directions = []
+	for i in range(4):
+		var random_angle = randf_range(-PI, PI)  # Ahora cada fragmento va en una dirección realmente aleatoria
+		directions.append(base_direction.rotated(random_angle))
+
 	for i in range(4):
 		if asteroides_medianos[i]:
 			get_parent().add_child(asteroides_medianos[i])
 
-			# Posición cerca del asteroide original
-			asteroides_medianos[i].global_position = global_position + directions[i] * 20  
+			# **Desactivar colisión momentáneamente para evitar empujes extra**
+			asteroides_medianos[i].set_collision_layer(0)
+			asteroides_medianos[i].set_collision_mask(0)
 
-			# Impulso más fuerte en distintas direcciones
-			var extra_force = randf_range(400, 700)  
-			asteroides_medianos[i].linear_velocity = directions[i] * extra_force + (linear_velocity * 0.5)
-			
+			# **Separación inicial más grande**
+			var spawn_offset = directions[i] * randf_range(25, 40)  
+			asteroides_medianos[i].global_position = global_position + spawn_offset  
+
+			# **Impulso completamente aleatorio**
+			var extra_force = randf_range(500, 1000)  
+			asteroides_medianos[i].linear_velocity = directions[i] * extra_force  # Sin heredar velocidad original
+
 			# Rotación aleatoria
 			asteroides_medianos[i].angular_velocity = randf_range(-5, 5)
 
-	print("¡Asteroide fragmentado en 4 partes con mayor fuerza y dirección!")
+			# **Reactivar colisión después de un frame**
+			asteroides_medianos[i].call_deferred("set_collision_layer", 1)
+			asteroides_medianos[i].call_deferred("set_collision_mask", 1)
+
+	print("¡Asteroide fragmentado en 4 partes con direcciones realmente aleatorias!")
+
 	
 func check_screen_wrap():
 	var new_position = global_position
