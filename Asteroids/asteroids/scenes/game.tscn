@@ -1,0 +1,62 @@
+[gd_scene load_steps=8 format=3 uid="uid://bwg8nv26pboxx"]
+
+[ext_resource type="PackedScene" uid="uid://brybpla2237kk" path="res://scenes/player.tscn" id="1_2qsk6"]
+[ext_resource type="Texture2D" uid="uid://dnoy0umjehtpd" path="res://assets/background/background_01_parallax_01.png" id="1_7erqy"]
+[ext_resource type="Texture2D" uid="uid://c4jmc7pp7i3pk" path="res://assets/background/background_01_parallax_03.png" id="2_6n3gj"]
+[ext_resource type="Texture2D" uid="uid://b7bs3x1k71q8b" path="res://assets/background/background_01_parallax_04.png" id="3_w5vi2"]
+[ext_resource type="PackedScene" uid="uid://bc5f42xkbqacr" path="res://scenes/enemy_small.tscn" id="6_egpld"]
+[ext_resource type="PackedScene" uid="uid://di5m6mvn6mssq" path="res://scenes/enemy_spawner.tscn" id="7_2lete"]
+[ext_resource type="PackedScene" uid="uid://dr5b3tnjfwilj" path="res://scenes/asteroid_main.tscn" id="9_myrf7"]
+
+[node name="Game" type="Node2D"]
+scale = Vector2(0.8, 0.8)
+
+[node name="Background" type="TextureRect" parent="."]
+z_index = -10
+offset_left = -16.25
+offset_top = -253.75
+offset_right = 2431.75
+offset_bottom = 1682.25
+texture = ExtResource("1_7erqy")
+stretch_mode = 1
+
+[node name="Planet Left" type="Sprite2D" parent="Background"]
+position = Vector2(619, 839)
+texture = ExtResource("2_6n3gj")
+
+[node name="Planet Right" type="Sprite2D" parent="Background"]
+position = Vector2(1746, 1360)
+texture = ExtResource("3_w5vi2")
+
+[node name="Stars" type="Sprite2D" parent="Background"]
+position = Vector2(1224, 969)
+
+[node name="Player" parent="." instance=ExtResource("1_2qsk6")]
+position = Vector2(1606.25, 1047.5)
+
+[node name="Enemy_small" parent="." instance=ExtResource("6_egpld")]
+position = Vector2(232.5, 287.5)
+
+[node name="EnemySpawner" parent="." instance=ExtResource("7_2lete")]
+position = Vector2(-68.75, -36.25)
+
+[node name="AsteroidMain" parent="." instance=ExtResource("9_myrf7")]
+position = Vector2(1096.25, 642.5)
+
+[node name="AsteroidMain2" parent="." instance=ExtResource("9_myrf7")]
+position = Vector2(480, 1067.5)
+
+[node name="AsteroidMain3" parent="." instance=ExtResource("9_myrf7")]
+position = Vector2(2095, 163.75)
+
+[node name="AsteroidMain4" parent="." instance=ExtResource("9_myrf7")]
+position = Vector2(2045, 1142.5)
+
+[node name="AsteroidMain5" parent="." instance=ExtResource("9_myrf7")]
+position = Vector2(1575, 510)
+
+[node name="AsteroidMain6" parent="." instance=ExtResource("9_myrf7")]
+position = Vector2(631.25, 217.5)
+
+[node name="AsteroidMain7" parent="." instance=ExtResource("9_myrf7")]
+position = Vector2(1077.5, 1177.5)

@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://brybpla2237kk"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_h250j"]
+[ext_resource type="Texture2D" uid="uid://bronsp8avbxlh" path="res://assets/player/CX16-X1.png" id="1_ujrb8"]
+[ext_resource type="PackedScene" uid="uid://bouvkbj40hi8j" path="res://scenes/explosion.tscn" id="2_4mc02"]
+[ext_resource type="PackedScene" uid="uid://6hysdd2kap38" path="res://scenes/laser.tscn" id="3_ht78k"]
+[ext_resource type="PackedScene" uid="uid://cl3tngjt2n1bb" path="res://scenes/flame_center.tscn" id="4_dsfgt"]
+[ext_resource type="PackedScene" uid="uid://2cg5rghxqhu0" path="res://scenes/flame_left.tscn" id="5_j6qfa"]
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+script = ExtResource("1_h250j")
+explosion_scene = ExtResource("2_4mc02")
+laser_scene = ExtResource("3_ht78k")
+fade_duration = 0.2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_ujrb8")
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, 3)
+scale = Vector2(0.5, 0.5)
+polygon = PackedVector2Array(66, 60, -68, 60, -54, -4, 0, -68, 52, -2)
+
+[node name="Flame_Center" parent="." instance=ExtResource("4_dsfgt")]
+position = Vector2(-1, 50)
+scale = Vector2(1.4, 1)
+
+[node name="Flame_Right" parent="." instance=ExtResource("5_j6qfa")]
+position = Vector2(27, 45)
+scale = Vector2(0.560001, 0.359998)
+
+[node name="Flame_Left" parent="." instance=ExtResource("5_j6qfa")]
+position = Vector2(-26, 45)
+scale = Vector2(0.559998, 0.360001)

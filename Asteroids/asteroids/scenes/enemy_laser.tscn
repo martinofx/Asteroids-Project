@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://chq7ofcj7nven"]
+
+[ext_resource type="Texture2D" uid="uid://dt54h1yal1ojn" path="res://assets/effects/weapons/bullet_blaster_big_single.png" id="1_fn3lk"]
+[ext_resource type="Script" path="res://scripts/enemy_laser.gd" id="1_qluu4"]
+[ext_resource type="PackedScene" uid="uid://4tkt0uhcv7jl" path="res://scenes/laser_explosion.tscn" id="2_n8kf8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gfu0b"]
+radius = 13.0
+
+[node name="enemy_laser" type="Area2D" groups=["laser"]]
+script = ExtResource("1_qluu4")
+speed = 800.0
+laser_explosion_scene = ExtResource("2_n8kf8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_fn3lk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(12, 0)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CircleShape2D_gfu0b")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(1, 0)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

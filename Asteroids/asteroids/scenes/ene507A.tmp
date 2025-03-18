@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://bc5f42xkbqacr"]
+
+[ext_resource type="Script" path="res://scripts/health.gd" id="1_7b6xf"]
+[ext_resource type="Script" path="res://scripts/enemy_small.gd" id="1_pcrg4"]
+[ext_resource type="Texture2D" uid="uid://dsbfqddiwl5xn" path="res://assets/player/enemy_unit.png" id="2_akibf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ij14w"]
+radius = 53.0
+
+[node name="Enemy_small" type="Area2D" groups=["enemy"]]
+position = Vector2(-1, 0)
+script = ExtResource("1_pcrg4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_akibf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ij14w")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("1_7b6xf")

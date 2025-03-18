@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://cr2p581ks6bet"]
+
+[ext_resource type="Texture2D" uid="uid://3lry6c5rdicu" path="res://Starfield_2.png" id="1_51yea"]
+[ext_resource type="Script" path="res://level.gd" id="1_tik17"]
+[ext_resource type="PackedScene" uid="uid://bmfx5ky5dld4l" path="res://player.tscn" id="2_q8s3l"]
+[ext_resource type="PackedScene" uid="uid://jxkedanrfheu" path="res://maze.tscn" id="4_sh4ng"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_m0clw"]
+font_size = 32
+
+[node name="Level1" type="Node2D"]
+script = ExtResource("1_tik17")
+
+[node name="Graphics" type="Node" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Graphics"]
+layer = -10
+
+[node name="Background" type="TextureRect" parent="Graphics/CanvasLayer"]
+z_index = -1000
+texture_repeat = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_51yea")
+stretch_mode = 1
+
+[node name="StartLabel" type="Label" parent="Graphics"]
+z_index = -1
+offset_left = 624.0
+offset_top = 259.0
+offset_right = 719.0
+offset_bottom = 304.0
+text = "START"
+label_settings = SubResource("LabelSettings_m0clw")
+
+[node name="FinishLabel" type="Label" parent="Graphics"]
+z_index = -1
+offset_left = 1432.0
+offset_top = 883.0
+offset_right = 1535.0
+offset_bottom = 928.0
+text = "FINISH"
+label_settings = SubResource("LabelSettings_m0clw")
+
+[node name="Player" parent="." instance=ExtResource("2_q8s3l")]
+position = Vector2(542, 383)
+
+[node name="Maze" parent="." instance=ExtResource("4_sh4ng")]
+z_index = -50
+position = Vector2(547, 359)
+
+[connection signal="body_exited" from="Maze" to="." method="_on_maze_body_exited"]

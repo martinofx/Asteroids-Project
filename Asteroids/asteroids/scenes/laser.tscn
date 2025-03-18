@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://6hysdd2kap38"]
+
+[ext_resource type="Script" path="res://scripts/laser.gd" id="1_0dmiu"]
+[ext_resource type="Texture2D" uid="uid://bsfdyby6y632" path="res://assets/effects/weapons/bullet_short_single.png" id="1_sbpci"]
+[ext_resource type="PackedScene" uid="uid://4tkt0uhcv7jl" path="res://scenes/laser_explosion.tscn" id="2_ylt6n"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wmjhu"]
+radius = 3.0
+height = 42.0
+
+[node name="Laser" type="Area2D" groups=["laser"]]
+script = ExtResource("1_0dmiu")
+laser_explosion_scene = ExtResource("2_ylt6n")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_sbpci")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_wmjhu")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

@@ -1,0 +1,75 @@
+[gd_scene load_steps=9 format=3 uid="uid://brdnpdaf0i65l"]
+
+[ext_resource type="Texture2D" uid="uid://deo3s5njoeqjh" path="res://assets/asteroids/asteroid_15_with_cracks.png" id="1_bid1o"]
+[ext_resource type="Script" path="res://scripts/asteroid_last_2.gd" id="1_v8ewf"]
+[ext_resource type="PackedScene" uid="uid://bxw5kklv4v2ch" path="res://scenes/explosion_small.tscn" id="2_n8t7u"]
+[ext_resource type="PackedScene" uid="uid://4tkt0uhcv7jl" path="res://scenes/laser_explosion.tscn" id="3_33r5n"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fvh85"]
+radius = 20.394
+height = 79.9741
+
+[sub_resource type="Animation" id="Animation_6mus4"]
+resource_name = "fractured"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_01kph"]
+resource_name = "healthy"
+length = 0.03
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_of45k"]
+_data = {
+"fractured": SubResource("Animation_6mus4"),
+"healthy": SubResource("Animation_01kph")
+}
+
+[node name="AsteroidLast2" type="CharacterBody2D" groups=["asteroid"]]
+z_index = -2
+script = ExtResource("1_v8ewf")
+explosion_scene = ExtResource("2_n8t7u")
+laser_explosion = ExtResource("3_33r5n")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_bid1o")
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 2)
+rotation = -0.18326
+shape = SubResource("CapsuleShape2D_fvh85")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_of45k")
+}
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_of45k")
+}
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]

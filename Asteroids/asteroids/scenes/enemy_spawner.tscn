@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://di5m6mvn6mssq"]
+
+[ext_resource type="Script" path="res://scripts/enemy_spawner.gd" id="1_geib4"]
+[ext_resource type="PackedScene" uid="uid://bc5f42xkbqacr" path="res://scenes/enemy_small.tscn" id="2_vmcf0"]
+
+[node name="EnemySpawner" type="Node2D"]
+script = ExtResource("1_geib4")
+enemy_scene = ExtResource("2_vmcf0")
+
+[node name="SpawnPositions" type="Node2D" parent="."]
+
+[node name="SpawnTop" type="Marker2D" parent="SpawnPositions"]
+position = Vector2(945, -302)
+
+[node name="SpawnBottom" type="Marker2D" parent="SpawnPositions"]
+position = Vector2(980, 1474)
+
+[node name="SpawnLeft" type="Marker2D" parent="SpawnPositions"]
+position = Vector2(-249, 618)
+
+[node name="SpawnRight" type="Marker2D" parent="SpawnPositions"]
+position = Vector2(2713, 449)
