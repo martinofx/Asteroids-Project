@@ -1,13 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://ce5mofn3atpe4"]
+[gd_scene load_steps=11 format=3 uid="uid://ce5mofn3atpe4"]
 
-[ext_resource type="Script" path="res://scripts/asteroid_main.gd" id="1_u51oe"]
+[ext_resource type="Script" path="res://scripts/asteroid_parts.gd" id="1_818gw"]
 [ext_resource type="PackedScene" uid="uid://bxw5kklv4v2ch" path="res://scenes/explosion_small.tscn" id="2_l6vrw"]
-[ext_resource type="PackedScene" uid="uid://4tkt0uhcv7jl" path="res://scenes/laser_explosion.tscn" id="3_na6vs"]
+[ext_resource type="PackedScene" uid="uid://6hysdd2kap38" path="res://scenes/laser.tscn" id="3_d56bs"]
+[ext_resource type="PackedScene" uid="uid://piix8c8y04wl" path="res://scenes/asteroid_third_1.tscn" id="4_cct7n"]
 [ext_resource type="Texture2D" uid="uid://vl1olp368448" path="res://assets/asteroids/Asteroid Second 1.png" id="4_xfmph"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fvh85"]
-radius = 173.399
-height = 392.999
+[ext_resource type="PackedScene" uid="uid://b3feacb64bxak" path="res://scenes/asteroid_third_2.tscn" id="5_0pre1"]
 
 [sub_resource type="Animation" id="Animation_ek27t"]
 length = 3.0
@@ -67,9 +65,11 @@ _data = {
 z_index = -3
 mass = 0.001
 gravity_scale = 0.0
-script = ExtResource("1_u51oe")
+script = ExtResource("1_818gw")
 explosion_scene = ExtResource("2_l6vrw")
-laser_explosion = ExtResource("3_na6vs")
+laser_explosion = ExtResource("3_d56bs")
+asteroid_third_1 = ExtResource("4_cct7n")
+asteroid_third_2 = ExtResource("5_0pre1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.4, 0.4)
@@ -77,11 +77,11 @@ texture = ExtResource("4_xfmph")
 hframes = 2
 vframes = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(6, -2)
 rotation = -0.268014
 scale = Vector2(0.527704, 0.367693)
-shape = SubResource("CapsuleShape2D_fvh85")
+polygon = PackedVector2Array(-122.121, 104.167, -174.214, 27.229, -175.529, -119.948, -85.5531, -169.096, 0.975969, -118.07, 96.1123, -173.646, 158.886, -131.983, 163.458, 70.0642, 95.6935, 167.452, -19.5436, 215.105, -87.2593, 137.65)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

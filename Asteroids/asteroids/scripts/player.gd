@@ -122,7 +122,7 @@ func _on_body_entered(body):
 
 
 func take_damage(_impact_position = null):
-	health -= 25
+	health -= 100
 	sprite.modulate = Color(1, 0.5, 0.5)
 	await get_tree().create_timer(0.1).timeout
 	sprite.modulate = Color(1, 1, 1)  
@@ -131,10 +131,24 @@ func take_damage(_impact_position = null):
 		die()
 
 func die():
+			
 	if explosion_scene:
-		var explosion = explosion_scene.instantiate()
-		get_parent().add_child(explosion)
-		explosion.global_position = global_position
+		var explosion_count = randi_range(5, 10)  # Cantidad aleatoria de explosiones
+		for i in range(explosion_count):
+			var explosion = explosion_scene.instantiate()
+			if explosion:
+				get_parent().add_child(explosion)
+				
+				# Posición aleatoria cerca del asteroide
+				var random_offset = Vector2(randf_range(-10, 10), randf_range(-10, 10))
+				explosion.global_position = global_position + random_offset
+				
+				# Escala aleatoria entre 0.5 y 1.5 veces el tamaño normal
+				var random_scale = randf_range(0.9,1.5 )
+				explosion.scale = Vector2(random_scale, random_scale)
+
+				# Agregar un pequeño retraso entre explosiones
+				await get_tree().create_timer(randf_range(0.05, 0.1)).timeout
 	queue_free()
 
 func check_screen_wrap():

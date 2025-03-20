@@ -1,9 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://brdnpdaf0i65l"]
+[gd_scene load_steps=8 format=3 uid="uid://yb2f05gub03y"]
 
-[ext_resource type="Texture2D" uid="uid://deo3s5njoeqjh" path="res://assets/asteroids/Asteroid Last 2.png" id="1_bid1o"]
-[ext_resource type="Script" path="res://scripts/asteroid_last.gd" id="1_yi7la"]
-[ext_resource type="PackedScene" uid="uid://bq73bbrebolkq" path="res://scenes/explosion_very_small.tscn" id="2_hdfyv"]
-[ext_resource type="PackedScene" uid="uid://4tkt0uhcv7jl" path="res://scenes/laser_explosion.tscn" id="3_33r5n"]
+[ext_resource type="Script" path="res://scripts/asteroid_last.gd" id="1_15ml6"]
+[ext_resource type="PackedScene" uid="uid://bq73bbrebolkq" path="res://scenes/explosion_very_small.tscn" id="2_fghw8"]
+[ext_resource type="PackedScene" uid="uid://4tkt0uhcv7jl" path="res://scenes/laser_explosion.tscn" id="3_4g1ut"]
+[ext_resource type="Texture2D" uid="uid://qgy34are8tg4" path="res://assets/asteroids/Asteroid Last 1.png" id="4_6d3y2"]
 
 [sub_resource type="Animation" id="Animation_6mus4"]
 resource_name = "fractured"
@@ -43,23 +43,23 @@ _data = {
 "healthy": SubResource("Animation_01kph")
 }
 
-[node name="AsteroidLast2" type="RigidBody2D" groups=["asteroid"]]
+[node name="AsteroidLast" type="RigidBody2D" groups=["asteroid"]]
 z_index = -2
 gravity_scale = 0.01
-script = ExtResource("1_yi7la")
-explosion_scene = ExtResource("2_hdfyv")
-laser_explosion = ExtResource("3_33r5n")
+script = ExtResource("1_15ml6")
+explosion_scene = ExtResource("2_fghw8")
+laser_explosion = ExtResource("3_4g1ut")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_bid1o")
+texture = ExtResource("4_6d3y2")
 hframes = 2
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
-position = Vector2(0, 1)
+position = Vector2(-1, 1)
 rotation = -0.18326
 scale = Vector2(0.5, 0.5)
-polygon = PackedVector2Array(-17.5843, -36.8211, -11.0279, -44.7592, 18.6859, -23.9966, 23.8143, 19.6692, 8.91727, 34.1977, -11.0402, 37.618, -20.1057, 20.6823, -15.8762, -13.1128)
+polygon = PackedVector2Array(-2.2888, -37.0373, 49.1329, -34.626, 41.8434, 4.70414, 40.4916, 33.9475, 10.2269, 43.5937, -20.254, 37.9444, -41.0084, 12.7401, -41.0764, -19.8174)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bxw5kklv4v2ch"]
+[gd_scene load_steps=6 format=3 uid="uid://bq73bbrebolkq"]
 
-[ext_resource type="Script" path="res://scripts/explosion.gd" id="1_jx1q5"]
-[ext_resource type="Texture2D" uid="uid://cdr1cd24y1ldf" path="res://assets/effects/explosions/explosion_big.png" id="2_evl86"]
+[ext_resource type="Script" path="res://scripts/explosion.gd" id="1_x3pw5"]
+[ext_resource type="Texture2D" uid="uid://cdr1cd24y1ldf" path="res://assets/effects/explosions/explosion_big.png" id="2_ugyuk"]
 
 [sub_resource type="Animation" id="Animation_ngbxc"]
 resource_name = "explosion"
@@ -42,11 +42,11 @@ _data = {
 }
 
 [node name="Explosion" type="Node2D"]
-script = ExtResource("1_jx1q5")
+script = ExtResource("1_x3pw5")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("2_evl86")
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("2_ugyuk")
 hframes = 9
 frame = 8
 

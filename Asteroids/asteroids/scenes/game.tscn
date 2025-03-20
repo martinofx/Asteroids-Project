@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bwg8nv26pboxx"]
+[gd_scene load_steps=22 format=3 uid="uid://bwg8nv26pboxx"]
 
 [ext_resource type="PackedScene" uid="uid://brybpla2237kk" path="res://scenes/player.tscn" id="1_2qsk6"]
 [ext_resource type="Texture2D" uid="uid://dnoy0umjehtpd" path="res://assets/background/background_01_parallax_01.png" id="1_7erqy"]
@@ -7,7 +7,20 @@
 [ext_resource type="PackedScene" uid="uid://bc5f42xkbqacr" path="res://scenes/enemy_small.tscn" id="6_egpld"]
 [ext_resource type="PackedScene" uid="uid://di5m6mvn6mssq" path="res://scenes/enemy_spawner.tscn" id="7_2lete"]
 [ext_resource type="PackedScene" uid="uid://bdsurow08ybeq" path="res://scenes/asteroid_second_4.tscn" id="8_765c4"]
+[ext_resource type="PackedScene" uid="uid://ce5mofn3atpe4" path="res://scenes/asteroid_second_1.tscn" id="8_g1d7c"]
 [ext_resource type="PackedScene" uid="uid://dr5b3tnjfwilj" path="res://scenes/asteroid_main.tscn" id="9_myrf7"]
+[ext_resource type="PackedScene" uid="uid://dyytpbk62so1r" path="res://scenes/asteroid_second_2.tscn" id="9_wfwms"]
+[ext_resource type="PackedScene" uid="uid://bla7bujkm2b5g" path="res://scenes/asteroid_second_3.tscn" id="10_pe85v"]
+[ext_resource type="PackedScene" uid="uid://piix8c8y04wl" path="res://scenes/asteroid_third_1.tscn" id="12_fwfoa"]
+[ext_resource type="PackedScene" uid="uid://b3feacb64bxak" path="res://scenes/asteroid_third_2.tscn" id="13_6cj5o"]
+[ext_resource type="PackedScene" uid="uid://xlcjpwi0clp4" path="res://scenes/asteroid_third_3.tscn" id="14_rct8f"]
+[ext_resource type="PackedScene" uid="uid://pbgtgrmqi56t" path="res://scenes/asteroid_third_4.tscn" id="15_xwbw6"]
+[ext_resource type="PackedScene" uid="uid://gjrnmqj13mng" path="res://scenes/asteroid_third_5.tscn" id="16_gh4wm"]
+[ext_resource type="PackedScene" uid="uid://dwfalho8bibnk" path="res://scenes/asteroid_third_6.tscn" id="17_nlwtt"]
+[ext_resource type="PackedScene" uid="uid://bf32aggaugp6b" path="res://scenes/asteroid_third_7.tscn" id="18_mgvkm"]
+[ext_resource type="PackedScene" uid="uid://b8flr1tm7sf40" path="res://scenes/asteroid_third_8.tscn" id="19_tgh0f"]
+[ext_resource type="PackedScene" uid="uid://yb2f05gub03y" path="res://scenes/asteroid_last.tscn" id="20_hvn4f"]
+[ext_resource type="PackedScene" uid="uid://brdnpdaf0i65l" path="res://scenes/asteroid_last_2.tscn" id="21_hxg8o"]
 
 [node name="Game" type="Node2D"]
 scale = Vector2(0.8, 0.8)
@@ -44,8 +57,44 @@ position = Vector2(-68.75, -36.25)
 [node name="AsteroidMain" parent="." instance=ExtResource("9_myrf7")]
 position = Vector2(1096.25, 642.5)
 
-[node name="AsteroidMain2" parent="." instance=ExtResource("9_myrf7")]
-position = Vector2(480, 1067.5)
+[node name="AsteroidSecond1" parent="." instance=ExtResource("8_g1d7c")]
+position = Vector2(642.5, 938.75)
 
-[node name="AsteroidSecond3" parent="." instance=ExtResource("8_765c4")]
-position = Vector2(828.75, 397.5)
+[node name="AsteroidSecond2" parent="." instance=ExtResource("9_wfwms")]
+position = Vector2(1130, 1157.5)
+
+[node name="AsteroidSecond3" parent="." instance=ExtResource("10_pe85v")]
+position = Vector2(221.25, 733.75)
+
+[node name="AsteroidSecond4" parent="." instance=ExtResource("8_765c4")]
+position = Vector2(513.75, 453.75)
+
+[node name="Asteroidthird1" parent="." instance=ExtResource("12_fwfoa")]
+position = Vector2(1893.75, 265)
+
+[node name="Asteroidthird2" parent="." instance=ExtResource("13_6cj5o")]
+position = Vector2(1866.25, 445)
+
+[node name="Asteroidthird3" parent="." instance=ExtResource("14_rct8f")]
+position = Vector2(1871.25, 672.5)
+
+[node name="Asteroidthird4" parent="." instance=ExtResource("15_xwbw6")]
+position = Vector2(1888.75, 885)
+
+[node name="Asteroidthird5" parent="." instance=ExtResource("16_gh4wm")]
+position = Vector2(1891.25, 1096.25)
+
+[node name="Asteroidthird6" parent="." instance=ExtResource("17_nlwtt")]
+position = Vector2(1882.5, 1216.25)
+
+[node name="Asteroidthird7" parent="." instance=ExtResource("18_mgvkm")]
+position = Vector2(2236.25, 260)
+
+[node name="Asteroidthird8" parent="." instance=ExtResource("19_tgh0f")]
+position = Vector2(2230, 450)
+
+[node name="AsteroidLast" parent="." instance=ExtResource("20_hvn4f")]
+position = Vector2(1273.75, 228.75)
+
+[node name="AsteroidLast2" parent="." instance=ExtResource("21_hxg8o")]
+position = Vector2(1408.75, 408.75)

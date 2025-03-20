@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://v0sltkslrhjs"
-path="res://.godot/imported/asteroid_06_with_cracks.png-3319d433b84e4ef1cd62d3b1675356f3.ctex"
+uid="uid://c47vo8pxj586k"
+path="res://.godot/imported/Asteroid Third 4.png-3ec64ed26f9a5c91da03d9e6f89ede53.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/asteroids/asteroid_06_with_cracks.png"
-dest_files=["res://.godot/imported/asteroid_06_with_cracks.png-3319d433b84e4ef1cd62d3b1675356f3.ctex"]
+source_file="res://assets/asteroids/Asteroid Third 4.png"
+dest_files=["res://.godot/imported/Asteroid Third 4.png-3ec64ed26f9a5c91da03d9e6f89ede53.ctex"]
 
 [params]
 

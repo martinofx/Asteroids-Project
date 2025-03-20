@@ -1,11 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://bla7bujkm2b5g"]
+[gd_scene load_steps=11 format=3 uid="uid://bf32aggaugp6b"]
 
-[ext_resource type="Script" path="res://scripts/asteroid_parts.gd" id="1_kdq87"]
-[ext_resource type="PackedScene" uid="uid://bxw5kklv4v2ch" path="res://scenes/explosion_small.tscn" id="2_l7m51"]
-[ext_resource type="PackedScene" uid="uid://4tkt0uhcv7jl" path="res://scenes/laser_explosion.tscn" id="3_dgnlq"]
-[ext_resource type="Texture2D" uid="uid://d2hmkd8m7t506" path="res://assets/asteroids/Asteroid Second 3.png" id="4_5ltc5"]
-[ext_resource type="PackedScene" uid="uid://gjrnmqj13mng" path="res://scenes/asteroid_third_5.tscn" id="4_8efbc"]
-[ext_resource type="PackedScene" uid="uid://dwfalho8bibnk" path="res://scenes/asteroid_third_6.tscn" id="5_qxm4n"]
+[ext_resource type="Script" path="res://scripts/asteroid_parts.gd" id="1_bs3gc"]
+[ext_resource type="PackedScene" uid="uid://bxw5kklv4v2ch" path="res://scenes/explosion_small.tscn" id="2_lwd8e"]
+[ext_resource type="PackedScene" uid="uid://4tkt0uhcv7jl" path="res://scenes/laser_explosion.tscn" id="3_qyk0f"]
+[ext_resource type="PackedScene" uid="uid://yb2f05gub03y" path="res://scenes/asteroid_last.tscn" id="4_slu1p"]
+[ext_resource type="Texture2D" uid="uid://d3ollcpnec178" path="res://assets/asteroids/Asteroid Third 7.png" id="4_vnbl8"]
+[ext_resource type="PackedScene" uid="uid://brdnpdaf0i65l" path="res://scenes/asteroid_last_2.tscn" id="5_35dvu"]
 
 [sub_resource type="Animation" id="Animation_ek27t"]
 length = 3.0
@@ -61,27 +61,26 @@ _data = {
 "healthy": SubResource("Animation_01kph")
 }
 
-[node name="AsteroidSecond3" type="RigidBody2D" groups=["asteroid"]]
+[node name="Asteroidthird7" type="RigidBody2D" groups=["asteroid"]]
 z_index = -3
 mass = 0.001
 gravity_scale = 0.0
-script = ExtResource("1_kdq87")
-explosion_scene = ExtResource("2_l7m51")
-laser_explosion = ExtResource("3_dgnlq")
-asteroid_third_1 = ExtResource("4_8efbc")
-asteroid_third_2 = ExtResource("5_qxm4n")
+script = ExtResource("1_bs3gc")
+explosion_scene = ExtResource("2_lwd8e")
+laser_explosion = ExtResource("3_qyk0f")
+asteroid_third_1 = ExtResource("4_slu1p")
+asteroid_third_2 = ExtResource("5_35dvu")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.4, 0.4)
-texture = ExtResource("4_5ltc5")
-hframes = 2
-vframes = 2
+texture = ExtResource("4_vnbl8")
+hframes = 3
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
-position = Vector2(8.9407e-08, -1)
-rotation = -0.347055
-scale = Vector2(0.416831, 0.316214)
-polygon = PackedVector2Array(-123.648, 115.918, -33.8395, 141.923, 52.0812, 172.8, 137.857, 92.6314, 142.369, -63.2749, 88.608, -109.084, 47.7595, -155.464, -50.8331, -158.753, -138.865, -79.6603, -153.505, 10.8844)
+position = Vector2(-7.00003, -5.99996)
+rotation = -0.268014
+scale = Vector2(0.527704, 0.367693)
+polygon = PackedVector2Array(-48.0889, 45.9147, -45.2199, 10.3809, -25.4028, -21.2935, -14.9025, -45.3585, 3.22908, -57.9548, 25.8391, -63.1453, 56.4021, -48.2791, 75.6412, -15.3133, 50.446, 65.0077, 31.1307, 94.0596, 1.03142, 107.58, -34.3319, 76.7199)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
