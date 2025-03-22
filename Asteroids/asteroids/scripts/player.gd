@@ -122,7 +122,7 @@ func _on_body_entered(body):
 
 
 func take_damage(_impact_position = null):
-	health -= 100
+	health -= 10
 	sprite.modulate = Color(1, 0.5, 0.5)
 	await get_tree().create_timer(0.1).timeout
 	sprite.modulate = Color(1, 1, 1)  

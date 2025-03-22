@@ -102,7 +102,7 @@ func explode():
 				get_parent().add_child(explosion)
 				
 				# Posición aleatoria cerca del asteroide
-				var random_offset = Vector2(randf_range(-10, 10), randf_range(-10, 10))
+				var random_offset = Vector2(randf_range(-20, 10), randf_range(-20, 10))
 				explosion.global_position = global_position + random_offset
 				
 				# Escala aleatoria entre 0.5 y 1.5 veces el tamaño normal
