@@ -51,6 +51,15 @@ position = Vector2(1606.25, 1047.5)
 [node name="Enemy_small" parent="." instance=ExtResource("6_egpld")]
 position = Vector2(232.5, 287.5)
 
+[node name="Enemy_small2" parent="." instance=ExtResource("6_egpld")]
+position = Vector2(232.5, 287.5)
+
+[node name="Enemy_small3" parent="." instance=ExtResource("6_egpld")]
+position = Vector2(232.5, 287.5)
+
+[node name="Enemy_small4" parent="." instance=ExtResource("6_egpld")]
+position = Vector2(232.5, 287.5)
+
 [node name="EnemySpawner" parent="." instance=ExtResource("7_2lete")]
 position = Vector2(-68.75, -36.25)
 

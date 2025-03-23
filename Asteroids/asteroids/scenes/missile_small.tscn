@@ -10,6 +10,7 @@ radius = 11.0
 height = 42.0
 
 [node name="MissileSmall" type="Area2D" groups=["laser"]]
+z_index = -2
 scale = Vector2(0.7, 0.7)
 script = ExtResource("1_acmpk")
 explosion_small_scene = ExtResource("2_rn6mg")

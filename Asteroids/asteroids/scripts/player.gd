@@ -6,6 +6,7 @@ extends CharacterBody2D
 @export var friction: float = 0.98  # Fricción al soltar avanzar
 @export var explosion_scene: PackedScene  # Asigna aquí la escena de la explosión
 @export var laser_scene: PackedScene  # Asigna aquí la escena del láser
+@export var missile_scene: PackedScene  # Asigna aquí la escena del láser
 @export var fire_rate: float = 0.3  # Tiempo entre disparos
 @export var fade_duration: float = 0.5  # Duración del desvanecimiento
 
@@ -28,6 +29,8 @@ func _ready() -> void:
 	flame_center.visible = false
 	flame_left.visible = false
 	flame_right.visible = false
+	
+	add_to_group("player")
 
 func update_screen_size() -> void:
 	screen_size = get_viewport_rect().size
@@ -94,6 +97,7 @@ func handle_flames(moving: bool, rotating_left: bool, rotating_right: bool):
 func _input(event):
 	if event.is_action_pressed("shoot") and can_shoot:
 		shoot()
+		fire_missile()
 
 func shoot():
 	can_shoot = false  
@@ -108,6 +112,21 @@ func shoot():
 	laser.rotation = rotation
 
 	get_tree().create_timer(fire_rate).timeout.connect(func(): can_shoot = true)
+	
+func fire_missile():
+	if missile_scene:
+		for i in range(3):  # Disparar 3 misiles en sucesión
+			var missile = missile_scene.instantiate()			
+			get_parent().add_child(missile)
+			
+			var offset_distance = -40  
+			var shoot_position = global_position + Vector2.UP.rotated(rotation) * offset_distance
+
+			missile.global_position = shoot_position
+			missile.direction = Vector2.UP.rotated(rotation)
+			missile.rotation = rotation
+			
+			await get_tree().create_timer(0.15).timeout  # Pequeña pausa entre misiles
 
 func _on_body_entered(body):
 	if body.is_in_group("enemy"):  
@@ -118,8 +137,8 @@ func _on_body_entered(body):
 		var impact_force = body.linear_velocity.length()  
 		var impact_direction = (global_position - body.global_position).normalized()
 		receive_impact(impact_force, impact_direction, body)
-		body.take_damage()
-
+		take_damage(body.global_position)  # Llama a la función de daño
+		body.take_damage() 
 
 func take_damage(_impact_position = null):
 	health -= 10
@@ -129,6 +148,10 @@ func take_damage(_impact_position = null):
 	
 	if health <= 0:
 		die()
+		
+func _on_damage_area_area_entered(area):
+	if area.is_in_group("asteroid"):
+		take_damage(area.global_position)  # Llama a la función de daño correctamente
 
 func die():
 			
@@ -203,3 +226,8 @@ func _process(delta):
 		return  # No procesa entrada si está deshabilitada
 	
 	# Aquí puede ir la lógica de rotación o efectos adicionales...
+
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	if area.is_in_group("asteroid"):
+		take_damage(area.global_position)  # Aplica daño a la nave.

@@ -25,6 +25,9 @@ func _ready():
 	var random_speed = randf_range(min_speed, max_speed)
 	linear_velocity = random_direction * random_speed
 	sprite.frame = 0  # Estado inicial sano
+	
+	add_to_group("asteroid")
+	
 
 func _integrate_forces(state):
 	check_screen_wrap()
@@ -69,7 +72,7 @@ func _on_body_entered(body):
 			body.apply_impulse(collision_direction * push_force)
 		elif body is CharacterBody2D:
 			body.velocity += collision_direction * push_force
-
+			body.take_damage(global_position)  # Aplica daño en la nave
 		# Aplicar daño si el método existe
 		if body.has_method("take_damage"):
 			take_damage(body.global_position)
@@ -78,6 +81,9 @@ func _on_body_entered(body):
 		# Deshabilitar controles si el impacto es fuerte
 		if impact_force > 200 and body.has_method("disable_controls"):
 			body.disable_controls(0.75) 
+			
+		if body.is_in_group("enemy") or body.is_in_group("asteroid"):  # Verifica si colisiona con un enemigo
+			body.take_damage(body.global_position )  # Llamar a la función de daño del enemigo
 
 func take_damage(impact_position):
 	health -= 10
