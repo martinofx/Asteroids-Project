@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5nh2klb4w0ln"
-path="res://.godot/imported/powerup_05.png-04a52799ded36cc9a0215f7c3a9af829.ctex"
+uid="uid://cjc13t4fecq2f"
+path="res://.godot/imported/shield.png-e8ed44b6154c39dfe8c46b461fd6073c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/powerups/powerup_05.png"
-dest_files=["res://.godot/imported/powerup_05.png-04a52799ded36cc9a0215f7c3a9af829.ctex"]
+source_file="res://assets/powerups/shield.png"
+dest_files=["res://.godot/imported/shield.png-e8ed44b6154c39dfe8c46b461fd6073c.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cd4rt4glloaqp"
-path="res://.godot/imported/powerup_08.png-9005f17af9b3d8a3adc0cd6fb3d54d13.ctex"
+uid="uid://dnav7qv7skjsm"
+path="res://.godot/imported/cluster.png-ace325dfbe44f73d0a981bfd0a17c662.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/powerups/powerup_08.png"
-dest_files=["res://.godot/imported/powerup_08.png-9005f17af9b3d8a3adc0cd6fb3d54d13.ctex"]
+source_file="res://assets/powerups/cluster.png"
+dest_files=["res://.godot/imported/cluster.png-ace325dfbe44f73d0a981bfd0a17c662.ctex"]
 
 [params]
 

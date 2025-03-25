@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0oidpsrup3k1"
-path="res://.godot/imported/powerup_07.png-294ed1ac1438578fe28431879d1e2808.ctex"
+uid="uid://bn4pcwohvfpas"
+path="res://.godot/imported/missile.png-483027beb18c3c2134303884a8d88f88.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/powerups/powerup_07.png"
-dest_files=["res://.godot/imported/powerup_07.png-294ed1ac1438578fe28431879d1e2808.ctex"]
+source_file="res://assets/powerups/missile.png"
+dest_files=["res://.godot/imported/missile.png-483027beb18c3c2134303884a8d88f88.ctex"]
 
 [params]
 

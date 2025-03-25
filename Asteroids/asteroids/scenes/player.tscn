@@ -47,4 +47,6 @@ scale = Vector2(0.559998, 0.360001)
 position = Vector2(0, -10)
 shape = SubResource("RectangleShape2D_i08m5")
 
+[node name="WeaponManager" type="Node" parent="."]
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
