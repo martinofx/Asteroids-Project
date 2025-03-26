@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bwg8nv26pboxx"]
+[gd_scene load_steps=11 format=3 uid="uid://bwg8nv26pboxx"]
 
 [ext_resource type="PackedScene" uid="uid://brybpla2237kk" path="res://scenes/player.tscn" id="1_2qsk6"]
 [ext_resource type="Texture2D" uid="uid://dnoy0umjehtpd" path="res://assets/background/background_01_parallax_01.png" id="1_7erqy"]
@@ -8,9 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://di5m6mvn6mssq" path="res://scenes/enemy_spawner.tscn" id="7_2lete"]
 [ext_resource type="PackedScene" uid="uid://ce5mofn3atpe4" path="res://scenes/asteroid_second_1.tscn" id="8_g1d7c"]
 [ext_resource type="PackedScene" uid="uid://dr5b3tnjfwilj" path="res://scenes/asteroid_main.tscn" id="9_myrf7"]
-[ext_resource type="Script" path="res://scripts/weapon_ui.gd" id="11_a5cbh"]
 [ext_resource type="PackedScene" uid="uid://piix8c8y04wl" path="res://scenes/asteroid_third_1.tscn" id="12_fwfoa"]
-[ext_resource type="Texture2D" uid="uid://bn4pcwohvfpas" path="res://assets/powerups/missile.png" id="12_xcc0p"]
 [ext_resource type="PackedScene" uid="uid://yb2f05gub03y" path="res://scenes/asteroid_last.tscn" id="20_hvn4f"]
 
 [node name="Game" type="Node2D"]
@@ -56,19 +54,3 @@ position = Vector2(1893.75, 265)
 
 [node name="AsteroidLast" parent="." instance=ExtResource("20_hvn4f")]
 position = Vector2(1273.75, 228.75)
-
-[node name="WeaponUI" type="Control" parent="." node_paths=PackedStringArray("weapon_icon")]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("11_a5cbh")
-weapon_icon = NodePath("WeaponIcon")
-
-[node name="WeaponIcon" type="TextureRect" parent="WeaponUI"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-mouse_filter = 2
-texture = ExtResource("12_xcc0p")
-expand_mode = 1
