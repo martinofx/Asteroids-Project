@@ -6,50 +6,47 @@ extends Area2D
 @onready var beam_start: Sprite2D = $BeamStart
 @onready var beam_segment: Sprite2D = $BeamSegment
 @onready var beam_ray: RayCast2D = $BeamRay
+@export var explosion_small_scene: PackedScene  # Asigna aquí la escena de la explosión
 
 var active: bool = false
 var direction: Vector2  
+var initial_position: Vector2
+var initial_offset: Vector2  # 🔹 Guarda la posición relativa a la nave
+var initial_rotation: float  # 🔹 Guarda la rotación inicial del rayo
 
-func _ready():
-	beam_segment.scale.x = 0  # Ocultar rayo al inicio
+#func _ready():
+	
+	#rotation = initial_rotation  # 🔹 Fijar la rotación inicial cuando se dispara
 
 func _process(delta):
-	if active:
-		update_beam(delta)
+	# 🔹 Mantener el rayo en la misma posición de la nave, pero sin cambiar la rotación
+	if get_parent():
+		global_position = get_parent().global_position
 
 func activate():
 	active = true
 	beam_ray.add_exception(get_parent())  # Ignorar a la nave
-	update_beam(0)
+	
 
 func deactivate():
 	active = false
-	beam_segment.scale.x = 0  # Ocultar rayo
+	
 
-func update_beam(delta):
-	if not active:
-		return
-
-	# Asegurar que la dirección siga la rotación del rayo
-	direction = Vector2.RIGHT.rotated(rotation)
-
-	# Ajustar la posición para que siga la nave
-	global_position = get_parent().global_position + direction
-
-	beam_ray.target_position = direction * max_length
-	beam_ray.force_raycast_update()
-
-	var hit_position = global_position + direction * max_length
-
-	if beam_ray.is_colliding():
-		var collider = beam_ray.get_collider()
-
-		# Evitar que el rayo golpee a la nave
-		if collider != get_parent():  
-			hit_position = beam_ray.get_collision_point()
-			if collider.has_method("take_damage"):
-				collider.take_damage(damage_per_second * delta)
-
-	# Ajustar la escala del segmento del rayo
-	var length = global_position.distance_to(hit_position)
-	beam_segment.scale.x = length / max_length
+func _on_area_entered(area):
+	if area.is_in_group("enemy") or area.is_in_group("asteroid"):
+		area.take_damage()
+		
+	if explosion_small_scene:
+		var explosion = explosion_small_scene.instantiate()
+		get_parent().add_child(explosion)
+		explosion.global_position = global_position  # La explosión aparece en el punto de impacto
+		
+func _on_body_entered(body):
+	if body.is_in_group("enemy") or body.is_in_group("asteroid"):  # Verifica si colisiona con un enemigo
+		body.take_damage(body.global_position )  # Llamar a la función de daño del enemigo
+			
+	if explosion_small_scene:
+		var explosion = explosion_small_scene.instantiate()
+		get_parent().add_child(explosion)
+		explosion.global_position = global_position  # La explosión aparece en el punto de impacto
+	

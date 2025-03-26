@@ -23,6 +23,7 @@ var current_weapon: Node  # Referencia al arma actual
 var weapon_ui: Control
 var energy_beam: Area2D
 var beam_active = false
+var raygun_instance = null
 
 @onready var sprite: Sprite2D = $Sprite2D  # Sprite de la nave
 @onready var flame_center: Node2D = $Flame_Center
@@ -34,9 +35,7 @@ func _ready() -> void:
 	get_viewport().connect("size_changed", Callable(self, "update_screen_size"))
 	flame_center.visible = false
 	flame_left.visible = false
-	flame_right.visible = false
-	
-	weapon_ui = get_node("/Game/WeaponUI")  # Ajusta la ruta según la estructura de tu juego
+	flame_right.visible = false	
 	
 	add_to_group("player")
 
@@ -119,20 +118,12 @@ func toggle_beam(active: bool):
 		beam_active = true
 		energy_beam = raygun_scene.instantiate()
 		add_child(energy_beam)
-
-		var offset_distance = 50  
-		var shoot_position = global_position + Vector2.UP.rotated(rotation) * offset_distance
-
-		energy_beam.global_position = shoot_position
-		energy_beam.direction = Vector2.UP.rotated(rotation)  # Asegurar que tiene dirección
-		energy_beam.rotation = rotation
 		energy_beam.activate()
 
 	elif not active and beam_active:
 		beam_active = false
 		energy_beam.deactivate()
 		energy_beam.queue_free()
-
 	
 func shoot():
 	can_shoot = false  
@@ -255,13 +246,6 @@ func disable_controls(duration):
 
 func apply_impulse(force: Vector2):
 	velocity += force  # ✅ Usa velocity, que es la correcta en CharacterBody2D
-
-func _process(delta):
-	if controls_disabled:
-		return  # No procesa entrada si está deshabilitada
-	
-	# Aquí puede ir la lógica de rotación o efectos adicionales...
-
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("asteroid"):

@@ -1,17 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://cthontbmq0g2e"]
+[gd_scene load_steps=5 format=3 uid="uid://cthontbmq0g2e"]
 
 [ext_resource type="Script" path="res://scripts/raygun.gd" id="1_8utq7"]
 [ext_resource type="Texture2D" uid="uid://ddpiyf4lr4l0l" path="res://assets/effects/weapons/ray_start.png" id="1_bcc4q"]
+[ext_resource type="PackedScene" uid="uid://bq73bbrebolkq" path="res://scenes/explosion_very_small.tscn" id="2_wjgcy"]
 [ext_resource type="Texture2D" uid="uid://bp75c681umo6x" path="res://assets/effects/weapons/ray_tiled.png" id="2_y1rpq"]
 
 [node name="Raygun" type="Area2D" groups=["laser"]]
+position = Vector2(0, 50)
 script = ExtResource("1_8utq7")
+explosion_small_scene = ExtResource("2_wjgcy")
 
 [node name="BeamStart" type="Sprite2D" parent="."]
 texture = ExtResource("1_bcc4q")
 
 [node name="BeamSegment" type="Sprite2D" parent="."]
-position = Vector2(0, -84)
+position = Vector2(0, -1328.5)
+scale = Vector2(1, 21.0726)
 texture = ExtResource("2_y1rpq")
 
 [node name="StartCollider" type="CollisionPolygon2D" parent="."]
@@ -19,10 +23,13 @@ polygon = PackedVector2Array(0, -21, 28, -21, 0, 15, -28, -21)
 
 [node name="BeamCollider" type="CollisionPolygon2D" parent="."]
 position = Vector2(0, -124)
-polygon = PackedVector2Array(0, -23, 28, -21, 26, 103, -27, 103, -29, -22)
+polygon = PackedVector2Array(0, -1922, 28, -21, 26, 103, -27, 103, -29, -22)
 
 [node name="BeamRay" type="RayCast2D" parent="."]
 rotation = 3.14159
+target_position = Vector2(5.3765e-05, 615)
+collision_mask = 3
+collide_with_areas = true
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
