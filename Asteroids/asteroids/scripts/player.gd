@@ -24,11 +24,14 @@ var weapon_ui: Control
 var energy_beam: Area2D
 var beam_active = false
 var raygun_instance = null
+var beam_cooldown := false  # 🔹 Evita disparar en bucle
+
 
 @onready var sprite: Sprite2D = $Sprite2D  # Sprite de la nave
 @onready var flame_center: Node2D = $Flame_Center
 @onready var flame_left: Node2D = $Flame_Left
 @onready var flame_right: Node2D = $Flame_Right
+@onready var beam_timer := $BeamTimer  # Timer agregado en el editor
 
 func _ready() -> void:
 	update_screen_size()
@@ -36,6 +39,12 @@ func _ready() -> void:
 	flame_center.visible = false
 	flame_left.visible = false
 	flame_right.visible = false	
+	
+	beam_timer = Timer.new()
+	beam_timer.wait_time = 1.5  # 🔹 Duración del rayo
+	beam_timer.one_shot = true  # 🔹 Se activa una sola vez por disparo
+	beam_timer.timeout.connect(_on_beam_timeout)
+	add_child(beam_timer)
 	
 	add_to_group("player")
 
@@ -104,26 +113,41 @@ func handle_flames(moving: bool, rotating_left: bool, rotating_right: bool):
 	check_screen_wrap()
 
 func _input(event):
+	if event.is_action_pressed("restart"):
+		get_tree().reload_current_scene()
+	
 	if event.is_action_pressed("shoot") and can_shoot:
 		shoot()
 		fire_missile()
 		
-	if event.is_action_pressed("shoot_raygun"):
+	if event.is_action_pressed("shoot_raygun") and not beam_active and not beam_cooldown:
 		toggle_beam(true)
+
 	elif event.is_action_released("shoot_raygun"):
 		toggle_beam(false)
+		beam_cooldown = false  # 🔹 Resetear cooldown
+
+		# 🔹 Reseteamos el Timer para permitir otro disparo completo
+		beam_timer.stop()
 
 func toggle_beam(active: bool):
 	if active and not beam_active:
 		beam_active = true
+		beam_cooldown = true  # 🔹 Activa el cooldown
 		energy_beam = raygun_scene.instantiate()
 		add_child(energy_beam)
 		energy_beam.activate()
+
+		# 🔹 Inicia el Timer para desactivar el rayo
+		beam_timer.start()
 
 	elif not active and beam_active:
 		beam_active = false
 		energy_beam.deactivate()
 		energy_beam.queue_free()
+
+func _on_beam_timeout():
+	toggle_beam(false)  # 🔹 Se apaga el rayo cuando el Timer termina
 	
 func shoot():
 	can_shoot = false  

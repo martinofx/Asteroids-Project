@@ -1,11 +1,98 @@
-[gd_scene load_steps=5 format=3 uid="uid://cthontbmq0g2e"]
+[gd_scene load_steps=8 format=3 uid="uid://cthontbmq0g2e"]
 
 [ext_resource type="Script" path="res://scripts/raygun.gd" id="1_8utq7"]
 [ext_resource type="Texture2D" uid="uid://ddpiyf4lr4l0l" path="res://assets/effects/weapons/ray_start.png" id="1_bcc4q"]
 [ext_resource type="PackedScene" uid="uid://bq73bbrebolkq" path="res://scenes/explosion_very_small.tscn" id="2_wjgcy"]
 [ext_resource type="Texture2D" uid="uid://bp75c681umo6x" path="res://assets/effects/weapons/ray_tiled.png" id="2_y1rpq"]
 
+[sub_resource type="Animation" id="Animation_405sf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BeamSegment:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.5, 22.056)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BeamCollider:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BeamStart:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_4cfmt"]
+resource_name = "raygun_animation"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BeamSegment:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.133333, 0.537113, 0.666667, 0.8, 1.06667, 1.43333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.1, 22.056), Vector2(0.1, 22.056), Vector2(1, 22.056), Vector2(1.8, 22.056), Vector2(1, 22.056), Vector2(0.1, 22.056)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BeamCollider:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 0.50378, 0.633333, 0.766667, 1.03333, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.1, 1), Vector2(0.1, 1), Vector2(1, 1), Vector2(1.8, 1), Vector2(1, 1), Vector2(0.1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BeamStart:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1, 0.50378, 0.633333, 0.766667, 1.03333, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.1, 1), Vector2(0.1, 1), Vector2(1, 1), Vector2(1.8, 1), Vector2(1, 1), Vector2(0.1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wnahs"]
+_data = {
+"RESET": SubResource("Animation_405sf"),
+"raygun_animation": SubResource("Animation_4cfmt")
+}
+
 [node name="Raygun" type="Area2D" groups=["laser"]]
+z_index = -2
 position = Vector2(0, 50)
 script = ExtResource("1_8utq7")
 explosion_small_scene = ExtResource("2_wjgcy")
@@ -14,22 +101,30 @@ explosion_small_scene = ExtResource("2_wjgcy")
 texture = ExtResource("1_bcc4q")
 
 [node name="BeamSegment" type="Sprite2D" parent="."]
-position = Vector2(0, -1328.5)
-scale = Vector2(1, 21.0726)
+position = Vector2(0, -1389.5)
+scale = Vector2(0.5, 22.056)
 texture = ExtResource("2_y1rpq")
 
 [node name="StartCollider" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(0, -21, 28, -21, 0, 15, -28, -21)
 
 [node name="BeamCollider" type="CollisionPolygon2D" parent="."]
-position = Vector2(0, -124)
-polygon = PackedVector2Array(0, -1922, 28, -21, 26, 103, -27, 103, -29, -22)
+position = Vector2(0, -125)
+polygon = PackedVector2Array(0, -2640, 28, -21, 26.9478, 44.2406, 26.2422, 87.9901, 26, 103, -27, 103, -29, -22)
 
 [node name="BeamRay" type="RayCast2D" parent="."]
 rotation = 3.14159
 target_position = Vector2(5.3765e-05, 615)
 collision_mask = 3
 collide_with_areas = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_wnahs")
+}
+autoplay = "raygun_animation"
+
+[node name="Timer" type="Timer" parent="."]
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
