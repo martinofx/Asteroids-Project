@@ -165,18 +165,18 @@ func shoot():
 	
 func fire_missile():
 	if missile_scene:
-		for i in range(3):  # Disparar 3 misiles en sucesión
+		for i in range(5):  # Disparar 3 misiles en sucesión
 			var missile = missile_scene.instantiate()			
 			get_parent().add_child(missile)
 			
-			var offset_distance = -40  
+			var offset_distance = -30  
 			var shoot_position = global_position + Vector2.UP.rotated(rotation) * offset_distance
 
 			missile.global_position = shoot_position
 			missile.direction = Vector2.UP.rotated(rotation)
 			missile.rotation = rotation
 			
-			await get_tree().create_timer(0.15).timeout  # Pequeña pausa entre misiles
+			await get_tree().create_timer(0.20).timeout  # Pequeña pausa entre misiles
 
 func _on_body_entered(body):
 	if body.is_in_group("enemy"):  

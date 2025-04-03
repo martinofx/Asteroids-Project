@@ -14,6 +14,8 @@
 [node name="Game" type="Node2D"]
 scale = Vector2(0.8, 0.8)
 
+[node name="UI" type="CanvasLayer" parent="."]
+
 [node name="Background" type="TextureRect" parent="."]
 z_index = -10
 offset_left = -16.25

@@ -17,11 +17,13 @@ var damaged_targets = {}  # 🔹 Control de daño continuo
 func _ready():
 	timer.wait_time = duration
 	timer.one_shot = true
+	
 
 func _process(delta):
 	if get_parent():
 		global_position = get_parent().global_position  # 🔹 Mantener la posición sin rotar
-
+	position.y -= 50
+	
 	if active:
 		apply_continuous_damage(delta)  # 🔹 Aplica daño constante
 
@@ -33,7 +35,8 @@ func activate():
 	beam_ray.add_exception(get_parent())  # Ignorar la nave
 	timer.start()  # 🔹 Comienza la cuenta regresiva
 	visible = true  # 🔹 Asegura que el rayo se vea
-
+	
+	
 func deactivate():
 	active = false
 	visible = false

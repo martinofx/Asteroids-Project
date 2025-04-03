@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://b2ulmhyo8l2po"]
+
+[ext_resource type="Script" path="res://scripts/homing_missile.gd" id="1_rgd8o"]
+[ext_resource type="PackedScene" uid="uid://bq73bbrebolkq" path="res://scenes/explosion_very_small.tscn" id="2_plwad"]
+[ext_resource type="Texture2D" uid="uid://bsb1sc0c3158v" path="res://assets/effects/weapons/rocket_bx_single.png" id="2_rf2j3"]
+[ext_resource type="PackedScene" uid="uid://cl3tngjt2n1bb" path="res://scenes/flame_center.tscn" id="3_lemot"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wmjhu"]
+radius = 7.14286
+height = 42.0
+
+[node name="HomingMisile" type="Area2D" groups=["laser"]]
+z_index = -2
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_rgd8o")
+explosion_small_scene = ExtResource("2_plwad")
+flame_scene = ExtResource("3_lemot")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_rf2j3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -7.14286)
+shape = SubResource("CapsuleShape2D_wmjhu")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-1.42857, 5.71428)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
