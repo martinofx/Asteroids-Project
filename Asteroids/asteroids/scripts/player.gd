@@ -6,7 +6,8 @@ extends CharacterBody2D
 @export var friction: float = 0.98  # Fricción al soltar avanzar
 @export var explosion_scene: PackedScene  # Asigna aquí la escena de la explosión
 @export var laser_scene: PackedScene  # Asigna aquí la escena del láser
-@export var missile_scene: PackedScene  # Asigna aquí la escena del láser
+@export var missile_scene: PackedScene  # Asigna aquí la escena del misil
+@export var homing_missile_scene: PackedScene  # Asigna aquí la escena del misil perseguidor
 @export var fire_rate: float = 0.3  # Tiempo entre disparos
 @export var fade_duration: float = 0.5  # Duración del desvanecimiento
 @export var raygun_scene: PackedScene
@@ -116,7 +117,12 @@ func _input(event):
 		
 	if event.is_action_pressed("shoot") and can_shoot:
 		shoot()
+		
+	if event.is_action_pressed("missile_small") and can_shoot:
 		fire_missile()
+	
+	if event.is_action_pressed("homing_missile") and can_shoot:
+		fire_homing_missile()
 		
 	if event.is_action_pressed("shoot_raygun") and not beam_active and not beam_cooldown:
 		toggle_beam(true)
@@ -175,6 +181,24 @@ func fire_missile():
 			missile.rotation = rotation
 			
 			await get_tree().create_timer(0.20).timeout  # Pequeña pausa entre misiles
+			
+func fire_homing_missile():
+	if homing_missile_scene:
+		var num_missiles = 5
+		var spread_angle = deg_to_rad(30)  # Ángulo total de dispersión (ej: 30 grados)
+		var start_angle = -spread_angle / 2  # Comienza a la izquierda
+
+		for i in range(num_missiles):
+			var missile = homing_missile_scene.instantiate()
+			get_parent().add_child(missile)
+
+			var offset_distance = -30
+			var angle = rotation + start_angle + (spread_angle / (num_missiles - 1)) * i  # Espaciado angular
+
+			var shoot_position = global_position + Vector2.UP.rotated(angle) * offset_distance
+			missile.global_position = shoot_position
+			missile.direction = Vector2.UP.rotated(angle)
+			missile.rotation = angle
 
 func _on_body_entered(body):
 	if body.is_in_group("enemy"):  

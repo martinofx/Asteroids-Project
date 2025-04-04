@@ -38,11 +38,15 @@ func _process(delta):
 		if elapsed_time >= lifetime:
 			explode()
 
-		if target and is_instance_valid(target):  # Si el objetivo aún existe
+		if not is_instance_valid(target):
+			target = find_closest_target()
+
+		if target:
 			var target_direction = (target.global_position - global_position).normalized()
 			direction = direction.lerp(target_direction, 0.6)  # Suavizar el giro
-			look_at(global_position - direction * 90)  # **CORREGIDO**: Asegurar que el misil apunte en su dirección de movimiento
-			rotation += deg_to_rad(-90)  # 🔹 Ajusta 90 grados en sentido antihorario
+			look_at(global_position - direction * 90)
+			rotation += deg_to_rad(-90)
+
 		
 		velocity += direction * acceleration * delta  # Aumentar velocidad progresivamente
 		global_position += velocity * delta  # Mover en la dirección final
