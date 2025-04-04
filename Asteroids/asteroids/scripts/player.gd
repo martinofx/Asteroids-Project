@@ -113,9 +113,7 @@ func handle_flames(moving: bool, rotating_left: bool, rotating_right: bool):
 	check_screen_wrap()
 
 func _input(event):
-	if event.is_action_pressed("restart"):
-		get_tree().reload_current_scene()
-	
+		
 	if event.is_action_pressed("shoot") and can_shoot:
 		shoot()
 		fire_missile()
@@ -222,7 +220,9 @@ func die():
 
 				# Agregar un pequeño retraso entre explosiones
 				await get_tree().create_timer(randf_range(0.05, 0.1)).timeout
+	
 	queue_free()
+	get_node("/root/Game").restart_game()
 
 func check_screen_wrap():
 	if fading:

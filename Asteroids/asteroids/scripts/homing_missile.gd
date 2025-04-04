@@ -104,8 +104,15 @@ func check_teleport():
 		global_position.y = 0
 
 func start_flashing():
+	if flashing:
+		return  # Evita crear múltiples Tweens
+
 	flashing = true
-	var tween = get_tree().create_tween()
-	tween.tween_property(self, "modulate", Color(1, 0, 0), 0.1).as_relative().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-	tween.tween_property(self, "modulate", Color(1, 1, 1), 0.1).as_relative().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-	tween.set_loops(-1)  # Hace que titile hasta explotar
+	var tween = create_tween()
+	
+	# Alternar entre rojo y blanco varias veces en lugar de infinito
+	for i in range(5):  # Hace 5 cambios de color
+		tween.tween_property(self, "modulate", Color(1, 0, 0), 0.1)
+		tween.tween_property(self, "modulate", Color(1, 1, 1), 0.1)
+
+	tween.tween_callback(func(): flashing = false)  # Reinicia flashing al finalizar

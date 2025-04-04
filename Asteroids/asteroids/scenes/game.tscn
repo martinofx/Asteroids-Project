@@ -1,5 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://bwg8nv26pboxx"]
+[gd_scene load_steps=12 format=3 uid="uid://bwg8nv26pboxx"]
 
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_2qbox"]
 [ext_resource type="PackedScene" uid="uid://brybpla2237kk" path="res://scenes/player.tscn" id="1_2qsk6"]
 [ext_resource type="Texture2D" uid="uid://dnoy0umjehtpd" path="res://assets/background/background_01_parallax_01.png" id="1_7erqy"]
 [ext_resource type="Texture2D" uid="uid://c4jmc7pp7i3pk" path="res://assets/background/background_01_parallax_03.png" id="2_6n3gj"]
@@ -13,6 +14,7 @@
 
 [node name="Game" type="Node2D"]
 scale = Vector2(0.8, 0.8)
+script = ExtResource("1_2qbox")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
