@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://4tkt0uhcv7jl"]
+[gd_scene load_steps=7 format=3 uid="uid://4tkt0uhcv7jl"]
 
 [ext_resource type="Texture2D" uid="uid://c0mkmaskw5kq8" path="res://assets/effects/explosions/laser_explosion_medium.png" id="1_hxtin"]
 [ext_resource type="Script" path="res://scripts/laser_explosion.gd" id="1_r5cib"]
+[ext_resource type="Texture2D" uid="uid://djr84nwmglc23" path="res://assets/effects/explosions/texture light.png" id="3_at5kv"]
 
 [sub_resource type="Animation" id="Animation_ngbxc"]
 resource_name = "explosion"
@@ -53,3 +54,8 @@ vframes = 7
 libraries = {
 "": SubResource("AnimationLibrary_pwq6i")
 }
+
+[node name="ExplosionLight" type="PointLight2D" parent="."]
+color = Color(0.994576, 0.59542, 0, 0.643137)
+texture = ExtResource("3_at5kv")
+texture_scale = 0.3

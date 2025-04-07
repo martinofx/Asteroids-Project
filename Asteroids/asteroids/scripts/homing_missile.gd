@@ -1,7 +1,7 @@
 extends Area2D
 
 @export var speed: float = 800.0  # Velocidad del misil
-@export var delay_before_launch: float = 0.1  # Tiempo antes de moverse
+@export var delay_before_launch: float = 0.01  # Tiempo antes de moverse
 @export var acceleration: float = 700.0  # Aceleración progresiva
 @export var explosion_scene: PackedScene  # Escena de la explosión
 @export var flame_scene: PackedScene  # Escena de la llama propulsora

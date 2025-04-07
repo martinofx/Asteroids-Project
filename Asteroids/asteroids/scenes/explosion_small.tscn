@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bxw5kklv4v2ch"]
+[gd_scene load_steps=7 format=3 uid="uid://bxw5kklv4v2ch"]
 
 [ext_resource type="Script" path="res://scripts/explosion.gd" id="1_jx1q5"]
 [ext_resource type="Texture2D" uid="uid://cdr1cd24y1ldf" path="res://assets/effects/explosions/explosion_big.png" id="2_evl86"]
+[ext_resource type="Texture2D" uid="uid://djr84nwmglc23" path="res://assets/effects/explosions/texture light.png" id="3_1gtvf"]
 
 [sub_resource type="Animation" id="Animation_ngbxc"]
 resource_name = "explosion"
@@ -55,3 +56,9 @@ libraries = {
 "": SubResource("AnimationLibrary_pwq6i")
 }
 autoplay = "explosion"
+
+[node name="ExplosionLight" type="PointLight2D" parent="."]
+color = Color(0.870588, 0.521569, 0.184314, 0.827451)
+energy = 4.1
+texture = ExtResource("3_1gtvf")
+texture_scale = 0.8

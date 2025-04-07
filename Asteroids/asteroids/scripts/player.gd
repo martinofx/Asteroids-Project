@@ -169,7 +169,7 @@ func shoot():
 	
 func fire_missile():
 	if missile_scene:
-		for i in range(5):  # Disparar 3 misiles en sucesión
+		for i in range(3):  # Disparar 3 misiles en sucesión
 			var missile = missile_scene.instantiate()			
 			get_parent().add_child(missile)
 			
@@ -184,15 +184,15 @@ func fire_missile():
 			
 func fire_homing_missile():
 	if homing_missile_scene:
-		var num_missiles = 5
-		var spread_angle = deg_to_rad(30)  # Ángulo total de dispersión (ej: 30 grados)
+		var num_missiles = 4
+		var spread_angle = deg_to_rad(90)  # Ángulo total de dispersión (ej: 30 grados)
 		var start_angle = -spread_angle / 2  # Comienza a la izquierda
 
 		for i in range(num_missiles):
 			var missile = homing_missile_scene.instantiate()
 			get_parent().add_child(missile)
 
-			var offset_distance = -30
+			var offset_distance = -50
 			var angle = rotation + start_angle + (spread_angle / (num_missiles - 1)) * i  # Espaciado angular
 
 			var shoot_position = global_position + Vector2.UP.rotated(angle) * offset_distance
@@ -213,7 +213,7 @@ func _on_body_entered(body):
 		body.take_damage() 
 
 func take_damage(_impact_position = null):
-	health -= 10
+	health -= 100
 	sprite.modulate = Color(1, 0.5, 0.5)
 	await get_tree().create_timer(0.1).timeout
 	sprite.modulate = Color(1, 1, 1)  
@@ -226,7 +226,9 @@ func _on_damage_area_area_entered(area):
 		take_damage(area.global_position)  # Llama a la función de daño correctamente
 
 func die():
-			
+	
+	get_viewport().get_camera_2d().shake_camera(50.0, 0.7, 6)
+	
 	if explosion_scene:
 		var explosion_count = randi_range(5, 10)  # Cantidad aleatoria de explosiones
 		for i in range(explosion_count):
@@ -244,9 +246,9 @@ func die():
 
 				# Agregar un pequeño retraso entre explosiones
 				await get_tree().create_timer(randf_range(0.05, 0.1)).timeout
-	
+				
 	queue_free()
-	get_node("/root/Game").restart_game()
+	#get_node("/root/Game").restart_game()
 
 func check_screen_wrap():
 	if fading:

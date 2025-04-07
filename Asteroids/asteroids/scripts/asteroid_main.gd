@@ -105,6 +105,9 @@ func set_damage_frame():
 	sprite.frame = damage_index  # Asigna el frame de daño dinámicamente
 
 func explode():
+	
+	get_viewport().get_camera_2d().shake_camera(20.0, 0.7, 6)
+	
 	if explosion_scene:
 		var explosion_count = randi_range(5, 10)  # Cantidad aleatoria de explosiones
 		for i in range(explosion_count):

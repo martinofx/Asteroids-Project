@@ -9,6 +9,7 @@ extends Area2D
 @export var lifetime: float = 2.5  # Tiempo antes de autodestruirse
 @export var blink_time: float = 0.5  # Tiempo antes de que empiece a titilar
 @export var collision_grace_period: float = 1  # Tiempo antes de activar la colisión con el player
+@onready var smoke_trail: CPUParticles2D = $SmokeTrail
 
 var direction: Vector2 = Vector2.ZERO  # Dirección final del misil
 var velocity: Vector2 = Vector2.ZERO  # Velocidad del misil
@@ -17,6 +18,7 @@ var flame_instance: Node2D  # Instancia de la llama propulsora
 var screen_size: Vector2  # Tamaño de la pantalla
 var blinking: bool = false  # Indica si está titilando
 var can_hit_player: bool = false  # Controla si puede impactar al player
+
 
 func _ready():
 	# **Obtener el tamaño de la pantalla para la teletransportación**
@@ -45,6 +47,7 @@ func _ready():
 	await get_tree().create_timer(collision_grace_period).timeout
 	can_hit_player = true  # Ahora puede golpear al player
 
+	
 func _process(delta: float) -> void:
 	if launched:
 		velocity += direction * acceleration * delta  # Aumenta velocidad progresivamente

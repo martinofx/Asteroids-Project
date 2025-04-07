@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://b2ulmhyo8l2po"]
 
 [ext_resource type="Script" path="res://scripts/homing_missile.gd" id="1_rgd8o"]
-[ext_resource type="PackedScene" uid="uid://bouvkbj40hi8j" path="res://scenes/explosion.tscn" id="2_dsp6b"]
+[ext_resource type="PackedScene" uid="uid://bxw5kklv4v2ch" path="res://scenes/explosion_small.tscn" id="2_qnhmi"]
 [ext_resource type="Texture2D" uid="uid://bsb1sc0c3158v" path="res://assets/effects/weapons/rocket_bx_single.png" id="2_rf2j3"]
 [ext_resource type="PackedScene" uid="uid://cl3tngjt2n1bb" path="res://scenes/flame_center.tscn" id="3_lemot"]
 
@@ -13,7 +13,7 @@ height = 42.0
 z_index = -2
 scale = Vector2(0.7, 0.7)
 script = ExtResource("1_rgd8o")
-explosion_scene = ExtResource("2_dsp6b")
+explosion_scene = ExtResource("2_qnhmi")
 flame_scene = ExtResource("3_lemot")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
