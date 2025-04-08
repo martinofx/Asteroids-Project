@@ -58,5 +58,5 @@ autoplay = "explosion"
 
 [node name="ExplosionLight" type="PointLight2D" parent="."]
 color = Color(0.862745, 0.513726, 0, 0.643137)
-energy = 2.0
+energy = 0.5
 texture = ExtResource("3_hq44e")

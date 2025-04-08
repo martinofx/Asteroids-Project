@@ -11,6 +11,7 @@ extends CharacterBody2D
 @export var fire_rate: float = 0.3  # Tiempo entre disparos
 @export var fade_duration: float = 0.5  # Duración del desvanecimiento
 @export var raygun_scene: PackedScene
+@onready var laser_beam = $LaserBeam2D  # Ajustá el path si lo cambiaste
 
 var screen_size: Vector2  # Tamaño de la pantalla
 var can_shoot: bool = true  # Control de cooldown de disparo
@@ -130,9 +131,16 @@ func _input(event):
 	elif event.is_action_released("shoot_raygun"):
 		toggle_beam(false)
 		beam_cooldown = false  # 🔹 Resetear cooldown
-
 		# 🔹 Reseteamos el Timer para permitir otro disparo completo
 		beam_timer.stop()
+		
+	if laser_beam == null:
+		return  # Evita crash si no está bien conectado
+
+	if event.is_action_pressed("laser_beam"):
+		laser_beam.is_casting = true
+	elif event.is_action_released("laser_beam"):
+		laser_beam.is_casting = false
 
 func toggle_beam(active: bool):
 	if active and not beam_active:

@@ -58,6 +58,10 @@ func cast_beam() -> void:
 	collision_particles.position = cast_point
 	beam_particles.position = cast_point * 0.5
 	beam_particles.process_material.emission_box_extents.x = cast_point.length() * 0.5
+	
+	var hit = get_collider()
+	if hit and hit.has_method("take_damage"):
+		hit.take_damage(get_collision_point())
 
 
 func appear() -> void:

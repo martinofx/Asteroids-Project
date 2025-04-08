@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://brybpla2237kk"]
+[gd_scene load_steps=13 format=3 uid="uid://brybpla2237kk"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_h250j"]
 [ext_resource type="Texture2D" uid="uid://bronsp8avbxlh" path="res://assets/player/CX16-X1.png" id="1_ujrb8"]
@@ -7,8 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://b2ulmhyo8l2po" path="res://scenes/homing_missile.tscn" id="4_6bbvc"]
 [ext_resource type="PackedScene" uid="uid://cl3tngjt2n1bb" path="res://scenes/flame_center.tscn" id="4_dsfgt"]
 [ext_resource type="PackedScene" uid="uid://d1ifev6k633jh" path="res://scenes/missile_small.tscn" id="4_fss16"]
+[ext_resource type="PackedScene" uid="uid://dlksrlwpu1heh" path="res://assets/laser_beam/laser_beam.tscn" id="5_16nnt"]
 [ext_resource type="PackedScene" uid="uid://2cg5rghxqhu0" path="res://scenes/flame_left.tscn" id="5_j6qfa"]
 [ext_resource type="PackedScene" uid="uid://cthontbmq0g2e" path="res://scenes/raygun.tscn" id="5_jjrlx"]
+[ext_resource type="Script" path="res://assets/laser_beam/laser_beam.gd" id="11_byfhb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i08m5"]
 size = Vector2(69, 45)
@@ -21,7 +23,6 @@ explosion_scene = ExtResource("2_4mc02")
 laser_scene = ExtResource("3_s0xxv")
 missile_scene = ExtResource("4_fss16")
 homing_missile_scene = ExtResource("4_6bbvc")
-fade_duration = 0.2
 raygun_scene = ExtResource("5_jjrlx")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -53,5 +54,9 @@ shape = SubResource("RectangleShape2D_i08m5")
 
 [node name="BeamTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="LaserBeam2D" parent="." instance=ExtResource("5_16nnt")]
+rotation = -1.56923
+script = ExtResource("11_byfhb")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
