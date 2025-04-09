@@ -1,8 +1,10 @@
 extends RayCast2D
 
-@export var cast_speed := 7000.0
-@export var max_length := 1400
+@export var cast_speed := 7700.0
+@export var max_length := 1200
 @export var growth_time := 0.1
+@export var max_cast_duration := 2  # segundos
+@export var warning_time := 0.5  # tiempo antes de apagarse para mostrar sobrecarga
 
 @onready var casting_particles := $CastingParticles2D
 @onready var collision_particles := $CollisionParticles2D
@@ -12,28 +14,42 @@ extends RayCast2D
 @onready var line_width: float = fill.width
 
 var is_casting := false: set = set_is_casting
+var cast_timer := 0.0
 
 
 func _ready() -> void:
 	set_physics_process(false)
 	fill.points[1] = Vector2.ZERO
-
+	fill.modulate = Color(1, 1, 1)  # Color blanco inicial
 
 func _physics_process(delta: float) -> void:
 	target_position = (target_position + Vector2.RIGHT * cast_speed * delta).limit_length(max_length)
 	cast_beam()
+	
+	if is_casting:
+		cast_timer += delta
+
+		# Se pone rojo al acercarse al final
+		if cast_timer >= max_cast_duration - warning_time:
+			fill.modulate = Color(1, 0, 0)  # Rojo
+
+		if cast_timer >= max_cast_duration:
+			is_casting = false
 
 
 func set_is_casting(cast: bool) -> void:
 	is_casting = cast
+	cast_timer = 0.0
 
 	if is_casting:
 		target_position = Vector2.ZERO
 		fill.points[1] = target_position
+		fill.modulate = Color(1, 1, 1)  # Reset a blanco
 		appear()
 	else:
 		collision_particles.emitting = false
 		disappear()
+		fill.modulate = Color(0, 0, 0)  # Reset al apagar
 
 	set_physics_process(is_casting)
 	beam_particles.emitting = is_casting
@@ -43,8 +59,6 @@ func set_is_casting(cast: bool) -> void:
 func cast_beam() -> void:
 	var cast_point := target_position
 
-	# Required, the raycast's collisions update one frame after moving otherwise, making the laser
-	# overshoot the collision point.
 	force_raycast_update()
 	if is_colliding():
 		cast_point = to_local(get_collision_point())

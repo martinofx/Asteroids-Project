@@ -82,9 +82,7 @@ func _physics_process(delta: float) -> void:
 		sprite.modulate.a = 1.0 - (fade_timer / fade_duration)
 		if fade_timer >= fade_duration:
 			complete_fade_transition()
-			
-
-
+		
 func receive_impact(force: float, collision_direction: Vector2, asteroid: RigidBody2D):
 	take_damage(25)  
 

@@ -1,0 +1,10 @@
+[gd_resource type="SphereMesh" load_steps=2 format=3 uid="uid://buowm0f07lx2"]
+
+[sub_resource type="ShaderMaterial" id="1"]
+
+[resource]
+material = SubResource("1")
+radius = 0.1
+height = 0.2
+radial_segments = 16
+rings = 8
