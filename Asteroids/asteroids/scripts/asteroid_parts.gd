@@ -17,6 +17,8 @@ extends RigidBody2D  # Cambio de CharacterBody2D a Rigidbody2D para física real
 var fading: bool = false
 var fade_timer: float = 0.0
 var fade_target_position: Vector2
+var is_dead: bool = false
+
 
 func _ready():
 	var random_direction = Vector2(randf_range(-1, 1), randf_range(-1, 1)).normalized()
@@ -78,11 +80,15 @@ func _on_body_entered(body):
 			body.disable_controls(0.75) 
 
 func take_damage(impact_position):
-	health -= 25
+	if is_dead:
+		return  # Ya explotó, no seguir procesando
+
+	health -= 10
 	print("Vida restante: ", health)  
 	set_damage_frame()	
 
 	if health <= 0:
+		is_dead = true
 		print("Ejecutando explode()")
 		explode()
 

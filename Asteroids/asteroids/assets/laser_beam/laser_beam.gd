@@ -3,7 +3,7 @@ extends RayCast2D
 @export var cast_speed := 7700.0
 @export var max_length := 1200
 @export var growth_time := 0.1
-@export var max_cast_duration := 2  # segundos
+@export var max_cast_duration := 1.2  # segundos
 @export var warning_time := 0.5  # tiempo antes de apagarse para mostrar sobrecarga
 
 @onready var casting_particles := $CastingParticles2D
@@ -31,7 +31,7 @@ func _physics_process(delta: float) -> void:
 
 		# Se pone rojo al acercarse al final
 		if cast_timer >= max_cast_duration - warning_time:
-			fill.modulate = Color(1, 0, 0)  # Rojo
+			fill.modulate = Color(1, 0, 1)  # Rojo
 
 		if cast_timer >= max_cast_duration:
 			is_casting = false

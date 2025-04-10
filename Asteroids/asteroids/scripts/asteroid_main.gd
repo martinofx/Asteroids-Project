@@ -19,6 +19,8 @@ extends RigidBody2D  # Cambio de CharacterBody2D a Rigidbody2D para física real
 var fading: bool = false
 var fade_timer: float = 0.0
 var fade_target_position: Vector2
+var is_dead: bool = false
+
 
 func _ready():
 	var random_direction = Vector2(randf_range(-1, 1), randf_range(-1, 1)).normalized()
@@ -86,11 +88,15 @@ func _on_body_entered(body):
 			body.take_damage(body.global_position )  # Llamar a la función de daño del enemigo
 
 func take_damage(impact_position):
+	if is_dead:
+		return  # Ya explotó, no seguir procesando
+
 	health -= 10
 	print("Vida restante: ", health)  
 	set_damage_frame()	
 
 	if health <= 0:
+		is_dead = true
 		print("Ejecutando explode()")
 		explode()
 
@@ -100,7 +106,7 @@ func set_damage_frame():
 		return  # Evita errores si el sprite no tiene animaciones
 
 	var damage_index = total_frames - int((health / 100.0) * total_frames)
-	damage_index = clamp(damage_index, 0, total_frames - 1)
+	damage_index = clamp(damage_index, 0, total_frames - 0.5)
 	
 	sprite.frame = damage_index  # Asigna el frame de daño dinámicamente
 

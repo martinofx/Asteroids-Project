@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://brybpla2237kk"]
+[gd_scene load_steps=14 format=3 uid="uid://brybpla2237kk"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_h250j"]
 [ext_resource type="Texture2D" uid="uid://bronsp8avbxlh" path="res://assets/player/CX16-X1.png" id="1_ujrb8"]
@@ -10,7 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://dlksrlwpu1heh" path="res://assets/laser_beam/laser_beam.tscn" id="5_16nnt"]
 [ext_resource type="PackedScene" uid="uid://2cg5rghxqhu0" path="res://scenes/flame_left.tscn" id="5_j6qfa"]
 [ext_resource type="PackedScene" uid="uid://cthontbmq0g2e" path="res://scenes/raygun.tscn" id="5_jjrlx"]
-[ext_resource type="Script" path="res://assets/laser_beam/laser_beam.gd" id="11_byfhb"]
+[ext_resource type="PackedScene" uid="uid://cvwcfsw3ieq45" path="res://assets/effects/visuals/lightning_beam/lightning_beam.tscn" id="11_p56qa"]
+[ext_resource type="PackedScene" uid="uid://td2enpidpwrv" path="res://assets/effects/visuals/lightning_beam/lightning_jolt.tscn" id="12_7fvo5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i08m5"]
 size = Vector2(69, 45)
@@ -56,7 +57,15 @@ shape = SubResource("RectangleShape2D_i08m5")
 one_shot = true
 
 [node name="LaserBeam2D" parent="." instance=ExtResource("5_16nnt")]
+position = Vector2(0, -44)
 rotation = -1.56923
-script = ExtResource("11_byfhb")
+
+[node name="LightningBeam" parent="." instance=ExtResource("11_p56qa")]
+position = Vector2(1, 1)
+
+[node name="LightningJolt2D" parent="LightningBeam" instance=ExtResource("12_7fvo5")]
+position = Vector2(-1, -83)
+
+[node name="jumpArea" type="Area2D" parent="LightningBeam"]
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

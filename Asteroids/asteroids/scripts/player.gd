@@ -11,7 +11,8 @@ extends CharacterBody2D
 @export var fire_rate: float = 0.3  # Tiempo entre disparos
 @export var fade_duration: float = 0.5  # Duración del desvanecimiento
 @export var raygun_scene: PackedScene
-@onready var laser_beam = $LaserBeam2D  # Ajustá el path si lo cambiaste
+@export var lightning_beam: PackedScene  # <- nueva arma
+
 
 var screen_size: Vector2  # Tamaño de la pantalla
 var can_shoot: bool = true  # Control de cooldown de disparo
@@ -34,6 +35,7 @@ var beam_cooldown := false  # 🔹 Evita disparar en bucle
 @onready var flame_left: Node2D = $Flame_Left
 @onready var flame_right: Node2D = $Flame_Right
 @onready var beam_timer := $BeamTimer  # Timer agregado en el editor
+@onready var laser_beam = $LaserBeam2D  # Ajustá el path si lo cambiaste
 
 func _ready() -> void:
 	update_screen_size()
