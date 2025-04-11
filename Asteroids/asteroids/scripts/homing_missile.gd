@@ -6,73 +6,75 @@ extends Area2D
 @export var explosion_scene: PackedScene  # Escena de la explosión
 @export var flame_scene: PackedScene  # Escena de la llama propulsora
 @export var lifetime: float = 3.0  # Tiempo antes de autodestruirse
-@export var warning_time: float = 1  # Tiempo de titileo antes de explotar
+@export var warning_time: float = 1.0  # Tiempo de titileo antes de explotar
+@export var homing_delay: float = 0.5  # Tiempo antes de empezar a perseguir
 
 var velocity: Vector2 = Vector2.ZERO
-var target: Node2D = null  # Objetivo del misil
-var launched: bool = false  # Indica si ya comenzó a moverse
-var direction: Vector2 = Vector2.ZERO  # Dirección del misil
-var flame_instance: Node2D = null  # Instancia de la llama
-var screen_size: Vector2  # Tamaño de la pantalla
-var elapsed_time: float = 0.0  # Contador de vida útil
-var flashing: bool = false  # Indica si está titilando
+var direction: Vector2 = Vector2.ZERO  # Dirección inicial, luego homing
+var target: Node2D = null
+var launched: bool = false
+var flame_instance: Node2D = null
+var screen_size: Vector2
+var elapsed_time: float = 0.0
+var flashing: bool = false
+var homing_timer: float = 0.0  # Tiempo acumulado antes de activar homing
 
 func _ready():
-	screen_size = get_viewport_rect().size  # Obtener tamaño de la pantalla
-			
-	await get_tree().create_timer(delay_before_launch).timeout  # Esperar antes de moverse
+	screen_size = get_viewport_rect().size
+
+	await get_tree().create_timer(delay_before_launch).timeout
 	launched = true
 	velocity = Vector2.ZERO
-	target = find_closest_target()  # Buscar el enemigo o asteroide más cercano
-	add_flame()  # Agregar la llama de propulsión
+	target = find_closest_target()
+	add_flame()
 
 func _process(delta):
 	if launched:
 		elapsed_time += delta
-		
-		# Si queda poco tiempo, empezar a titilar en rojo
+		homing_timer += delta
+
+		# Explosión por tiempo
 		if elapsed_time >= lifetime - warning_time and !flashing:
 			start_flashing()
-
-		# Si se acaba el tiempo, explotar
 		if elapsed_time >= lifetime:
 			explode()
 
+		# Si el objetivo actual desapareció, buscar otro
 		if not is_instance_valid(target):
 			target = find_closest_target()
 
-		if target:
+		# HOMING después del delay
+		if homing_timer >= homing_delay and target:
 			var target_direction = (target.global_position - global_position).normalized()
-			direction = direction.lerp(target_direction, 0.6)  # Suavizar el giro
+			direction = direction.lerp(target_direction, 0.6)
 			look_at(global_position - direction * 90)
 			rotation += deg_to_rad(-90)
 
-		
-		velocity += direction * acceleration * delta  # Aumentar velocidad progresivamente
-		global_position += velocity * delta  # Mover en la dirección final
-	
-		# Teletransportación en los bordes de la pantalla
+		# Movimiento progresivo
+		velocity += direction * acceleration * delta
+		global_position += velocity * delta
+
 		check_teleport()
 
 func find_closest_target():
 	var potential_targets = get_tree().get_nodes_in_group("enemy") + get_tree().get_nodes_in_group("asteroid")
 	var closest_target = null
 	var closest_distance = INF
-	
-	for target in potential_targets:
-		if is_instance_valid(target):
-			var distance = global_position.distance_to(target.global_position)
+
+	for t in potential_targets:
+		if is_instance_valid(t):
+			var distance = global_position.distance_to(t.global_position)
 			if distance < closest_distance:
 				closest_distance = distance
-				closest_target = target
-	
-	return closest_target  # Devuelve el objetivo más cercano o null si no hay ninguno
+				closest_target = t
+
+	return closest_target
 
 func add_flame():
 	if flame_scene:
 		flame_instance = flame_scene.instantiate()
 		add_child(flame_instance)
-		flame_instance.position = Vector2(0, 50)  # Ajustar posición detrás del misil
+		flame_instance.position = Vector2(0, 50)
 
 func _on_body_entered(body):
 	if body.is_in_group("enemy") or body.is_in_group("asteroid"):
@@ -90,10 +92,9 @@ func explode():
 		get_parent().add_child(explosion)
 		explosion.global_position = global_position
 
-	# Eliminar la llama también
 	if flame_instance:
 		flame_instance.queue_free()
-		
+
 	queue_free()
 
 func check_teleport():
@@ -109,14 +110,11 @@ func check_teleport():
 
 func start_flashing():
 	if flashing:
-		return  # Evita crear múltiples Tweens
+		return
 
 	flashing = true
 	var tween = create_tween()
-	
-	# Alternar entre rojo y blanco varias veces en lugar de infinito
-	for i in range(5):  # Hace 5 cambios de color
+	for i in range(5):
 		tween.tween_property(self, "modulate", Color(1, 0, 0), 0.1)
 		tween.tween_property(self, "modulate", Color(1, 1, 1), 0.1)
-
-	tween.tween_callback(func(): flashing = false)  # Reinicia flashing al finalizar
+	tween.tween_callback(func(): flashing = false)

@@ -192,17 +192,24 @@ func fire_missile():
 			
 func fire_homing_missile():
 	if homing_missile_scene:
-		var num_missiles = 4
-		var spread_angle = deg_to_rad(90)  # Ángulo total de dispersión (ej: 30 grados)
-		var start_angle = -spread_angle / 2  # Comienza a la izquierda
+		var num_missiles = 5
+		var spread_angle = deg_to_rad(100)
+		var start_angle = -spread_angle / 2
+		var delay_between_missiles = 0.05  # Segundos
 
 		for i in range(num_missiles):
+			var delay = i * delay_between_missiles
+			await get_tree().create_timer(delay).timeout
+
 			var missile = homing_missile_scene.instantiate()
 			get_parent().add_child(missile)
 
-			var offset_distance = -50
-			var angle = rotation + start_angle + (spread_angle / (num_missiles - 1)) * i  # Espaciado angular
+			# Ángulo base con un poco de ruido aleatorio
+			var angle_offset = (spread_angle / (num_missiles - 1)) * i
+			var random_wiggle = randf_range(-0.1, 0.1)  # Pequeño ruido
+			var angle = rotation + start_angle + angle_offset + random_wiggle
 
+			var offset_distance = -50
 			var shoot_position = global_position + Vector2.UP.rotated(angle) * offset_distance
 			missile.global_position = shoot_position
 			missile.direction = Vector2.UP.rotated(angle)

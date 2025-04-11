@@ -21,6 +21,8 @@ func _ready() -> void:
 	set_physics_process(false)
 	fill.points[1] = Vector2.ZERO
 	fill.modulate = Color(1, 1, 1)  # Color blanco inicial
+	collide_with_areas = true
+
 
 func _physics_process(delta: float) -> void:
 	target_position = (target_position + Vector2.RIGHT * cast_speed * delta).limit_length(max_length)
