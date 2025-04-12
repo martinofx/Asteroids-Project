@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://chq7ofcj7nven"]
+[gd_scene load_steps=6 format=3 uid="uid://chq7ofcj7nven"]
 
 [ext_resource type="Texture2D" uid="uid://dt54h1yal1ojn" path="res://assets/effects/weapons/bullet_blaster_big_single.png" id="1_fn3lk"]
 [ext_resource type="Script" path="res://scripts/enemy_laser.gd" id="1_qluu4"]
 [ext_resource type="PackedScene" uid="uid://4tkt0uhcv7jl" path="res://scenes/laser_explosion.tscn" id="2_n8kf8"]
+[ext_resource type="Texture2D" uid="uid://ck4bdea7gygiy" path="res://assets/effects/visuals/assets/sparkle.png" id="4_oket1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gfu0b"]
 radius = 13.0
@@ -25,6 +26,12 @@ shape = SubResource("CircleShape2D_gfu0b")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(1, 0)
+
+[node name="ExplosionLight" type="PointLight2D" parent="."]
+position = Vector2(2, 0)
+color = Color(0.717647, 0.0627451, 0.0862745, 1)
+energy = 8.0
+texture = ExtResource("4_oket1")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://6hysdd2kap38"]
+[gd_scene load_steps=6 format=3 uid="uid://6hysdd2kap38"]
 
 [ext_resource type="Script" path="res://scripts/laser.gd" id="1_0dmiu"]
 [ext_resource type="Texture2D" uid="uid://bsfdyby6y632" path="res://assets/effects/weapons/bullet_short_single.png" id="1_sbpci"]
 [ext_resource type="PackedScene" uid="uid://4tkt0uhcv7jl" path="res://scenes/laser_explosion.tscn" id="2_ylt6n"]
+[ext_resource type="Texture2D" uid="uid://c3o1ttqdwn30x" path="res://assets/effects/visuals/assets/dot.png" id="4_pmspv"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wmjhu"]
 radius = 3.0
@@ -19,6 +20,12 @@ texture = ExtResource("1_sbpci")
 shape = SubResource("CapsuleShape2D_wmjhu")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="ExplosionLight" type="PointLight2D" parent="VisibleOnScreenNotifier2D"]
+position = Vector2(0, -15)
+color = Color(0.717647, 0.0627451, 0.0862745, 1)
+energy = 8.0
+texture = ExtResource("4_pmspv")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

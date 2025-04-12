@@ -75,7 +75,12 @@ func _physics_process(delta: float) -> void:
 		moving = true
 	else:
 		velocity *= friction
-
+	
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		if collision.get_collider().is_in_group("asteroid"):
+			take_damage()
+	
 	move_and_slide()
 	handle_flames(moving, rotating_left, rotating_right)
 
@@ -228,10 +233,12 @@ func _on_body_entered(body):
 		body.take_damage() 
 
 func take_damage(_impact_position = null):
-	health -= 100
+	health -= 25
 	sprite.modulate = Color(1, 0.5, 0.5)
 	await get_tree().create_timer(0.1).timeout
 	sprite.modulate = Color(1, 1, 1)  
+	
+	disable_controls(2)
 	
 	if health <= 0:
 		die()
@@ -315,3 +322,7 @@ func apply_impulse(force: Vector2):
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("asteroid"):
 		take_damage(area.global_position)  # Aplica daño a la nave.
+		
+func _on_area_2d_body_entered(body):
+	if body.is_in_group("asteroid"):
+		take_damage()
