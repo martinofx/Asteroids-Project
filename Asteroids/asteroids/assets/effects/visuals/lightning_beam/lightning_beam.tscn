@@ -8,8 +8,12 @@ radius = 192.0
 [node name="LightningBeam" type="RayCast2D"]
 target_position = Vector2(600, 0)
 script = ExtResource("1_kioyy")
+flashes = 4
+bounces_max = 4
 
 [node name="JumpArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="JumpArea"]
 shape = SubResource("1")
+
+[connection signal="area_entered" from="JumpArea" to="." method="_on_jump_area_area_entered"]

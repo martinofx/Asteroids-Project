@@ -11,7 +11,7 @@ extends CharacterBody2D
 @export var fire_rate: float = 0.3  # Tiempo entre disparos
 @export var fade_duration: float = 0.5  # Duración del desvanecimiento
 @export var raygun_scene: PackedScene
-@export var lightning_beam: PackedScene  # <- nueva arma
+@export var lightning_beam_scene: PackedScene  # <- nueva arma
 
 
 var screen_size: Vector2  # Tamaño de la pantalla
@@ -28,6 +28,9 @@ var energy_beam: Area2D
 var beam_active = false
 var raygun_instance = null
 var beam_cooldown := false  # 🔹 Evita disparar en bucle
+var damage_cooldown := 1.0 # segundos entre daños
+var time_since_last_damage := 0.0
+var is_invulnerable := false
 
 
 @onready var sprite: Sprite2D = $Sprite2D  # Sprite de la nave
@@ -36,6 +39,7 @@ var beam_cooldown := false  # 🔹 Evita disparar en bucle
 @onready var flame_right: Node2D = $Flame_Right
 @onready var beam_timer := $BeamTimer  # Timer agregado en el editor
 @onready var laser_beam = $LaserBeam2D  # Ajustá el path si lo cambiaste
+@onready var lightning_beam = $LightningBeam
 
 func _ready() -> void:
 	update_screen_size()
@@ -76,10 +80,21 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity *= friction
 	
+	for i in range(get_slide_collision_count()):  # ✅ CORRECTO
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+		if collider and collider.is_in_group("asteroid"):
+			take_damage()
+	
+	time_since_last_damage += delta
+
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
-		if collision.get_collider().is_in_group("asteroid"):
+		var collider = collision.get_collider()
+	
+		if collider and collider.is_in_group("asteroid") and time_since_last_damage >= damage_cooldown:
 			take_damage()
+			time_since_last_damage = 0.0 
 	
 	move_and_slide()
 	handle_flames(moving, rotating_left, rotating_right)
@@ -146,6 +161,9 @@ func _input(event):
 		laser_beam.is_casting = true
 	elif event.is_action_released("laser_beam"):
 		laser_beam.is_casting = false
+		
+	if event.is_action_pressed("lightning_beam") and lightning_beam:
+		lightning_beam.shoot()
 
 func toggle_beam(active: bool):
 	if active and not beam_active:
@@ -233,16 +251,26 @@ func _on_body_entered(body):
 		body.take_damage() 
 
 func take_damage(_impact_position = null):
-	health -= 25
-	sprite.modulate = Color(1, 0.5, 0.5)
-	await get_tree().create_timer(0.1).timeout
-	sprite.modulate = Color(1, 1, 1)  
+	if is_invulnerable:
+		return
 	
-	disable_controls(2)
+	health -= 50
+	activate_invulnerability()
+	#is_invulnerable = true
+	#$Sprite2D.modulate = Color(1, 1, 1, 0.5) # o activar una animación de parpadeo
+	#$TimerInvulnerability.start() # Timer node en la escena  
+	
+	#disable_controls(2)
 	
 	if health <= 0:
 		die()
-		
+	
+func activate_invulnerability():
+	is_invulnerable = true
+	$Sprite2D.modulate = Color(1, 1, 1, 0.5) # o activar una animación de parpadeo
+
+	$TimerInvulnerability.start()  # Inicia el temporizador (por ejemplo: 2 segundos)
+	
 func _on_damage_area_area_entered(area):
 	if area.is_in_group("asteroid"):
 		take_damage(area.global_position)  # Llama a la función de daño correctamente
@@ -326,3 +354,8 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 func _on_area_2d_body_entered(body):
 	if body.is_in_group("asteroid"):
 		take_damage()
+
+
+func _on_timer_invulnerability_timeout() -> void:
+	is_invulnerable = false
+	$Sprite2D.modulate = Color(1, 1, 1, 1) 
