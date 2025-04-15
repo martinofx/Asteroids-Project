@@ -9,6 +9,7 @@ radius = 192.0
 target_position = Vector2(600, 0)
 script = ExtResource("1_kioyy")
 flashes = 4
+flash_time = 0.2
 bounces_max = 4
 
 [node name="JumpArea" type="Area2D" parent="."]
