@@ -1,8 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://dlksrlwpu1heh"]
+[gd_scene load_steps=12 format=3 uid="uid://dlksrlwpu1heh"]
 
 [ext_resource type="Script" path="res://assets/laser_beam/laser_beam.gd" id="1_wb5fa"]
 [ext_resource type="Texture2D" uid="uid://t105tdvgunrx" path="res://assets/effects/visuals/assets/glowing_circle.png" id="1_yxuu6"]
-[ext_resource type="Texture2D" uid="uid://byj3dgtoqix1l" path="res://assets/laser_beam/ray_tiled.png" id="2_1wrsu"]
 
 [sub_resource type="Gradient" id="Gradient_rrach"]
 offsets = PackedFloat32Array(0.582915, 1)
@@ -63,15 +62,11 @@ color_ramp = SubResource("2")
 [node name="LaserBeam2D" type="RayCast2D"]
 target_position = Vector2(0, 0)
 script = ExtResource("1_wb5fa")
-max_length = 3000
 
 [node name="FillLine2D" type="Line2D" parent="."]
 modulate = Color(1.5, 1.5, 1.5, 1)
-z_index = 2
-position = Vector2(0.16667, 0)
-scale = Vector2(1.01667, 2.3)
 points = PackedVector2Array(0, 0, 100, 0)
-texture = ExtResource("2_1wrsu")
+default_color = Color(0.301961, 0.65098, 1, 1)
 texture_mode = 2
 joint_mode = 2
 begin_cap_mode = 2
@@ -82,34 +77,28 @@ antialiased = true
 [node name="CastingParticles2D" type="GPUParticles2D" parent="."]
 modulate = Color(1.5, 1.5, 1.5, 1)
 show_behind_parent = true
-z_index = 1
 emitting = false
-amount = 20
 process_material = SubResource("ParticleProcessMaterial_6xgog")
 texture = ExtResource("1_yxuu6")
 lifetime = 0.3
 visibility_rect = Rect2(0, -18.722, 29.6756, 38.4841)
-trail_lifetime = 10.0
-trail_sections = 100
 
 [node name="BeamParticles2D" type="GPUParticles2D" parent="."]
 modulate = Color(1.5, 1.5, 1.5, 1)
-z_index = 1
 emitting = false
-amount = 100
+amount = 50
 process_material = SubResource("ParticleProcessMaterial_27ndt")
 texture = ExtResource("1_yxuu6")
 preprocess = 1.0
+randomness = 1.0
 visibility_rect = Rect2(-2500, -2500, 5000, 5000)
 
 [node name="CollisionParticles2D" type="GPUParticles2D" parent="."]
 modulate = Color(1.5, 1.5, 1.5, 1)
 show_behind_parent = true
 emitting = false
-amount = 200
+amount = 16
 process_material = SubResource("ParticleProcessMaterial_j7swn")
 texture = ExtResource("1_yxuu6")
 lifetime = 0.3
-randomness = 1.0
 visibility_rect = Rect2(-2500, -2500, 5000, 5000)
-trail_sections = 20

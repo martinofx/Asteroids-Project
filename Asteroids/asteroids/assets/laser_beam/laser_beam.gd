@@ -33,7 +33,7 @@ func _physics_process(delta: float) -> void:
 
 		# Se pone rojo al acercarse al final
 		if cast_timer >= max_cast_duration - warning_time:
-			fill.modulate = Color(1, 1, 1)  # Rojo
+			fill.modulate = Color(1, 0, 1)  # Rojo
 
 		if cast_timer >= max_cast_duration:
 			is_casting = false
