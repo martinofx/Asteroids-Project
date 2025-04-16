@@ -9,12 +9,15 @@ radius = 192.0
 target_position = Vector2(600, 0)
 script = ExtResource("1_kioyy")
 flashes = 4
-flash_time = 0.2
+flash_time = 0.01
 bounces_max = 4
 
 [node name="JumpArea" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="JumpArea"]
 shape = SubResource("1")
 
 [connection signal="area_entered" from="JumpArea" to="." method="_on_jump_area_area_entered"]
+[connection signal="body_entered" from="JumpArea" to="." method="_on_jump_area_body_entered"]

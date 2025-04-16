@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://bmunsdv25o821"]
+
+[ext_resource type="Texture2D" uid="uid://t16bcqe46en7" path="res://assets/effects/visuals/lightning_beam/SparksAnimation.png" id="1_4xmbs"]
+[ext_resource type="Script" path="res://scripts/electric_impact.gd" id="2_msusa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_drdf0"]
+atlas = ExtResource("1_4xmbs")
+region = Rect2(47, 0, 489, 551)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8r81c"]
+atlas = ExtResource("1_4xmbs")
+region = Rect2(536, 0, 489, 551)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eyxnq"]
+atlas = ExtResource("1_4xmbs")
+region = Rect2(1025, 0, 489, 551)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ksdba"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_drdf0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8r81c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eyxnq")
+}],
+"loop": false,
+"name": &"Impact",
+"speed": 30.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="ElectricImpact" type="AnimatedSprite2D"]
+scale = Vector2(0.4, 0.4)
+sprite_frames = SubResource("SpriteFrames_ksdba")
+animation = &"Impact"
+frame = 2
+frame_progress = 1.0
+script = ExtResource("2_msusa")

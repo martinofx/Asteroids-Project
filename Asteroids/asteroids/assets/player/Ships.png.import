@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dddwugiksooef"
-path="res://.godot/imported/demo_screen.svg-383f93b577e286a37131a2c85998170e.ctex"
+uid="uid://cbaousjg6sb04"
+path="res://.godot/imported/Ships.png-fe4f3075cdadccae25962bf3cffbe829.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/effects/visuals/addons/node-essential-helpers/demo_screen.svg"
-dest_files=["res://.godot/imported/demo_screen.svg-383f93b577e286a37131a2c85998170e.ctex"]
+source_file="res://assets/player/Ships.png"
+dest_files=["res://.godot/imported/Ships.png-fe4f3075cdadccae25962bf3cffbe829.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false
