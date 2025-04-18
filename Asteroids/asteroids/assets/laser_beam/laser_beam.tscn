@@ -12,7 +12,7 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 gradient = SubResource("Gradient_rrach")
 
 [sub_resource type="Curve" id="Curve_khfcy"]
-_data = [Vector2(0.518072, 1), 0.0, -3.53434, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0.518072, 1), 0.0, -3.53434, 0, 0, Vector2(1, 0.516483), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="4"]
@@ -45,8 +45,8 @@ spread = 0.0
 gravity = Vector3(0, 0, 0)
 tangential_accel_min = 100.0
 tangential_accel_max = 100.0
-scale_min = 0.3
-scale_max = 0.3
+scale_min = 0.1
+scale_max = 0.2
 scale_curve = SubResource("7")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_j7swn"]
@@ -56,7 +56,6 @@ initial_velocity_min = 300.0
 initial_velocity_max = 300.0
 gravity = Vector3(0, 0, 0)
 scale_min = 0.5
-scale_max = 0.5
 scale_curve = SubResource("4")
 color_ramp = SubResource("2")
 
@@ -81,8 +80,8 @@ antialiased = true
 
 [node name="CastingParticles2D" type="GPUParticles2D" parent="."]
 modulate = Color(1.5, 1.5, 1.5, 1)
-show_behind_parent = true
-z_index = 1
+z_index = 10
+z_as_relative = false
 emitting = false
 amount = 20
 process_material = SubResource("ParticleProcessMaterial_6xgog")
@@ -94,22 +93,29 @@ trail_sections = 100
 
 [node name="BeamParticles2D" type="GPUParticles2D" parent="."]
 modulate = Color(1.5, 1.5, 1.5, 1)
-z_index = 1
+z_index = 10
 emitting = false
-amount = 100
+amount = 50
 process_material = SubResource("ParticleProcessMaterial_27ndt")
 texture = ExtResource("1_yxuu6")
+lifetime = 0.5
 preprocess = 1.0
+speed_scale = 26.39
+explosiveness = 1.0
+randomness = 0.79
 visibility_rect = Rect2(-2500, -2500, 5000, 5000)
 
 [node name="CollisionParticles2D" type="GPUParticles2D" parent="."]
 modulate = Color(1.5, 1.5, 1.5, 1)
 show_behind_parent = true
+z_index = 10
 emitting = false
 amount = 200
 process_material = SubResource("ParticleProcessMaterial_j7swn")
 texture = ExtResource("1_yxuu6")
 lifetime = 0.3
+speed_scale = 57.3
 randomness = 1.0
 visibility_rect = Rect2(-2500, -2500, 5000, 5000)
+trail_enabled = true
 trail_sections = 20
