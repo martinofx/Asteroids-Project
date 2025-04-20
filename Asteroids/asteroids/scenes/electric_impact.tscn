@@ -61,6 +61,7 @@ sprite_frames = SubResource("SpriteFrames_ksdba")
 animation = &"Impact"
 frame = 2
 frame_progress = 1.0
+speed_scale = 0.8
 script = ExtResource("2_msusa")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]

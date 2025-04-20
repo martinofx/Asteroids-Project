@@ -1,7 +1,14 @@
-[gd_scene load_steps=12 format=3 uid="uid://dlksrlwpu1heh"]
+[gd_scene load_steps=14 format=3 uid="uid://dlksrlwpu1heh"]
 
 [ext_resource type="Script" path="res://assets/laser_beam/laser_beam.gd" id="1_wb5fa"]
 [ext_resource type="Texture2D" uid="uid://t105tdvgunrx" path="res://assets/effects/visuals/assets/glowing_circle.png" id="1_yxuu6"]
+[ext_resource type="Texture2D" uid="uid://byj3dgtoqix1l" path="res://assets/laser_beam/ray_tiled.png" id="2_1wrsu"]
+
+[sub_resource type="Curve" id="Curve_yfg4b"]
+max_value = 2.0
+bake_resolution = 200
+_data = [Vector2(0.529412, 2), 0.0, 0.0, 0, 0]
+point_count = 1
 
 [sub_resource type="Gradient" id="Gradient_rrach"]
 offsets = PackedFloat32Array(0.582915, 1)
@@ -11,7 +18,7 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 gradient = SubResource("Gradient_rrach")
 
 [sub_resource type="Curve" id="Curve_khfcy"]
-_data = [Vector2(0.518072, 1), 0.0, -3.53434, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0.518072, 1), 0.0, -3.53434, 0, 0, Vector2(1, 0.516483), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="4"]
@@ -44,8 +51,8 @@ spread = 0.0
 gravity = Vector3(0, 0, 0)
 tangential_accel_min = 100.0
 tangential_accel_max = 100.0
-scale_min = 0.3
-scale_max = 0.3
+scale_min = 0.1
+scale_max = 0.2
 scale_curve = SubResource("7")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_j7swn"]
@@ -55,18 +62,22 @@ initial_velocity_min = 300.0
 initial_velocity_max = 300.0
 gravity = Vector3(0, 0, 0)
 scale_min = 0.5
-scale_max = 0.5
 scale_curve = SubResource("4")
 color_ramp = SubResource("2")
 
 [node name="LaserBeam2D" type="RayCast2D"]
 target_position = Vector2(0, 0)
 script = ExtResource("1_wb5fa")
+max_length = 3000
 
 [node name="FillLine2D" type="Line2D" parent="."]
 modulate = Color(1.5, 1.5, 1.5, 1)
+z_index = 2
+position = Vector2(0.16667, 0)
+scale = Vector2(1.01667, 2.3)
 points = PackedVector2Array(0, 0, 100, 0)
-default_color = Color(0.301961, 0.65098, 1, 1)
+width_curve = SubResource("Curve_yfg4b")
+texture = ExtResource("2_1wrsu")
 texture_mode = 2
 joint_mode = 2
 begin_cap_mode = 2
@@ -76,29 +87,43 @@ antialiased = true
 
 [node name="CastingParticles2D" type="GPUParticles2D" parent="."]
 modulate = Color(1.5, 1.5, 1.5, 1)
-show_behind_parent = true
+z_index = -1
+z_as_relative = false
 emitting = false
+amount = 50
 process_material = SubResource("ParticleProcessMaterial_6xgog")
 texture = ExtResource("1_yxuu6")
 lifetime = 0.3
+explosiveness = 1.0
 visibility_rect = Rect2(0, -18.722, 29.6756, 38.4841)
+trail_lifetime = 10.0
+trail_sections = 100
 
 [node name="BeamParticles2D" type="GPUParticles2D" parent="."]
 modulate = Color(1.5, 1.5, 1.5, 1)
+z_index = 10
 emitting = false
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_27ndt")
 texture = ExtResource("1_yxuu6")
+lifetime = 0.5
 preprocess = 1.0
-randomness = 1.0
+speed_scale = 26.39
+explosiveness = 1.0
+randomness = 0.79
 visibility_rect = Rect2(-2500, -2500, 5000, 5000)
 
 [node name="CollisionParticles2D" type="GPUParticles2D" parent="."]
 modulate = Color(1.5, 1.5, 1.5, 1)
 show_behind_parent = true
+z_index = 10
 emitting = false
-amount = 16
+amount = 200
 process_material = SubResource("ParticleProcessMaterial_j7swn")
 texture = ExtResource("1_yxuu6")
 lifetime = 0.3
+speed_scale = 57.3
+randomness = 1.0
 visibility_rect = Rect2(-2500, -2500, 5000, 5000)
+trail_enabled = true
+trail_sections = 20

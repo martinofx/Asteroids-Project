@@ -28,6 +28,17 @@ func _ready():
 	linear_velocity = random_direction * random_speed
 	sprite.frame = 0  # Estado inicial sano
 	
+	randomize() # Asegura que cada ejecución tenga valores distintos
+
+	# Rotación inicial aleatoria
+	rotation = randf_range(0, TAU)
+
+	# Velocidad angular aleatoria (negativa o positiva)
+	angular_velocity = randf_range(-2.5, 2.5) if randf() < 0.9 else 0.0
+
+	# Si querés también que se muevan con impulso inicial:
+	linear_velocity = Vector2.RIGHT.rotated(randf_range(0, TAU)) * randf_range(100, 1150)
+	
 	add_to_group("asteroid")
 	
 

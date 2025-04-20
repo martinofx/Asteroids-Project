@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bwg8nv26pboxx"]
+[gd_scene load_steps=14 format=3 uid="uid://bwg8nv26pboxx"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_2qbox"]
 [ext_resource type="PackedScene" uid="uid://brybpla2237kk" path="res://scenes/player.tscn" id="1_2qsk6"]
@@ -12,6 +12,13 @@
 [ext_resource type="Script" path="res://scripts/camera_2d.gd" id="12_0v6u7"]
 [ext_resource type="PackedScene" uid="uid://piix8c8y04wl" path="res://scenes/asteroid_third_1.tscn" id="12_fwfoa"]
 [ext_resource type="PackedScene" uid="uid://yb2f05gub03y" path="res://scenes/asteroid_last.tscn" id="20_hvn4f"]
+
+[sub_resource type="Environment" id="Environment_k45lw"]
+glow_enabled = true
+glow_intensity = 1.2
+glow_strength = 0.8
+glow_bloom = 0.3
+glow_blend_mode = 0
 
 [node name="Game" type="Node2D"]
 scale = Vector2(0.8, 0.8)
@@ -63,3 +70,6 @@ position = Vector2(1273.75, 228.75)
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(1205, 680)
 script = ExtResource("12_0v6u7")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_k45lw")
