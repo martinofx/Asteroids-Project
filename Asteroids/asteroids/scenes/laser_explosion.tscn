@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://c0mkmaskw5kq8" path="res://assets/effects/visuals/explosions/laser_explosion_medium.png" id="1_hxtin"]
 [ext_resource type="Script" path="res://scripts/laser_explosion.gd" id="1_r5cib"]
-[ext_resource type="Texture2D" uid="uid://djr84nwmglc23" path="res://assets/effects/visuals/explosions/texture light.png" id="3_at5kv"]
+[ext_resource type="Texture2D" uid="uid://t105tdvgunrx" path="res://assets/effects/visuals/assets/glowing_circle.png" id="3_ft7rx"]
 
 [sub_resource type="Animation" id="Animation_ngbxc"]
 resource_name = "explosion"
@@ -56,6 +56,6 @@ libraries = {
 }
 
 [node name="ExplosionLight" type="PointLight2D" parent="."]
-color = Color(0.994576, 0.59542, 0, 0.643137)
-texture = ExtResource("3_at5kv")
-texture_scale = 0.3
+color = Color(0.496116, 0.715849, 1, 0.643137)
+energy = 4.0
+texture = ExtResource("3_ft7rx")

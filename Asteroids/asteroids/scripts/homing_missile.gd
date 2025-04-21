@@ -46,7 +46,7 @@ func _process(delta):
 		# HOMING después del delay
 		if homing_timer >= homing_delay and target:
 			var target_direction = (target.global_position - global_position).normalized()
-			direction = direction.lerp(target_direction, 0.6)
+			direction = direction.lerp(target_direction, 1)
 			look_at(global_position - direction * 90)
 			rotation += deg_to_rad(-90)
 
@@ -74,7 +74,7 @@ func add_flame():
 	if flame_scene:
 		flame_instance = flame_scene.instantiate()
 		add_child(flame_instance)
-		flame_instance.position = Vector2(0, 50)
+		flame_instance.position = Vector2(0, 40)
 
 func _on_body_entered(body):
 	if body.is_in_group("enemy") or body.is_in_group("asteroid"):

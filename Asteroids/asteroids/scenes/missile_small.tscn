@@ -2,26 +2,28 @@
 
 [ext_resource type="Script" path="res://scripts/missile_small.gd" id="1_acmpk"]
 [ext_resource type="PackedScene" uid="uid://bq73bbrebolkq" path="res://scenes/explosion_very_small.tscn" id="2_rn6mg"]
-[ext_resource type="Texture2D" uid="uid://beteqd3p1khxm" path="res://assets/effects/weapons/rocket_dsx.png" id="3_8hvtt"]
-[ext_resource type="PackedScene" uid="uid://2cg5rghxqhu0" path="res://scenes/flame_left.tscn" id="4_0m0c4"]
+[ext_resource type="PackedScene" uid="uid://cl3tngjt2n1bb" path="res://scenes/flame_center.tscn" id="3_ih7qr"]
+[ext_resource type="Texture2D" uid="uid://dimo7c4b4sypw" path="res://assets/effects/weapons/Weapons and Projectiles 2/missile.png" id="4_or672"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wmjhu"]
-radius = 11.0
-height = 42.0
+radius = 10.0
+height = 54.2857
 
 [node name="MissileSmall" type="Area2D" groups=["laser"]]
 z_index = -2
 scale = Vector2(0.7, 0.7)
 script = ExtResource("1_acmpk")
 explosion_small_scene = ExtResource("2_rn6mg")
-flame_scene = ExtResource("4_0m0c4")
+flame_scene = ExtResource("3_ih7qr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_8hvtt")
-hframes = 4
+position = Vector2(-4.06024e-14, -22.8571)
+rotation = 1.5708
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("4_or672")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -9)
+position = Vector2(0, -25.7143)
 shape = SubResource("CapsuleShape2D_wmjhu")
 
 [node name="SmokeTrail" type="CPUParticles2D" parent="."]
