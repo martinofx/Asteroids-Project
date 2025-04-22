@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cvwcfsw3ieq45"]
+[gd_scene load_steps=4 format=3 uid="uid://cvwcfsw3ieq45"]
 
 [ext_resource type="Script" path="res://assets/effects/visuals/lightning_beam/lightning_beam.gd" id="1_kioyy"]
+[ext_resource type="Texture2D" uid="uid://c3o1ttqdwn30x" path="res://assets/effects/visuals/assets/dot.png" id="2_hwv0q"]
 
 [sub_resource type="CircleShape2D" id="1"]
 radius = 192.0
@@ -19,6 +20,13 @@ collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="JumpArea"]
 shape = SubResource("1")
+
+[node name="ImpulseLight2" type="PointLight2D" parent="JumpArea"]
+position = Vector2(0, -15)
+scale = Vector2(0.5, 0.5)
+color = Color(1.54018e-06, 0.607575, 0.888673, 1)
+energy = 2.0
+texture = ExtResource("2_hwv0q")
 
 [connection signal="area_entered" from="JumpArea" to="." method="_on_jump_area_area_entered"]
 [connection signal="body_entered" from="JumpArea" to="." method="_on_jump_area_body_entered"]

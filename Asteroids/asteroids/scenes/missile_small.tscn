@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://dimo7c4b4sypw" path="res://assets/effects/weapons/Weapons and Projectiles 2/missile.png" id="4_or672"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wmjhu"]
-radius = 10.0
 height = 54.2857
 
 [node name="MissileSmall" type="Area2D" groups=["laser"]]

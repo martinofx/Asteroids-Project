@@ -1,17 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://bc5f42xkbqacr"]
+[gd_scene load_steps=7 format=3 uid="uid://bc5f42xkbqacr"]
 
 [ext_resource type="Script" path="res://scripts/enemy_small.gd" id="1_pcrg4"]
 [ext_resource type="Texture2D" uid="uid://dsbfqddiwl5xn" path="res://assets/player/enemy_unit.png" id="2_akibf"]
 [ext_resource type="PackedScene" uid="uid://bouvkbj40hi8j" path="res://scenes/explosion.tscn" id="2_cbpfs"]
 [ext_resource type="PackedScene" uid="uid://chq7ofcj7nven" path="res://scenes/enemy_laser.tscn" id="3_xcril"]
+[ext_resource type="Texture2D" uid="uid://ciia2u8f30ca5" path="res://assets/effects/weapons/bullet_long_single.png" id="5_pk3jl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ij14w"]
 radius = 53.0
 
-[node name="Enemy_small" type="Area2D" groups=["enemy"]]
+[node name="Enemy_small" type="CharacterBody2D" groups=["enemy"]]
 position = Vector2(-1, 0)
 script = ExtResource("1_pcrg4")
 enemy_laser_scene = ExtResource("3_xcril")
+fire_rate = 1000.0
 explosion_scene = ExtResource("2_cbpfs")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -20,4 +22,19 @@ texture = ExtResource("2_akibf")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ij14w")
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[node name="RaycastFront" type="RayCast2D" parent="."]
+position = Vector2(58, -1)
+rotation = -1.5708
+
+[node name="RaycastLeft" type="RayCast2D" parent="."]
+position = Vector2(34, -42)
+rotation = -2.44346
+
+[node name="RaycastRight" type="RayCast2D" parent="."]
+position = Vector2(41, 40)
+rotation = -0.785398
+
+[node name="BulletLongSingle" type="Sprite2D" parent="."]
+position = Vector2(106, 0)
+rotation = 1.5708
+texture = ExtResource("5_pk3jl")

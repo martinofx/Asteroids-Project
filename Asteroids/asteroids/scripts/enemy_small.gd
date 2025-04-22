@@ -1,47 +1,82 @@
-extends Area2D
+extends CharacterBody2D
 
-@export var speed: float = 850.0  # Velocidad de movimiento
-@export var stop_distance: float = 200.0  # Distancia antes de detenerse
-@export var stop_time: float = 0.5  # Tiempo detenido antes de moverse otra vez
-@export var health: int = 100  # Vida del enemigo
-@export var enemy_laser_scene: PackedScene  # Asignar aquí la escena del láser enemigo
-@export var fire_rate: float = 2.0  # Tiempo entre disparos
-@export var explosion_scene: PackedScene  # Asigna aquí la escena de la explosión
+@export var speed: float = 850.0
+@export var stop_distance: float = 200.0
+@export var stop_time: float = 0.5
+@export var health: int = 100
+@export var enemy_laser_scene: PackedScene
+@export var fire_rate: float = 2.0
+@export var explosion_scene: PackedScene
+@export var slow_duration: float = 2.0
+@export var slow_factor: float = 0.5
 
-var direction: Vector2  # Dirección del movimiento
-var start_position: Vector2  # Posición inicial para calcular distancia
-var moving: bool = true  # Control de movimiento
-var screen_size: Vector2  # Tamaño de la pantalla
+var direction: Vector2
+var start_position: Vector2
+var moving: bool = true
+var screen_size: Vector2
+var current_speed: float
 
-@onready var sprite: Sprite2D = $Sprite2D  # Sprite del enemigo
+@onready var sprite: Sprite2D = $Sprite2D
+@onready var ray_front: RayCast2D = $RaycastFront
+@onready var ray_left: RayCast2D = $RaycastLeft
+@onready var ray_right: RayCast2D = $RaycastRight
 
 func _ready():
-	screen_size = get_viewport_rect().size  # Obtener el tamaño de la pantalla
-	start_position = global_position  # Guardar posición inicial
-	pick_new_direction()  # Elegir dirección aleatoria
+	ray_front = $RaycastFront
+	ray_left = $RaycastLeft
+	ray_right = $RaycastRight
+
+	ray_front.enabled = true
+	ray_left.enabled = true
+	ray_right.enabled = true
+
+	screen_size = get_viewport_rect().size
+	start_position = global_position
+	pick_new_direction()
 	start_shooting()
+	current_speed = speed
 
-func _process(delta):
+func _physics_process(delta):
 	if moving:
-		move_enemy(delta)
+		handle_obstacle_avoidance()
+		
+		var target_angle = direction.angle()
+		rotation = lerp_angle(rotation, target_angle, delta * 0.5)
+		
+		velocity = direction * current_speed
+		move_and_slide()
+		rotation = lerp_angle(rotation, direction.angle(), delta * 5.0)
 
-	check_screen_wrap()  # Verificar si debe teletransportarse
-
-func move_enemy(delta):
-	global_position += direction * speed * delta
+	check_screen_wrap()
 
 	if global_position.distance_to(start_position) >= stop_distance:
 		stop_movement()
 
+func handle_obstacle_avoidance():
+	if ray_front.is_colliding() and ray_front.get_collider().is_in_group("asteroid"):
+		var left_clear = not ray_left.is_colliding()
+		var right_clear = not ray_right.is_colliding()
+
+		if left_clear:
+			direction = (transform.x - transform.y).normalized() # izquierda
+		elif right_clear:
+			direction = (transform.x + transform.y).normalized() # derecha
+		else:
+			direction = direction.rotated(PI) # giro emergencia
+
+		start_position = global_position
+
 func stop_movement():
 	moving = false
+	velocity = Vector2.ZERO
 	await get_tree().create_timer(stop_time).timeout
 	pick_new_direction()
 	start_position = global_position
 	moving = true
 
 func pick_new_direction():
-	direction = Vector2(randf_range(-1, 1), randf_range(-1, 1)).normalized()
+	var angle = randf_range(0, TAU)
+	direction = Vector2.RIGHT.rotated(angle)
 
 func check_screen_wrap():
 	var new_position = global_position
@@ -62,19 +97,22 @@ func check_screen_wrap():
 		crossed = true
 
 	if crossed:
-		global_position = new_position  
-		pick_new_direction()  # Generar nueva dirección tras el teletransporte
-		start_position = global_position  # Reiniciar punto de referencia para distancia
+		global_position = new_position
+		pick_new_direction()
+		start_position = global_position
 
 func take_damage(collision_direction: Vector2 = Vector2.ZERO, force: float = 0.0):
-	health -= 100
-	sprite.modulate = Color(1, 0.5, 0.5)  # Efecto de daño (rojo)
+	health -= 50
+	sprite.modulate = Color(1, 0.5, 0.5)
 	await get_tree().create_timer(0.1).timeout
-	sprite.modulate = Color(1, 1, 1)  # Restaurar color
-	
+	sprite.modulate = Color(1, 1, 1)
+
 	if collision_direction != Vector2.ZERO and force > 0.0:
-	# Aplicar rebote en dirección contraria al impacto
-		global_position += collision_direction * -force * 0.1	
+		global_position += collision_direction * -force * 0.1
+
+	current_speed = speed * slow_factor
+	await get_tree().create_timer(slow_duration).timeout
+	current_speed = speed
 
 	if health <= 0:
 		die()
@@ -83,8 +121,8 @@ func die():
 	if explosion_scene:
 		var explosion = explosion_scene.instantiate()
 		get_parent().add_child(explosion)
-		explosion.global_position = global_position  # La explosión aparece en el punto de impacto
-	queue_free()  # Eliminar enemigo
+		explosion.global_position = global_position
+	queue_free()
 
 func start_shooting():
 	while true:
@@ -93,26 +131,24 @@ func start_shooting():
 
 func shoot():
 	if not is_instance_valid(get_tree()) or not is_inside_tree():
-		return  # Evita disparos si el enemigo fue eliminado
+		return
 
-	var player = get_parent().get_node_or_null("Player")  # Buscar al jugador
+	var player = get_parent().get_node_or_null("Player")
 	if player:
 		var enemy_laser = enemy_laser_scene.instantiate() as Area2D
 		get_parent().add_child(enemy_laser)
 
-		enemy_laser.global_position = global_position  # Disparo desde el enemigo
-		var shoot_direction = (player.global_position - global_position).normalized()  # Dirección hacia el jugador
+		enemy_laser.global_position = global_position
+		var shoot_direction = (player.global_position - global_position).normalized()
 
-		if enemy_laser.has_method("set_direction"):  # Si el láser tiene el método set_direction()
-			enemy_laser.set_direction(shoot_direction)
-		elif "direction" in enemy_laser:  # Si tiene la propiedad direction
+		if enemy_laser.has_method("set_direction"):
+			enemy_laser.set_direction(shoot_direction, self)
+		elif "direction" in enemy_laser:
 			enemy_laser.direction = shoot_direction
 
-		enemy_laser.rotation = shoot_direction.angle()  # Rotar el láser hacia el jugador
-
+		enemy_laser.rotation = shoot_direction.angle()
 
 func _on_body_entered(body: Node2D) -> void:
-	if body.is_in_group("player"):  # Si colisiona con el jugador
-		body.take_damage()  # Llama a la función de daño del jugador
+	if body.is_in_group("player"):
+		body.take_damage()
 		die()
-		queue_free()  # El enemigo desaparece tras colisionar
