@@ -3,7 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://djh1iy8ptxq5h" path="res://assets/effects/visuals/explosion/scraps_gradient.tres" id="1_ueoew"]
 [ext_resource type="Texture2D" uid="uid://ctmalhnk0tfxo" path="res://assets/effects/visuals/assets/puff_smooth.png" id="2_brooh"]
 
-
 [sub_resource type="Curve" id="6"]
 _data = [Vector2(0, 0.377273), 0.0, 2.60769, 0, 0, Vector2(0.761062, 0.986364), 0.0, 0.0, 0, 0, Vector2(1, 0.322727), -0.564845, 0.0, 0, 0]
 point_count = 3

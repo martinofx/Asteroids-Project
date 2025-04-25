@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://bc5f42xkbqacr"]
+[gd_scene load_steps=13 format=3 uid="uid://bc5f42xkbqacr"]
 
 [ext_resource type="Script" path="res://scripts/enemy_small.gd" id="1_pcrg4"]
 [ext_resource type="Texture2D" uid="uid://dsbfqddiwl5xn" path="res://assets/player/enemy_unit.png" id="2_akibf"]
 [ext_resource type="PackedScene" uid="uid://bouvkbj40hi8j" path="res://scenes/explosion.tscn" id="2_cbpfs"]
 [ext_resource type="PackedScene" uid="uid://chq7ofcj7nven" path="res://scenes/enemy_laser.tscn" id="3_xcril"]
-[ext_resource type="Texture2D" uid="uid://ciia2u8f30ca5" path="res://assets/effects/weapons/bullet_long_single.png" id="5_pk3jl"]
+[ext_resource type="PackedScene" uid="uid://bx6ire7vrog85" path="res://scenes/move_trail.tscn" id="5_03yep"]
+[ext_resource type="Script" path="res://scripts/vfx.gd" id="5_qjlno"]
+[ext_resource type="Texture2D" uid="uid://ba81x1uxq1juq" path="res://assets/effects/visuals/assets/white_ring.png" id="7_2sc2m"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ij14w"]
 radius = 53.0
@@ -12,14 +14,52 @@ radius = 53.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_41vfu"]
 radius = 153.47
 
+[sub_resource type="Animation" id="Animation_cd4yv"]
+resource_name = "rotate"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="Animation" id="Animation_8cspx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0plhk"]
+_data = {
+"RESET": SubResource("Animation_8cspx"),
+"rotate": SubResource("Animation_cd4yv")
+}
+
 [node name="Enemy_small" type="CharacterBody2D" groups=["enemy"]]
 position = Vector2(-1, 0)
 script = ExtResource("1_pcrg4")
-fire_rate = 0.2
+fire_rate = 0.8
 target_radius = 1000.0
-attack_range = 1000.0
-current_speed = 800.0
-speed = 1000.0
+attack_range = 500.0
+current_speed = 400.0
+speed = 400.0
 dash_speed = 550.0
 dash_duration = 0.1
 obstacle_detection_distance = 500.0
@@ -27,6 +67,7 @@ enemy_laser_scene = ExtResource("3_xcril")
 explosion_scene = ExtResource("2_cbpfs")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.1, 1.1)
 texture = ExtResource("2_akibf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -47,13 +88,30 @@ position = Vector2(41, 40)
 rotation = -0.785398
 target_position = Vector2(0, 600)
 
-[node name="BulletLongSingle" type="Sprite2D" parent="."]
-position = Vector2(106, 0)
-rotation = 1.5708
-texture = ExtResource("5_pk3jl")
-
 [node name="DetectionArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 shape = SubResource("CircleShape2D_41vfu")
 disabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_0plhk")
+}
+autoplay = "rotate"
+speed_scale = 0.5
+
+[node name="VFX" type="Node2D" parent="."]
+script = ExtResource("5_qjlno")
+
+[node name="MoveTrail" parent="VFX" instance=ExtResource("5_03yep")]
+emitting = true
+lifetime = 0.5
+texture = ExtResource("2_akibf")
+color = Color(0.141411, 0.444714, 0.909186, 1)
+
+[node name="ImpulseLight2" type="PointLight2D" parent="."]
+color = Color(0, 0.490765, 0.983741, 1)
+energy = 5.0
+texture = ExtResource("7_2sc2m")
+texture_scale = 1.91

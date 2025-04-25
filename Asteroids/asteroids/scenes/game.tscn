@@ -85,5 +85,3 @@ script = ExtResource("12_0v6u7")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_k45lw")
-
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]

@@ -12,6 +12,7 @@ extends CharacterBody2D
 @export var fade_duration: float = 0.5  # Duración del desvanecimiento
 @export var raygun_scene: PackedScene
 @export var lightning_beam_scene: PackedScene  # <- nueva arma
+@export var impact_explosion_scene: PackedScene
 
 
 var screen_size: Vector2  # Tamaño de la pantalla
@@ -40,6 +41,7 @@ var is_invulnerable := false
 @onready var beam_timer := $BeamTimer  # Timer agregado en el editor
 @onready var laser_beam = $LaserBeam2D  # Ajustá el path si lo cambiaste
 @onready var lightning_beam = $LightningBeam
+
 
 func _ready() -> void:
 	update_screen_size()
@@ -253,15 +255,15 @@ func _on_body_entered(body):
 func take_damage(_impact_position = null):
 	if is_invulnerable:
 		return
-	
+		
+	var impact = impact_explosion_scene.instantiate()
+	get_parent().add_child(impact)
+	impact.global_position = global_position
+	get_viewport().get_camera_2d().shake_camera(13.0, 0.2, 5)
+		
 	health -= 50
 	activate_invulnerability()
-	#is_invulnerable = true
-	#$Sprite2D.modulate = Color(1, 1, 1, 0.5) # o activar una animación de parpadeo
-	#$TimerInvulnerability.start() # Timer node en la escena  
-	
-	#disable_controls(2)
-	
+				
 	if health <= 0:
 		die()
 	

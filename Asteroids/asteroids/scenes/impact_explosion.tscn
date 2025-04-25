@@ -1,10 +1,9 @@
 [gd_scene load_steps=22 format=3 uid="uid://3owm1bforxoy"]
 
 [ext_resource type="Texture2D" uid="uid://ck4bdea7gygiy" path="res://assets/effects/visuals/assets/sparkle.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://c3o1ttqdwn30x" path="res://assets/effects/visuals/assets/dot.png" id="1_hdtt2"]
 [ext_resource type="Texture2D" uid="uid://oyawupmwqn3i" path="res://assets/effects/visuals/explosion/explosion_gradient.tres" id="2"]
 [ext_resource type="PackedScene" uid="uid://f5l8qog5qdbm" path="res://assets/effects/visuals/explosion/fire_trails.tscn" id="2_u51ya"]
-[ext_resource type="Texture2D" uid="uid://cng7qfesgiri3" path="res://assets/effects/visuals/assets/puff.png" id="3"]
-
 
 [sub_resource type="Gradient" id="1"]
 offsets = PackedFloat32Array(0.0494297, 0.913043, 1)
@@ -83,6 +82,7 @@ color_ramp = SubResource("13")
 [sub_resource type="Animation" id="Animation_ipa3d"]
 resource_name = "DISABLE"
 length = 0.001
+loop_mode = 2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -389,16 +389,19 @@ _data = {
 [node name="Explosion" type="Node2D"]
 z_index = 1
 z_as_relative = false
+scale = Vector2(0.5, 0.5)
 
 [node name="SmokeParticles2D" type="GPUParticles2D" parent="."]
-amount = 16
+scale = Vector2(0.5, 0.5)
+amount = 2
 process_material = SubResource("5")
-texture = ExtResource("3")
+texture = ExtResource("1_hdtt2")
 lifetime = 3.0
 preprocess = 0.6
 explosiveness = 0.6
 
 [node name="FireTrails" type="Node2D" parent="."]
+scale = Vector2(0.5, 0.5)
 
 [node name="FireTrailParticles2D" parent="FireTrails" instance=ExtResource("2_u51ya")]
 
@@ -412,15 +415,17 @@ explosiveness = 0.6
 
 [node name="FireBurstParticles2D" type="GPUParticles2D" parent="."]
 modulate = Color(1.2, 1.2, 1.2, 1)
+scale = Vector2(0.5, 0.5)
 amount = 64
 process_material = SubResource("11")
-texture = ExtResource("3")
+texture = ExtResource("1_hdtt2")
 lifetime = 0.5
 explosiveness = 0.3
 randomness = 1.0
 
 [node name="SparkleParticles2D" type="GPUParticles2D" parent="."]
 modulate = Color(1.2, 1.2, 1.2, 1)
+scale = Vector2(0.5, 0.5)
 amount = 32
 process_material = SubResource("16")
 texture = ExtResource("1")

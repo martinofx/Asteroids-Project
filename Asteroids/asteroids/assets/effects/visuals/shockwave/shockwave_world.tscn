@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b1hj1aci1wep4" path="res://assets/effects/visuals/assets/planets.svg" id="3"]
 [ext_resource type="Texture2D" uid="uid://dbch3ucxyq15y" path="res://assets/effects/visuals/assets/asteroid.svg" id="4"]
 [ext_resource type="PackedScene" uid="uid://dt8vub8d14rty" path="res://assets/effects/visuals/shockwave/shaking_camera.tscn" id="5"]
-[ext_resource type="PackedScene" uid="uid://3owm1bforxoy" path="res://assets/effects/visuals/explosion/explosion.tscn" id="6_7e170"]
+[ext_resource type="PackedScene" uid="uid://3owm1bforxoy" path="res://scenes/impact_explosion.tscn" id="6_7e170"]
 [ext_resource type="Texture2D" uid="uid://ck4bdea7gygiy" path="res://assets/effects/visuals/assets/sparkle.png" id="7"]
 
 [sub_resource type="Animation" id="1"]

@@ -29,6 +29,7 @@ var evade_direction := Vector2.ZERO
 @onready var raycast_front: RayCast2D = $RaycastFront
 @onready var raycast_left: RayCast2D = $RaycastLeft
 @onready var raycast_right: RayCast2D = $RaycastRight
+@onready var vfx := $VFX
 
 func _ready():
 	screen_size = get_viewport_rect().size

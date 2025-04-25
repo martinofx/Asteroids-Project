@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://brybpla2237kk"]
+[gd_scene load_steps=16 format=3 uid="uid://brybpla2237kk"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_h250j"]
 [ext_resource type="PackedScene" uid="uid://bouvkbj40hi8j" path="res://scenes/explosion.tscn" id="2_4mc02"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://2cg5rghxqhu0" path="res://scenes/flame_left.tscn" id="5_j6qfa"]
 [ext_resource type="PackedScene" uid="uid://cthontbmq0g2e" path="res://scenes/raygun.tscn" id="5_jjrlx"]
 [ext_resource type="Texture2D" uid="uid://dobd8phkexw07" path="res://assets/player/Orange.png" id="8_6xbc4"]
+[ext_resource type="PackedScene" uid="uid://bq73bbrebolkq" path="res://scenes/explosion_very_small.tscn" id="8_ina28"]
 [ext_resource type="Texture2D" uid="uid://c3o1ttqdwn30x" path="res://assets/effects/visuals/assets/dot.png" id="10_mxp34"]
 [ext_resource type="PackedScene" uid="uid://cvwcfsw3ieq45" path="res://assets/effects/visuals/lightning_beam/lightning_beam.tscn" id="11_p56qa"]
 [ext_resource type="PackedScene" uid="uid://td2enpidpwrv" path="res://assets/effects/visuals/lightning_beam/lightning_jolt.tscn" id="12_7fvo5"]
@@ -27,6 +28,7 @@ missile_scene = ExtResource("4_fss16")
 homing_missile_scene = ExtResource("4_6bbvc")
 raygun_scene = ExtResource("5_jjrlx")
 lightning_beam_scene = ExtResource("11_p56qa")
+impact_explosion_scene = ExtResource("8_ina28")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-2, -4.76837e-07)
