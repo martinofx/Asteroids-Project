@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://td2enpidpwrv"]
 
-[ext_resource type="Script" path="res://assets/effects/visuals/lightning_beam/lightning_jolt.gd" id="1_42jiw"]
-[ext_resource type="Texture2D" uid="uid://byj3dgtoqix1l" path="res://assets/laser_beam/ray_tiled.png" id="1_vnguv"]
+[ext_resource type="Texture2D" uid="uid://byj3dgtoqix1l" path="res://assets/effects/weapons/laser_beam/ray_tiled.png" id="1_0jo2a"]
+[ext_resource type="Script" path="res://scripts/lightning_jolt.gd" id="2_dw4u0"]
 
 [sub_resource type="Curve" id="1"]
 _data = [Vector2(0, 1), 0.0, 0.23288, 0, 0, Vector2(1, 0.615385), 0.0, 0.0, 0, 0]
@@ -67,11 +67,11 @@ z_index = 2
 width = 5.0
 width_curve = SubResource("1")
 default_color = Color(0.696355, 0.804479, 1, 1)
-texture = ExtResource("1_vnguv")
+texture = ExtResource("1_0jo2a")
 texture_mode = 2
 begin_cap_mode = 1
 end_cap_mode = 1
-script = ExtResource("1_42jiw")
+script = ExtResource("2_dw4u0")
 spread_angle = 0.65
 segments = 10
 

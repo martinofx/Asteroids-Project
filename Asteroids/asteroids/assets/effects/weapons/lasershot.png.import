@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://byj3dgtoqix1l"
-path="res://.godot/imported/ray_tiled.png-0d0b1a950092aa00d4f08e2b6755cf42.ctex"
+uid="uid://b81di86v3jiuo"
+path="res://.godot/imported/lasershot.png-fa13604062f77acd1a6ddf5a74ec4d78.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/laser_beam/ray_tiled.png"
-dest_files=["res://.godot/imported/ray_tiled.png-0d0b1a950092aa00d4f08e2b6755cf42.ctex"]
+source_file="res://assets/effects/weapons/lasershot.png"
+dest_files=["res://.godot/imported/lasershot.png-fa13604062f77acd1a6ddf5a74ec4d78.ctex"]
 
 [params]
 

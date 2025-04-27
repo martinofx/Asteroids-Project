@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://t16bcqe46en7"
-path="res://.godot/imported/SparksAnimation.png-893ac7c513e731085d421a28d5019803.ctex"
+uid="uid://bqlaifn2rg5l6"
+path="res://.godot/imported/raygun.png-2875f57bbca75d45fa29dab04ed295cf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/effects/visuals/lightning_beam/SparksAnimation.png"
-dest_files=["res://.godot/imported/SparksAnimation.png-893ac7c513e731085d421a28d5019803.ctex"]
+source_file="res://assets/effects/weapons/raygun.png"
+dest_files=["res://.godot/imported/raygun.png-2875f57bbca75d45fa29dab04ed295cf.ctex"]
 
 [params]
 

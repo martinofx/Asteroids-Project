@@ -1,8 +1,8 @@
 [gd_scene load_steps=14 format=3 uid="uid://dlksrlwpu1heh"]
 
-[ext_resource type="Script" path="res://assets/laser_beam/laser_beam.gd" id="1_wb5fa"]
+[ext_resource type="Script" path="res://scripts/laser_beam.gd" id="1_wb5fa"]
 [ext_resource type="Texture2D" uid="uid://t105tdvgunrx" path="res://assets/effects/visuals/assets/glowing_circle.png" id="1_yxuu6"]
-[ext_resource type="Texture2D" uid="uid://byj3dgtoqix1l" path="res://assets/laser_beam/ray_tiled.png" id="2_1wrsu"]
+[ext_resource type="Texture2D" uid="uid://byj3dgtoqix1l" path="res://assets/effects/weapons/laser_beam/ray_tiled.png" id="2_1wrsu"]
 
 [sub_resource type="Curve" id="Curve_yfg4b"]
 max_value = 2.0

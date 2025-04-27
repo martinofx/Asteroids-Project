@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bwg8nv26pboxx"]
+[gd_scene load_steps=18 format=3 uid="uid://bwg8nv26pboxx"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_2qbox"]
 [ext_resource type="PackedScene" uid="uid://brybpla2237kk" path="res://scenes/player.tscn" id="1_2qsk6"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://dr5b3tnjfwilj" path="res://scenes/asteroid_main.tscn" id="9_myrf7"]
 [ext_resource type="Script" path="res://scripts/camera_2d.gd" id="12_0v6u7"]
 [ext_resource type="PackedScene" uid="uid://piix8c8y04wl" path="res://scenes/asteroid_third_1.tscn" id="12_fwfoa"]
+[ext_resource type="Script" path="res://scripts/weapon_manager.gd" id="16_amnn2"]
 [ext_resource type="PackedScene" uid="uid://yb2f05gub03y" path="res://scenes/asteroid_last.tscn" id="20_hvn4f"]
 
 [sub_resource type="Environment" id="Environment_k45lw"]
@@ -85,3 +86,6 @@ script = ExtResource("12_0v6u7")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_k45lw")
+
+[node name="WeaponManager" type="Node2D" parent="."]
+script = ExtResource("16_amnn2")

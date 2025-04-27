@@ -1,23 +1,23 @@
 [gd_scene load_steps=6 format=3 uid="uid://6hysdd2kap38"]
 
-[ext_resource type="Script" path="res://scripts/laser.gd" id="1_0dmiu"]
-[ext_resource type="PackedScene" uid="uid://4tkt0uhcv7jl" path="res://scenes/laser_explosion.tscn" id="2_ylt6n"]
-[ext_resource type="Texture2D" uid="uid://cs1p0w3h6smab" path="res://assets/effects/weapons/Weapons and Projectiles 2/Blue Lazer.png" id="3_owxf6"]
-[ext_resource type="Texture2D" uid="uid://c3o1ttqdwn30x" path="res://assets/effects/visuals/assets/dot.png" id="4_pmspv"]
+[ext_resource type="Script" path="res://scripts/laser.gd" id="1_up68s"]
+[ext_resource type="PackedScene" uid="uid://4tkt0uhcv7jl" path="res://scenes/laser_explosion.tscn" id="2_oplsx"]
+[ext_resource type="Texture2D" uid="uid://cs1p0w3h6smab" path="res://assets/effects/weapons/Weapons and Projectiles 2/Blue Lazer.png" id="3_3nwec"]
+[ext_resource type="Texture2D" uid="uid://c3o1ttqdwn30x" path="res://assets/effects/visuals/assets/dot.png" id="4_d0qy6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wmjhu"]
 radius = 3.0
 height = 60.0
 
 [node name="Laser" type="Area2D" groups=["laser"]]
-script = ExtResource("1_0dmiu")
-laser_explosion_scene = ExtResource("2_ylt6n")
+script = ExtResource("1_up68s")
+laser_explosion_scene = ExtResource("2_oplsx")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(2.98023e-08, 6)
 rotation = 1.5708
 scale = Vector2(0.270798, 0.111594)
-texture = ExtResource("3_owxf6")
+texture = ExtResource("3_3nwec")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -8)
@@ -28,7 +28,7 @@ shape = SubResource("CapsuleShape2D_wmjhu")
 [node name="ExplosionLight" type="PointLight2D" parent="VisibleOnScreenNotifier2D"]
 position = Vector2(0, -15)
 color = Color(0.482208, 0.549787, 1, 1)
-texture = ExtResource("4_pmspv")
+texture = ExtResource("4_d0qy6")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

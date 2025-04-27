@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/homing_missile.gd" id="1_rgd8o"]
 [ext_resource type="PackedScene" uid="uid://bxw5kklv4v2ch" path="res://scenes/explosion_small.tscn" id="2_qnhmi"]
 [ext_resource type="PackedScene" uid="uid://cl3tngjt2n1bb" path="res://scenes/flame_center.tscn" id="3_lemot"]
-[ext_resource type="Texture2D" uid="uid://e41hjbmt2ow6" path="res://assets/effects/weapons/Weapons and Projectiles 2/missile small.png" id="4_eu8vx"]
+[ext_resource type="Texture2D" uid="uid://ddvldgawxqhq6" path="res://assets/effects/weapons/missile homming grey.png" id="4_sewvq"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wmjhu"]
 radius = 7.14286
@@ -17,10 +17,9 @@ explosion_scene = ExtResource("2_qnhmi")
 flame_scene = ExtResource("3_lemot")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(1.42857, -12.8571)
-rotation = 1.5708
+position = Vector2(0, -11.4286)
 scale = Vector2(0.2, 0.2)
-texture = ExtResource("4_eu8vx")
+texture = ExtResource("4_sewvq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -11.4286)

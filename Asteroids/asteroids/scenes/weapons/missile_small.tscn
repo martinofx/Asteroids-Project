@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/missile_small.gd" id="1_acmpk"]
 [ext_resource type="PackedScene" uid="uid://bq73bbrebolkq" path="res://scenes/explosion_very_small.tscn" id="2_rn6mg"]
 [ext_resource type="PackedScene" uid="uid://cl3tngjt2n1bb" path="res://scenes/flame_center.tscn" id="3_ih7qr"]
-[ext_resource type="Texture2D" uid="uid://dimo7c4b4sypw" path="res://assets/effects/weapons/Weapons and Projectiles 2/missile.png" id="4_or672"]
+[ext_resource type="Texture2D" uid="uid://d2jsmv0gkp02r" path="res://assets/effects/weapons/missile grey.png" id="4_kqqy3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wmjhu"]
 height = 54.2857
@@ -17,9 +17,8 @@ flame_scene = ExtResource("3_ih7qr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-4.06024e-14, -22.8571)
-rotation = 1.5708
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("4_or672")
+scale = Vector2(0.18, 0.18)
+texture = ExtResource("4_kqqy3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -25.7143)

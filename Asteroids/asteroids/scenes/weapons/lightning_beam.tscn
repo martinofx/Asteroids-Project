@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cvwcfsw3ieq45"]
 
-[ext_resource type="Script" path="res://assets/effects/visuals/lightning_beam/lightning_beam.gd" id="1_kioyy"]
-[ext_resource type="Texture2D" uid="uid://c3o1ttqdwn30x" path="res://assets/effects/visuals/assets/dot.png" id="2_hwv0q"]
+[ext_resource type="Script" path="res://scripts/lightning_beam.gd" id="1_7jcr5"]
+[ext_resource type="Texture2D" uid="uid://c3o1ttqdwn30x" path="res://assets/effects/visuals/assets/dot.png" id="2_aodwp"]
 
 [sub_resource type="CircleShape2D" id="1"]
 radius = 192.0
@@ -9,7 +9,7 @@ radius = 192.0
 [node name="LightningBeam" type="RayCast2D"]
 z_index = 2
 target_position = Vector2(600, 0)
-script = ExtResource("1_kioyy")
+script = ExtResource("1_7jcr5")
 flashes = 8
 flash_time = 0.01
 bounces_max = 10
@@ -26,7 +26,7 @@ position = Vector2(0, -15)
 scale = Vector2(0.5, 0.5)
 color = Color(1.54018e-06, 0.607575, 0.888673, 1)
 energy = 2.0
-texture = ExtResource("2_hwv0q")
+texture = ExtResource("2_aodwp")
 
 [connection signal="area_entered" from="JumpArea" to="." method="_on_jump_area_area_entered"]
 [connection signal="body_entered" from="JumpArea" to="." method="_on_jump_area_body_entered"]

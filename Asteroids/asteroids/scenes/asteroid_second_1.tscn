@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/asteroid_parts.gd" id="1_818gw"]
 [ext_resource type="PackedScene" uid="uid://bxw5kklv4v2ch" path="res://scenes/explosion_small.tscn" id="2_l6vrw"]
-[ext_resource type="PackedScene" uid="uid://6hysdd2kap38" path="res://scenes/laser.tscn" id="3_d56bs"]
+[ext_resource type="PackedScene" uid="uid://6hysdd2kap38" path="res://scenes/weapons/laser.tscn" id="3_d56bs"]
 [ext_resource type="PackedScene" uid="uid://piix8c8y04wl" path="res://scenes/asteroid_third_1.tscn" id="4_cct7n"]
 [ext_resource type="Texture2D" uid="uid://vl1olp368448" path="res://assets/asteroids/Asteroid Second 1.png" id="4_xfmph"]
 [ext_resource type="PackedScene" uid="uid://b3feacb64bxak" path="res://scenes/asteroid_third_2.tscn" id="5_0pre1"]

@@ -3,7 +3,7 @@ extends RayCast2D
 @export var flashes := 3
 @export var flash_time := 0.1
 @export var bounces_max := 3
-@export var lightning_jolt: PackedScene = preload("res://assets/effects/visuals/lightning_beam/lightning_jolt.tscn")
+@export var lightning_jolt: PackedScene = preload("res://scenes/weapons/lightning_jolt.tscn")
 
 var target_point := Vector2.ZERO
 var jolted_targets: Array = []

@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://bmunsdv25o821"]
 
-[ext_resource type="Texture2D" uid="uid://t16bcqe46en7" path="res://assets/effects/visuals/lightning_beam/SparksAnimation.png" id="1_4xmbs"]
+[ext_resource type="Texture2D" uid="uid://t16bcqe46en7" path="res://assets/effects/weapons/lightning_beam/SparksAnimation.png" id="1_4xmbs"]
 [ext_resource type="Script" path="res://scripts/electric_impact.gd" id="2_msusa"]
 [ext_resource type="Texture2D" uid="uid://ck4bdea7gygiy" path="res://assets/effects/visuals/assets/sparkle.png" id="3_lthfv"]
 [ext_resource type="Texture2D" uid="uid://crpe745kqyxhg" path="res://assets/effects/visuals/assets/white_glowing_circle.png" id="4_sngp3"]

@@ -163,12 +163,13 @@ func check_screen_wrap():
 		pick_new_target_position()
 
 # Recibir daño
-func take_damage(collision_direction: Vector2 = Vector2.ZERO, force: float = 0.0):
-	health -= 50
+func take_damage(damage: int, collision_direction: Vector2 = Vector2.ZERO, force: float = 0.0):
+	health -= damage
 	sprite.modulate = Color(1, 0.5, 0.5)
+
 	await get_tree().create_timer(0.1).timeout
 	sprite.modulate = Color(1, 1, 1)
-	
+
 	if health <= 0:
 		die()
 
