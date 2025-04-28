@@ -193,7 +193,7 @@ func shoot():
 	
 func fire_missile():
 	if missile_scene:
-		for i in range(3):  # Disparar 3 misiles en sucesión
+		for i in range(1):  # Disparar 3 misiles en sucesión
 			var missile = missile_scene.instantiate()			
 			get_parent().add_child(missile)
 			

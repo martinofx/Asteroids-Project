@@ -26,7 +26,7 @@ func shoot(from_position: Vector2, direction: Vector2, rotation: float) -> void:
 	projectile.damage = weapon_data["damage"]
 
 	projectile.global_position = from_position
-	projectile.direction = direction
+	projectile.direction = Vector2.UP.rotated(rotation)
 	projectile.rotation = rotation
 
 	get_tree().current_scene.add_child(projectile)

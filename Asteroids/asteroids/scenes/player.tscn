@@ -100,9 +100,6 @@ position = Vector2(-1, -83)
 [node name="TimerInvulnerability" type="Timer" parent="."]
 one_shot = true
 
-[node name="ShotPoint" type="Node2D" parent="."]
-position = Vector2(0, -53.6364)
-
 [node name="MissileLauncher" type="Sprite2D" parent="."]
 visible = false
 z_index = -1
@@ -132,6 +129,8 @@ visible = false
 position = Vector2(-5.96046e-08, 21.8182)
 scale = Vector2(0.12, 0.12)
 texture = ExtResource("15_qarn7")
+
+[node name="ShotPoint" type="Node2D" parent="."]
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="timeout" from="TimerInvulnerability" to="." method="_on_timer_invulnerability_timeout"]
