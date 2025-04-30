@@ -15,9 +15,9 @@
 [ext_resource type="PackedScene" uid="uid://cvwcfsw3ieq45" path="res://scenes/weapons/lightning_beam.tscn" id="11_p56qa"]
 [ext_resource type="PackedScene" uid="uid://td2enpidpwrv" path="res://scenes/weapons/lightning_jolt.tscn" id="12_7fvo5"]
 [ext_resource type="Texture2D" uid="uid://krl6v1lmiepj" path="res://assets/effects/weapons/missile launcher.png" id="15_35wid"]
-[ext_resource type="Texture2D" uid="uid://bqlaifn2rg5l6" path="res://assets/effects/weapons/raygun.png" id="15_qarn7"]
 [ext_resource type="Texture2D" uid="uid://cd1dltc0asqhg" path="res://assets/effects/weapons/homming launcher.png" id="16_uh2dv"]
 [ext_resource type="Texture2D" uid="uid://b81di86v3jiuo" path="res://assets/effects/weapons/lasershot.png" id="17_xg8il"]
+[ext_resource type="Texture2D" uid="uid://t105tdvgunrx" path="res://assets/effects/visuals/assets/glowing_circle.png" id="18_xhw8p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i08m5"]
 size = Vector2(69, 45)
@@ -128,7 +128,7 @@ texture = ExtResource("17_xg8il")
 visible = false
 position = Vector2(-5.96046e-08, 21.8182)
 scale = Vector2(0.12, 0.12)
-texture = ExtResource("15_qarn7")
+texture = ExtResource("18_xhw8p")
 
 [node name="ShotPoint" type="Node2D" parent="."]
 

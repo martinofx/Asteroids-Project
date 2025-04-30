@@ -60,7 +60,12 @@ position = Vector2(952.5, 1578.75)
 texture = ExtResource("2_6n3gj")
 
 [node name="Player" parent="." instance=ExtResource("1_2qsk6")]
-position = Vector2(2173.75, 961.25)
+position = Vector2(1795, 785)
+
+[node name="WeaponManager" type="Node2D" parent="."]
+position = Vector2(0.000152588, 0)
+scale = Vector2(1, 1)
+script = ExtResource("16_amnn2")
 
 [node name="Enemy_small" parent="." instance=ExtResource("6_egpld")]
 position = Vector2(232.5, 287.5)
@@ -86,6 +91,3 @@ script = ExtResource("12_0v6u7")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_k45lw")
-
-[node name="WeaponManager" type="Node2D" parent="."]
-script = ExtResource("16_amnn2")

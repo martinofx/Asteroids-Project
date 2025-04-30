@@ -41,7 +41,7 @@ var is_invulnerable := false
 @onready var beam_timer := $BeamTimer  # Timer agregado en el editor
 @onready var laser_beam = $LaserBeam2D  # Ajustá el path si lo cambiaste
 @onready var lightning_beam = $LightningBeam
-@onready var weapon_manager = get_parent().get_node("WeaponManager")
+@onready var weapon_manager = get_tree().root.get_node("Game/WeaponManager")
 @onready var shot_point = $ShotPoint
 
 func _ready() -> void:
@@ -188,8 +188,25 @@ func _on_beam_timeout():
 	toggle_beam(false)  # 🔹 Se apaga el rayo cuando el Timer termina
 	
 func shoot():
-	var shot_direction = Vector2.UP.rotated($ShotPoint.global_rotation)
-	weapon_manager.shoot($ShotPoint.global_position, shot_direction, $ShotPoint.global_rotation)
+	if not weapon_manager.can_shoot:
+		return
+
+	var weapon_data = weapon_manager.get_current_weapon_data()
+	if weapon_data.is_empty():
+		return
+
+	var laser = weapon_data["scene"].instantiate() as Area2D
+	get_parent().add_child(laser)
+
+	var offset_distance = 60
+	var shoot_position = global_position + Vector2.UP.rotated(rotation) * offset_distance
+
+	laser.global_position = shoot_position
+	laser.direction = Vector2.UP.rotated(rotation)
+	laser.rotation = rotation
+	laser.damage = weapon_data["damage"]
+
+	weapon_manager.start_cooldown()
 	
 func fire_missile():
 	if missile_scene:
