@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4xxcoh7dcp5b"
-path="res://.godot/imported/Explosion3_8.png-2003cb85a95b60eaedb59977192eaf8d.ctex"
+uid="uid://u2iv7svrakxr"
+path="res://.godot/imported/Explosion3_1.png-cfe339fac71da84d46511cef84cae8f3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/effects/Explosions/Explosion3/Explosion3_8.png"
-dest_files=["res://.godot/imported/Explosion3_8.png-2003cb85a95b60eaedb59977192eaf8d.ctex"]
+source_file="res://assets/effects/Explosions/Ship Explosion/Explosion3_1.png"
+dest_files=["res://.godot/imported/Explosion3_1.png-cfe339fac71da84d46511cef84cae8f3.ctex"]
 
 [params]
 
