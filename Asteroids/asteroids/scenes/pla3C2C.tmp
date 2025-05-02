@@ -1,0 +1,137 @@
+[gd_scene load_steps=20 format=3 uid="uid://brybpla2237kk"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_h250j"]
+[ext_resource type="PackedScene" uid="uid://bouvkbj40hi8j" path="res://scenes/explosion.tscn" id="2_4mc02"]
+[ext_resource type="PackedScene" uid="uid://6hysdd2kap38" path="res://scenes/weapons/laser.tscn" id="3_s0xxv"]
+[ext_resource type="PackedScene" uid="uid://b2ulmhyo8l2po" path="res://scenes/weapons/homing_missile.tscn" id="4_6bbvc"]
+[ext_resource type="PackedScene" uid="uid://cl3tngjt2n1bb" path="res://scenes/flame_center.tscn" id="4_dsfgt"]
+[ext_resource type="PackedScene" uid="uid://d1ifev6k633jh" path="res://scenes/weapons/missile_small.tscn" id="4_fss16"]
+[ext_resource type="PackedScene" uid="uid://dlksrlwpu1heh" path="res://scenes/weapons/laser_beam.tscn" id="5_16nnt"]
+[ext_resource type="PackedScene" uid="uid://2cg5rghxqhu0" path="res://scenes/flame_left.tscn" id="5_j6qfa"]
+[ext_resource type="PackedScene" uid="uid://cthontbmq0g2e" path="res://scenes/raygun.tscn" id="5_jjrlx"]
+[ext_resource type="Texture2D" uid="uid://dobd8phkexw07" path="res://assets/player/Orange.png" id="8_6xbc4"]
+[ext_resource type="PackedScene" uid="uid://bq73bbrebolkq" path="res://scenes/explosion_very_small.tscn" id="8_ina28"]
+[ext_resource type="Texture2D" uid="uid://c3o1ttqdwn30x" path="res://assets/effects/visuals/assets/dot.png" id="10_mxp34"]
+[ext_resource type="PackedScene" uid="uid://cvwcfsw3ieq45" path="res://scenes/weapons/lightning_beam.tscn" id="11_p56qa"]
+[ext_resource type="PackedScene" uid="uid://td2enpidpwrv" path="res://scenes/weapons/lightning_jolt.tscn" id="12_7fvo5"]
+[ext_resource type="Texture2D" uid="uid://krl6v1lmiepj" path="res://assets/effects/weapons/missile launcher.png" id="15_35wid"]
+[ext_resource type="Texture2D" uid="uid://cd1dltc0asqhg" path="res://assets/effects/weapons/homming launcher.png" id="16_uh2dv"]
+[ext_resource type="Texture2D" uid="uid://b81di86v3jiuo" path="res://assets/effects/weapons/lasershot.png" id="17_xg8il"]
+[ext_resource type="Texture2D" uid="uid://t105tdvgunrx" path="res://assets/effects/visuals/assets/glowing_circle.png" id="18_xhw8p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i08m5"]
+size = Vector2(69, 45)
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+scale = Vector2(1.1, 1.1)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_h250j")
+max_speed = 340.0
+explosion_scene = ExtResource("2_4mc02")
+laser_scene = ExtResource("3_s0xxv")
+missile_scene = ExtResource("4_fss16")
+homing_missile_scene = ExtResource("4_6bbvc")
+raygun_scene = ExtResource("5_jjrlx")
+lightning_beam_scene = ExtResource("11_p56qa")
+impact_explosion_scene = ExtResource("8_ina28")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-2, -4.76837e-07)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("8_6xbc4")
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="." groups=["player"]]
+position = Vector2(0, -11)
+scale = Vector2(0.5, 0.5)
+polygon = PackedVector2Array(82, 60, 2, 106, -82, 58, -72, -12, 0, -44, 72, -16)
+
+[node name="Flame_Center" parent="." instance=ExtResource("4_dsfgt")]
+position = Vector2(-1, 66)
+scale = Vector2(1.4, 1)
+
+[node name="ImpulseLight2" type="PointLight2D" parent="Flame_Center"]
+position = Vector2(0, -15)
+color = Color(0.985684, 0.267887, 0.240714, 1)
+energy = 2.0
+texture = ExtResource("10_mxp34")
+
+[node name="Flame_Right" parent="." instance=ExtResource("5_j6qfa")]
+position = Vector2(38, 37)
+scale = Vector2(0.8, 0.514)
+
+[node name="ImpulseLight" type="PointLight2D" parent="Flame_Right"]
+position = Vector2(0, -15)
+color = Color(0.988857, 0.325185, 0.287525, 1)
+energy = 1.5
+texture = ExtResource("10_mxp34")
+
+[node name="Flame_Left" parent="." instance=ExtResource("5_j6qfa")]
+position = Vector2(-37, 37)
+scale = Vector2(0.8, 0.514)
+
+[node name="ImpulseLight" type="PointLight2D" parent="Flame_Left"]
+position = Vector2(0, -15)
+color = Color(0.988857, 0.325185, 0.287525, 1)
+energy = 1.5
+texture = ExtResource("10_mxp34")
+
+[node name="Area2D" type="Area2D" parent="." groups=["player"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=["player"]]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_i08m5")
+
+[node name="BeamTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="LaserBeam2D" parent="." instance=ExtResource("5_16nnt")]
+position = Vector2(-4.44089e-16, -60)
+rotation = -1.56923
+
+[node name="LightningBeam" parent="." instance=ExtResource("11_p56qa")]
+position = Vector2(0, -48)
+rotation = -1.57248
+
+[node name="LightningJolt2D" parent="LightningBeam" instance=ExtResource("12_7fvo5")]
+position = Vector2(-1, -83)
+
+[node name="jumpArea" type="Area2D" parent="LightningBeam"]
+
+[node name="TimerInvulnerability" type="Timer" parent="."]
+one_shot = true
+
+[node name="MissileLauncher" type="Sprite2D" parent="."]
+visible = false
+z_index = -1
+position = Vector2(41.8182, 8.18182)
+rotation = 3.14159
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("15_35wid")
+
+[node name="HommingLauncher" type="Sprite2D" parent="."]
+visible = false
+z_index = -1
+position = Vector2(-40.9091, 4.54545)
+rotation = 3.14159
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("16_uh2dv")
+
+[node name="Lasershot" type="Sprite2D" parent="."]
+visible = false
+z_index = -1
+position = Vector2(-1.81818, -44.5455)
+rotation = 3.14159
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("17_xg8il")
+
+[node name="Raygun" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-5.96046e-08, 21.8182)
+scale = Vector2(0.12, 0.12)
+texture = ExtResource("18_xhw8p")
+
+[node name="ShotPoint" type="Node2D" parent="."]
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="TimerInvulnerability" to="." method="_on_timer_invulnerability_timeout"]
