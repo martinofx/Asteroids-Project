@@ -126,7 +126,7 @@ func explode():
 	get_viewport().get_camera_2d().shake_camera(20.0, 0.7, 6)
 	
 	if explosion_scene:
-		var explosion_count = randi_range(5, 10)  # Cantidad aleatoria de explosiones
+		var explosion_count = randi_range(8, 12)  # Cantidad aleatoria de explosiones
 		for i in range(explosion_count):
 			var explosion = explosion_scene.instantiate()
 			if explosion:
@@ -137,7 +137,7 @@ func explode():
 				explosion.global_position = global_position + random_offset
 				
 				# Escala aleatoria entre 0.5 y 1.5 veces el tamaño normal
-				var random_scale = randf_range(1, 2.5)
+				var random_scale = randf_range(1.5, 3.5)
 				explosion.scale = Vector2(random_scale, random_scale)
 
 				# Agregar un pequeño retraso entre explosiones

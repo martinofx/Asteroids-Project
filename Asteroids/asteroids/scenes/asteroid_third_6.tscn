@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://dwfalho8bibnk"]
 
 [ext_resource type="Script" path="res://scripts/asteroid_parts.gd" id="1_v18rk"]
-[ext_resource type="PackedScene" uid="uid://bxw5kklv4v2ch" path="res://scenes/explosion_small.tscn" id="2_wviae"]
+[ext_resource type="PackedScene" uid="uid://bouvkbj40hi8j" path="res://scenes/explosion.tscn" id="2_arvtv"]
 [ext_resource type="PackedScene" uid="uid://4tkt0uhcv7jl" path="res://scenes/laser_explosion.tscn" id="3_7fgh2"]
 [ext_resource type="Texture2D" uid="uid://c47vo8pxj586k" path="res://assets/asteroids/Asteroid Third 4.png" id="4_73t27"]
 [ext_resource type="PackedScene" uid="uid://yb2f05gub03y" path="res://scenes/asteroid_last.tscn" id="4_aeuvq"]
@@ -66,7 +66,7 @@ z_index = -3
 mass = 0.001
 gravity_scale = 0.0
 script = ExtResource("1_v18rk")
-explosion_scene = ExtResource("2_wviae")
+explosion_scene = ExtResource("2_arvtv")
 laser_explosion = ExtResource("3_7fgh2")
 asteroid_third_1 = ExtResource("4_aeuvq")
 asteroid_third_2 = ExtResource("5_j83j3")

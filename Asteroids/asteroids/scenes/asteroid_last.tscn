@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://yb2f05gub03y"]
 
 [ext_resource type="Script" path="res://scripts/asteroid_last.gd" id="1_15ml6"]
-[ext_resource type="PackedScene" uid="uid://bq73bbrebolkq" path="res://scenes/explosion_very_small.tscn" id="2_fghw8"]
+[ext_resource type="PackedScene" uid="uid://bouvkbj40hi8j" path="res://scenes/explosion.tscn" id="2_t1qnu"]
 [ext_resource type="PackedScene" uid="uid://4tkt0uhcv7jl" path="res://scenes/laser_explosion.tscn" id="3_4g1ut"]
 [ext_resource type="Texture2D" uid="uid://qgy34are8tg4" path="res://assets/asteroids/Asteroid Last 1.png" id="4_6d3y2"]
 
@@ -47,13 +47,14 @@ _data = {
 z_index = -2
 gravity_scale = 0.01
 script = ExtResource("1_15ml6")
-explosion_scene = ExtResource("2_fghw8")
+explosion_scene = ExtResource("2_t1qnu")
 laser_explosion = ExtResource("3_4g1ut")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("4_6d3y2")
 hframes = 2
+frame = 1
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(-1, 1)

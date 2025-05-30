@@ -129,7 +129,7 @@ func explode():
 				explosion.global_position = global_position + random_offset
 				
 				# Escala aleatoria entre 0.5 y 1.5 veces el tamaño normal
-				var random_scale = randf_range(0.7, 1)
+				var random_scale = randf_range(1,1.5)
 				explosion.scale = Vector2(random_scale, random_scale)
 
 				# Agregar un pequeño retraso entre explosiones

@@ -43,6 +43,11 @@ var is_invulnerable := false
 @onready var lightning_beam = $LightningBeam
 @onready var weapon_manager = get_tree().root.get_node("Game/WeaponManager")
 @onready var shot_point = $ShotPoint
+@onready var flame_animator: AnimationPlayer = $Flame_Center/AnimationPlayer
+
+
+
+var was_moving_forward = false
 
 func _ready() -> void:
 	update_screen_size()
@@ -135,7 +140,15 @@ func handle_flames(moving: bool, rotating_left: bool, rotating_right: bool):
 	flame_left.visible = rotating_right
 	flame_right.visible = rotating_left
 
+	if moving:
+		if flame_animator.current_animation != "smoke_once" or not flame_animator.is_playing():
+			flame_animator.play("smoke_once")
+	#else:
+		#flame_animator.play("flame_loop")
+
+
 	check_screen_wrap()
+
 
 func _input(event):
 		
@@ -301,7 +314,7 @@ func die():
 				explosion.global_position = global_position + random_offset
 				
 				# Escala aleatoria entre 0.5 y 1.5 veces el tamaño normal
-				var random_scale = randf_range(0.9,1.5 )
+				var random_scale = randf_range(1.5,2.5 )
 				explosion.scale = Vector2(random_scale, random_scale)
 
 				# Agregar un pequeño retraso entre explosiones

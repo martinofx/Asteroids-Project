@@ -68,7 +68,7 @@ func add_flame():
 	if flame_scene:
 		flame_instance = flame_scene.instantiate()
 		add_child(flame_instance)
-		flame_instance.position = Vector2(0, 50)  # Ajustar posición detrás del misil
+		flame_instance.position = Vector2(0, 70)  # Ajustar posición detrás del misil
 
 func _on_body_entered(body):
 	if body.is_in_group("enemy") or body.is_in_group("asteroid"):  # Siempre puede golpear enemigos y asteroides
@@ -88,6 +88,7 @@ func explode():
 		var explosion = explosion_small_scene.instantiate()
 		get_parent().add_child(explosion)
 		explosion.global_position = global_position
+		explosion.rotation = direction.angle()
 		
 	queue_free()  # Destruye el misil
 
