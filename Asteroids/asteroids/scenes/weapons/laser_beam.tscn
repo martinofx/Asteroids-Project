@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/laser_beam.gd" id="1_wb5fa"]
 [ext_resource type="Texture2D" uid="uid://t105tdvgunrx" path="res://assets/effects/visuals/assets/glowing_circle.png" id="1_yxuu6"]
-[ext_resource type="Texture2D" uid="uid://byj3dgtoqix1l" path="res://assets/effects/weapons/laser_beam/ray_tiled.png" id="2_1wrsu"]
+[ext_resource type="Texture2D" uid="uid://ris61vlnq3dm" path="res://assets/effects/weapons/Weapons and Projectiles 2/9c932ed4-66eb-4e96-a8f0-400e681ee01f.png" id="2_vg4f7"]
 
 [sub_resource type="Curve" id="Curve_yfg4b"]
 max_value = 2.0
@@ -77,7 +77,7 @@ position = Vector2(0.16667, 0)
 scale = Vector2(1.01667, 2.3)
 points = PackedVector2Array(0, 0, 100, 0)
 width_curve = SubResource("Curve_yfg4b")
-texture = ExtResource("2_1wrsu")
+texture = ExtResource("2_vg4f7")
 texture_mode = 2
 joint_mode = 2
 begin_cap_mode = 2

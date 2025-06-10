@@ -89,3 +89,13 @@ libraries = {
 }
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="DetectorArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="DetectorArea"]
+position = Vector2(8.9407e-08, -1)
+rotation = -0.347055
+scale = Vector2(0.416831, 0.316214)
+polygon = PackedVector2Array(-137.905, 28.4111, -8.06353, 103.769, 140.594, 147.743, 176.642, 127.938, 155.569, 0.188459, 52.9919, -72.2589, -21.0246, -90.7342, -58.801, -139.012, -173.378, -139.833, -180.625, -39.0382)
+
+[connection signal="body_entered" from="DetectorArea" to="." method="_on_detector_area_body_entered"]

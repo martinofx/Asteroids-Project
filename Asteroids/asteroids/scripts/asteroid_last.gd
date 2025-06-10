@@ -7,6 +7,7 @@ extends RigidBody2D  # Cambio de CharacterBody2D a Rigidbody2D para física real
 @export var laser_explosion: PackedScene  # Escena del impacto del láser
 @export var push_force: float = 500.0  # Fuerza con la que empuja a otros objetos
 @export var fade_duration: float = 0.1  # Duración del desvanecimiento
+@export var contact_damage: int = 10  # Daño base de contacto
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var screen_size: Vector2 = get_viewport_rect().size
@@ -89,7 +90,7 @@ func _on_body_entered(body):
 		if impact_force > 200 and body.has_method("disable_controls"):
 			body.disable_controls(0.75) 
 
-func take_damage(impact_position):
+func take_damage(damage, impact_position: Vector2 = Vector2.ZERO):
 	if is_dead:
 		return  # Ya explotó, no seguir procesando
 
@@ -202,3 +203,17 @@ func ensure_minimum_speed():
 		# Empujarlo suavemente en la dirección en la que ya se mueve
 		linear_velocity = linear_velocity.normalized() * min_speed_threshold
 		
+
+
+func _on_detector_area_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		print("COLISIÓN DETECTADA CON PLAYER")
+		
+		var impact_force = linear_velocity.length()
+		var direction = (body.global_position - global_position).normalized()
+
+		if body.has_method("take_damage"):
+			body.take_damage(contact_damage, global_position)
+
+		if body.has_method("receive_impact"):
+			body.receive_impact(impact_force, direction, self)

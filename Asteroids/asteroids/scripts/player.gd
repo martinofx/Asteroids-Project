@@ -1,53 +1,47 @@
 extends CharacterBody2D
 
-@export var max_speed: float = 300.0  # Velocidad máxima
-@export var acceleration: float = 200.0  # Aceleración al presionar avanzar
-@export var angular_speed: float = 2.0  # Velocidad de rotación
-@export var friction: float = 0.98  # Fricción al soltar avanzar
-@export var explosion_scene: PackedScene  # Asigna aquí la escena de la explosión
-@export var laser_scene: PackedScene  # Asigna aquí la escena del láser
-@export var missile_scene: PackedScene  # Asigna aquí la escena del misil
-@export var homing_missile_scene: PackedScene  # Asigna aquí la escena del misil perseguidor
-@export var fire_rate: float = 0.3  # Tiempo entre disparos
-@export var fade_duration: float = 0.5  # Duración del desvanecimiento
+@export var max_speed: float = 300.0
+@export var acceleration: float = 200.0
+@export var angular_speed: float = 2.0
+@export var friction: float = 0.98
+@export var explosion_scene: PackedScene
+@export var laser_scene: PackedScene
+@export var missile_scene: PackedScene
+@export var homing_missile_scene: PackedScene
+@export var fire_rate: float = 0.3
+@export var fade_duration: float = 0.5
 @export var raygun_scene: PackedScene
-@export var lightning_beam_scene: PackedScene  # <- nueva arma
+@export var lightning_beam_scene: PackedScene
 @export var impact_explosion_scene: PackedScene
 
-
-var screen_size: Vector2  # Tamaño de la pantalla
-var can_shoot: bool = true  # Control de cooldown de disparo
+var screen_size: Vector2
+var can_shoot: bool = true
 var fading: bool = false
 var fade_timer: float = 0.0
 var fade_target_position: Vector2
 var health: float = 100
 var controls_disabled = false
-var current_weapon_index: int = 0  # Índice del arma activa
-var current_weapon: Node  # Referencia al arma actual
+var current_weapon_index: int = 0
+var current_weapon: Node
 var weapon_ui: Control
 var energy_beam: Area2D
 var beam_active = false
 var raygun_instance = null
-var beam_cooldown := false  # 🔹 Evita disparar en bucle
-var damage_cooldown := 1.0 # segundos entre daños
+var beam_cooldown := false
+var damage_cooldown := 1.0
 var time_since_last_damage := 0.0
 var is_invulnerable := false
 
-
-@onready var sprite: Sprite2D = $Sprite2D  # Sprite de la nave
+@onready var sprite: Sprite2D = $Sprite2D
 @onready var flame_center: Node2D = $Flame_Center
 @onready var flame_left: Node2D = $Flame_Left
 @onready var flame_right: Node2D = $Flame_Right
-@onready var beam_timer := $BeamTimer  # Timer agregado en el editor
-@onready var laser_beam = $LaserBeam2D  # Ajustá el path si lo cambiaste
+@onready var beam_timer := $BeamTimer
+@onready var laser_beam = $LaserBeam2D
 @onready var lightning_beam = $LightningBeam
 @onready var weapon_manager = get_tree().root.get_node("Game/WeaponManager")
 @onready var shot_point = $ShotPoint
 @onready var flame_animator: AnimationPlayer = $Flame_Center/AnimationPlayer
-
-
-
-var was_moving_forward = false
 
 func _ready() -> void:
 	update_screen_size()
@@ -55,13 +49,13 @@ func _ready() -> void:
 	flame_center.visible = false
 	flame_left.visible = false
 	flame_right.visible = false	
-	
+
 	beam_timer = Timer.new()
-	beam_timer.wait_time = 1.5  # 🔹 Duración del rayo
-	beam_timer.one_shot = true  # 🔹 Se activa una sola vez por disparo
+	beam_timer.wait_time = 1.5
+	beam_timer.one_shot = true
 	beam_timer.timeout.connect(_on_beam_timeout)
 	add_child(beam_timer)
-	
+
 	add_to_group("player")
 
 func update_screen_size() -> void:
@@ -72,7 +66,6 @@ func _physics_process(delta: float) -> void:
 	var rotating_left = false
 	var rotating_right = false
 
-	# Rotación de la nave
 	if Input.is_action_pressed("rotate_left"):
 		rotation -= angular_speed * delta
 		rotating_left = true
@@ -80,30 +73,15 @@ func _physics_process(delta: float) -> void:
 		rotation += angular_speed * delta
 		rotating_right = true
 
-	# Movimiento hacia adelante
 	if Input.is_action_pressed("move_forward"):
 		velocity += Vector2.UP.rotated(rotation) * acceleration * delta
 		velocity = velocity.limit_length(max_speed)
 		moving = true
 	else:
 		velocity *= friction
-	
-	for i in range(get_slide_collision_count()):  # ✅ CORRECTO
-		var collision = get_slide_collision(i)
-		var collider = collision.get_collider()
-		if collider and collider.is_in_group("asteroid"):
-			take_damage()
-	
+
 	time_since_last_damage += delta
 
-	for i in get_slide_collision_count():
-		var collision = get_slide_collision(i)
-		var collider = collision.get_collider()
-	
-		if collider and collider.is_in_group("asteroid") and time_since_last_damage >= damage_cooldown:
-			take_damage()
-			time_since_last_damage = 0.0 
-	
 	move_and_slide()
 	handle_flames(moving, rotating_left, rotating_right)
 
@@ -112,246 +90,167 @@ func _physics_process(delta: float) -> void:
 		sprite.modulate.a = 1.0 - (fade_timer / fade_duration)
 		if fade_timer >= fade_duration:
 			complete_fade_transition()
-		
-func receive_impact(force: float, collision_direction: Vector2, asteroid: RigidBody2D):
-	take_damage(25)  
-
-	# Aplicar un rebote proporcional al impacto
-	var rebound_force = collision_direction * -force * 5  
-	velocity += rebound_force  
-
-	# Si la nave se queda atascada, darle una velocidad mínima
-	if velocity.length() < 50:
-		velocity = collision_direction * -100  
-
-	# Aplicar una rotación extra si el impacto es fuerte
-	if force > 100:
-		rotation += randf_range(-0.5, 0.5) * force * 0.01  
-
-	# **Empujar el asteroide si está detenido o muy lento**
-	if asteroid.linear_velocity.length() < 30:
-		asteroid.linear_velocity += collision_direction * force * 2  
-
-	# **Deshabilitar los controles momentáneamente**
-	disable_controls(0.3)
 
 func handle_flames(moving: bool, rotating_left: bool, rotating_right: bool):
 	flame_center.visible = moving
 	flame_left.visible = rotating_right
 	flame_right.visible = rotating_left
-
-	if moving:
-		if flame_animator.current_animation != "smoke_once" or not flame_animator.is_playing():
-			flame_animator.play("smoke_once")
-	#else:
-		#flame_animator.play("flame_loop")
-
-
 	check_screen_wrap()
+
+func receive_impact(force: float, collision_direction: Vector2, source: Node):
+	var rebound_force = -collision_direction * force * 2
+	velocity += rebound_force
+
+	if velocity.length() < 50:
+		velocity = -collision_direction * 100
+
+	if source.has_method("take_damage"):
+		source.take_damage(5, global_position)  # opcional
+
+	disable_controls(0.3)
 
 
 func _input(event):
-		
 	if event.is_action_pressed("shoot") and can_shoot:
 		shoot()
-		
 	if event.is_action_pressed("missile_small") and can_shoot:
 		fire_missile()
-	
 	if event.is_action_pressed("homing_missile") and can_shoot:
 		fire_homing_missile()
-		
 	if event.is_action_pressed("shoot_raygun") and not beam_active and not beam_cooldown:
 		toggle_beam(true)
-
 	elif event.is_action_released("shoot_raygun"):
 		toggle_beam(false)
-		beam_cooldown = false  # 🔹 Resetear cooldown
-		# 🔹 Reseteamos el Timer para permitir otro disparo completo
+		beam_cooldown = false
 		beam_timer.stop()
-		
 	if laser_beam == null:
-		return  # Evita crash si no está bien conectado
-
+		return
 	if event.is_action_pressed("laser_beam"):
 		laser_beam.is_casting = true
 	elif event.is_action_released("laser_beam"):
 		laser_beam.is_casting = false
-		
 	if event.is_action_pressed("lightning_beam") and lightning_beam:
 		lightning_beam.shoot()
 
 func toggle_beam(active: bool):
 	if active and not beam_active:
 		beam_active = true
-		beam_cooldown = true  # 🔹 Activa el cooldown
+		beam_cooldown = true
 		energy_beam = raygun_scene.instantiate()
 		add_child(energy_beam)
 		energy_beam.activate()
-
-		# 🔹 Inicia el Timer para desactivar el rayo
 		beam_timer.start()
-
 	elif not active and beam_active:
 		beam_active = false
 		energy_beam.deactivate()
 		energy_beam.queue_free()
 
 func _on_beam_timeout():
-	toggle_beam(false)  # 🔹 Se apaga el rayo cuando el Timer termina
-	
+	toggle_beam(false)
+
 func shoot():
 	if not weapon_manager.can_shoot:
 		return
-
 	var weapon_data = weapon_manager.get_current_weapon_data()
 	if weapon_data.is_empty():
 		return
-
 	var laser = weapon_data["scene"].instantiate() as Area2D
 	get_parent().add_child(laser)
-
 	var offset_distance = 60
 	var shoot_position = global_position + Vector2.UP.rotated(rotation) * offset_distance
-
 	laser.global_position = shoot_position
 	laser.direction = Vector2.UP.rotated(rotation)
 	laser.rotation = rotation
 	laser.damage = weapon_data["damage"]
-
 	weapon_manager.start_cooldown()
-	
+
 func fire_missile():
 	if missile_scene:
-		for i in range(1):  # Disparar 3 misiles en sucesión
-			var missile = missile_scene.instantiate()			
-			get_parent().add_child(missile)
-			
-			var offset_distance = -30  
-			var shoot_position = global_position + Vector2.UP.rotated(rotation) * offset_distance
+		var missile = missile_scene.instantiate()
+		get_parent().add_child(missile)
+		var offset_distance = -30
+		var shoot_position = global_position + Vector2.UP.rotated(rotation) * offset_distance
+		missile.global_position = shoot_position
+		missile.direction = Vector2.UP.rotated(rotation)
+		missile.rotation = rotation
 
-			missile.global_position = shoot_position
-			missile.direction = Vector2.UP.rotated(rotation)
-			missile.rotation = rotation
-			
-			await get_tree().create_timer(0.20).timeout  # Pequeña pausa entre misiles
-			
 func fire_homing_missile():
 	if homing_missile_scene:
 		var num_missiles = 5
 		var spread_angle = deg_to_rad(100)
 		var start_angle = -spread_angle / 2
-		var delay_between_missiles = 0.05  # Segundos
-
 		for i in range(num_missiles):
-			var delay = i * delay_between_missiles
-			await get_tree().create_timer(delay).timeout
-
+			await get_tree().create_timer(i * 0.05).timeout
 			var missile = homing_missile_scene.instantiate()
 			get_parent().add_child(missile)
-
-			# Ángulo base con un poco de ruido aleatorio
-			var angle_offset = (spread_angle / (num_missiles - 1)) * i
-			var random_wiggle = randf_range(-0.1, 0.1)  # Pequeño ruido
-			var angle = rotation + start_angle + angle_offset + random_wiggle
-
-			var offset_distance = -50
-			var shoot_position = global_position + Vector2.UP.rotated(angle) * offset_distance
+			var angle = rotation + start_angle + (spread_angle / (num_missiles - 1)) * i + randf_range(-0.1, 0.1)
+			var shoot_position = global_position + Vector2.UP.rotated(angle) * -50
 			missile.global_position = shoot_position
 			missile.direction = Vector2.UP.rotated(angle)
 			missile.rotation = angle
 
-func _on_body_entered(body):
-	if body.is_in_group("enemy"):  
-		body.take_damage()  
-		queue_free()  
-
-	elif body.is_in_group("asteroid"):  
-		var impact_force = body.linear_velocity.length()  
-		var impact_direction = (global_position - body.global_position).normalized()
-		receive_impact(impact_force, impact_direction, body)
-		take_damage(body.global_position)  # Llama a la función de daño
-		body.take_damage() 
-
-func take_damage(_impact_position = null):
+func take_damage(damage: int = 10, impact_position: Vector2 = Vector2.ZERO):
 	if is_invulnerable:
+		print("Daño ignorado por invulnerabilidad")
 		return
-		
+	print("Recibiendo daño: ", damage)
+	health -= damage
+	print("Vida actual: ", health)
+	if impact_position != Vector2.ZERO:
+		var knockback_direction = (global_position - impact_position).normalized()
+		velocity += knockback_direction * 150
 	var impact = impact_explosion_scene.instantiate()
 	get_parent().add_child(impact)
 	impact.global_position = global_position
 	get_viewport().get_camera_2d().shake_camera(13.0, 0.2, 5)
-		
-	health -= 50
 	activate_invulnerability()
-				
 	if health <= 0:
 		die()
-	
+
 func activate_invulnerability():
 	is_invulnerable = true
-	$Sprite2D.modulate = Color(1, 1, 1, 0.5) # o activar una animación de parpadeo
+	sprite.modulate = Color(1, 1, 1, 0.5)
+	$TimerInvulnerability.start()
 
-	$TimerInvulnerability.start()  # Inicia el temporizador (por ejemplo: 2 segundos)
-	
-func _on_damage_area_area_entered(area):
-	if area.is_in_group("asteroid"):
-		take_damage(area.global_position)  # Llama a la función de daño correctamente
+func _on_timer_invulnerability_timeout():
+	is_invulnerable = false
+	sprite.modulate = Color(1, 1, 1, 1)
 
 func die():
-	
 	get_viewport().get_camera_2d().shake_camera(50.0, 0.7, 6)
-	
 	if explosion_scene:
-		var explosion_count = randi_range(5, 10)  # Cantidad aleatoria de explosiones
-		for i in range(explosion_count):
+		for i in range(randi_range(5, 10)):
 			var explosion = explosion_scene.instantiate()
-			if explosion:
-				get_parent().add_child(explosion)
-				
-				# Posición aleatoria cerca del asteroide
-				var random_offset = Vector2(randf_range(-10, 10), randf_range(-10, 10))
-				explosion.global_position = global_position + random_offset
-				
-				# Escala aleatoria entre 0.5 y 1.5 veces el tamaño normal
-				var random_scale = randf_range(1.5,2.5 )
-				explosion.scale = Vector2(random_scale, random_scale)
-
-				# Agregar un pequeño retraso entre explosiones
-				await get_tree().create_timer(randf_range(0.05, 0.1)).timeout
-				
+			get_parent().add_child(explosion)
+			explosion.global_position = global_position + Vector2(randf_range(-10, 10), randf_range(-10, 10))
+			explosion.scale = Vector2(randf_range(1.5, 2.5), randf_range(1.5, 2.5))
+			await get_tree().create_timer(randf_range(0.05, 0.1)).timeout
 	queue_free()
-	#get_node("/root/Game").restart_game()
 
 func check_screen_wrap():
 	if fading:
-		return  
-
+		return
 	var new_position = global_position
 	var crossed = false
-
 	if global_position.x < 0:
 		new_position.x = screen_size.x
 		crossed = true
 	elif global_position.x > screen_size.x:
 		new_position.x = 0
 		crossed = true
-
 	if global_position.y < 0:
 		new_position.y = screen_size.y
 		crossed = true
 	elif global_position.y > screen_size.y:
 		new_position.y = 0
 		crossed = true
-
 	if crossed:
 		start_fade_out(new_position)
 
 func start_fade_out(new_position: Vector2):
-	if not fading:
-		fading = true
-		fade_timer = 0.0
-		fade_target_position = new_position  
+	fading = true
+	fade_timer = 0.0
+	fade_target_position = new_position
 
 func complete_fade_transition():
 	global_position = fade_target_position
@@ -360,25 +259,12 @@ func complete_fade_transition():
 func start_fade_in():
 	fading = false
 	fade_timer = 0.0
-	sprite.modulate.a = 1.0  
-	
+	sprite.modulate.a = 1.0
+
 func disable_controls(duration):
 	controls_disabled = true
 	await get_tree().create_timer(duration).timeout
 	controls_disabled = false
 
 func apply_impulse(force: Vector2):
-	velocity += force  # ✅ Usa velocity, que es la correcta en CharacterBody2D
-
-func _on_area_2d_area_entered(area: Area2D) -> void:
-	if area.is_in_group("asteroid"):
-		take_damage(area.global_position)  # Aplica daño a la nave.
-		
-func _on_area_2d_body_entered(body):
-	if body.is_in_group("asteroid"):
-		take_damage()
-
-
-func _on_timer_invulnerability_timeout() -> void:
-	is_invulnerable = false
-	$Sprite2D.modulate = Color(1, 1, 1, 1) 
+	velocity += force

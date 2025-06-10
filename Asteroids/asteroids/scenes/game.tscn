@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bwg8nv26pboxx"]
+[gd_scene load_steps=26 format=3 uid="uid://bwg8nv26pboxx"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_2qbox"]
 [ext_resource type="PackedScene" uid="uid://brybpla2237kk" path="res://scenes/player.tscn" id="1_2qsk6"]
@@ -15,7 +15,15 @@
 [ext_resource type="Script" path="res://scripts/camera_2d.gd" id="12_0v6u7"]
 [ext_resource type="PackedScene" uid="uid://piix8c8y04wl" path="res://scenes/asteroid_third_1.tscn" id="12_fwfoa"]
 [ext_resource type="Script" path="res://scripts/weapon_manager.gd" id="16_amnn2"]
+[ext_resource type="Texture2D" uid="uid://bh2ldm2ihymuu" path="res://assets/enemy/parasite(1).png" id="17_7g6hf"]
+[ext_resource type="Texture2D" uid="uid://bknym8wqub1ni" path="res://assets/enemy/powerful(1).png" id="18_hhs20"]
+[ext_resource type="Texture2D" uid="uid://bovbo04sx88v3" path="res://assets/enemy/slower(1).png" id="19_f0vq6"]
+[ext_resource type="Texture2D" uid="uid://bps6s71vfuwsu" path="res://assets/enemy/slower(2).png" id="20_8ityq"]
 [ext_resource type="PackedScene" uid="uid://yb2f05gub03y" path="res://scenes/asteroid_last.tscn" id="20_hvn4f"]
+[ext_resource type="Texture2D" uid="uid://cjd7f6hadpgq7" path="res://assets/enemy/sniper(1).png" id="21_iwswx"]
+[ext_resource type="Texture2D" uid="uid://b5850alhwfins" path="res://assets/enemy/sniper(2).png" id="22_mxf4s"]
+[ext_resource type="Texture2D" uid="uid://hxmnjx44nd4i" path="res://assets/enemy/parasite 2(1).png" id="23_knhdv"]
+[ext_resource type="PackedScene" uid="uid://brdnpdaf0i65l" path="res://scenes/asteroid_last_2.tscn" id="24_2f1pc"]
 
 [sub_resource type="Environment" id="Environment_k45lw"]
 glow_enabled = true
@@ -90,3 +98,50 @@ script = ExtResource("12_0v6u7")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_k45lw")
+
+[node name="Parasite(1)" type="Sprite2D" parent="."]
+position = Vector2(1232.5, 215)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("17_7g6hf")
+
+[node name="Powerful(1)" type="Sprite2D" parent="."]
+position = Vector2(256.25, 845)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("18_hhs20")
+
+[node name="Slower(1)" type="Sprite2D" parent="."]
+position = Vector2(1337.5, 965)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("19_f0vq6")
+
+[node name="Slower(2)" type="Sprite2D" parent="."]
+position = Vector2(933.75, 295)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("20_8ityq")
+
+[node name="Sniper(1)" type="Sprite2D" parent="."]
+position = Vector2(2158.75, 318.75)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("21_iwswx")
+
+[node name="Sniper(2)" type="Sprite2D" parent="."]
+position = Vector2(1495, 486.25)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("22_mxf4s")
+
+[node name="Parasite2(1)" type="Sprite2D" parent="."]
+position = Vector2(1542.5, 87.5)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("23_knhdv")
+
+[node name="AsteroidLast2" parent="." instance=ExtResource("20_hvn4f")]
+position = Vector2(1266.25, 1151.25)
+
+[node name="AsteroidLast3" parent="." instance=ExtResource("24_2f1pc")]
+position = Vector2(460, 1180)
+
+[node name="AsteroidLast4" parent="." instance=ExtResource("20_hvn4f")]
+position = Vector2(547.5, 610)
+
+[node name="AsteroidLast5" parent="." instance=ExtResource("24_2f1pc")]
+position = Vector2(2147.5, 638.75)

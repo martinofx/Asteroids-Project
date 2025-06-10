@@ -9,6 +9,8 @@ extends Area2D
 @export var lifetime: float = 2.5  # Tiempo antes de autodestruirse
 @export var blink_time: float = 0.5  # Tiempo antes de que empiece a titilar
 @export var collision_grace_period: float = 1  # Tiempo antes de activar la colisión con el player
+@export var damage: int = 100  # 
+
 @onready var smoke_trail: CPUParticles2D = $SmokeTrail
 
 var direction: Vector2 = Vector2.ZERO  # Dirección final del misil
@@ -72,15 +74,15 @@ func add_flame():
 
 func _on_body_entered(body):
 	if body.is_in_group("enemy") or body.is_in_group("asteroid"):  # Siempre puede golpear enemigos y asteroides
-		body.take_damage(global_position)
+		body.take_damage(damage)
 		explode()
 	elif body.is_in_group("player") and can_hit_player:  # Solo afecta al player después del tiempo de gracia
-		body.take_damage(global_position)
+		body.take_damage(damage)
 		explode()
 		
 func _on_area_entered(area):
 	if area.is_in_group("enemy") or area.is_in_group("asteroid"):
-		area.take_damage()
+		area.take_damage(damage)
 		explode()
 
 func explode():
