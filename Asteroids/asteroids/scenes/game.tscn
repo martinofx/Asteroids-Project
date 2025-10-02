@@ -66,6 +66,9 @@ script = ExtResource("16_amnn2")
 [node name="Enemy_small" parent="." instance=ExtResource("6_egpld")]
 position = Vector2(232.5, 287.5)
 
+[node name="Enemy_small2" parent="." instance=ExtResource("6_egpld")]
+position = Vector2(223.75, 1098.75)
+
 [node name="EnemySpawner" parent="." instance=ExtResource("7_2lete")]
 position = Vector2(-68.75, -36.25)
 
@@ -79,6 +82,7 @@ position = Vector2(2378.75, 86.2501)
 position = Vector2(1105, 1246.25)
 
 [node name="AsteroidMain2" parent="." instance=ExtResource("9_myrf7")]
+visible = false
 position = Vector2(1520, 203.75)
 
 [node name="AsteroidSecond1" parent="." instance=ExtResource("8_g1d7c")]
