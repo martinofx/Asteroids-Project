@@ -1,25 +1,47 @@
 extends CharacterBody2D
 
+# --- Movimiento / control ---
 @export var max_speed: float = 300.0
 @export var acceleration: float = 200.0
 @export var angular_speed: float = 2.0
 @export var friction: float = 0.98
+
+# --- Escenas / FX ---
 @export var explosion_scene: PackedScene
 @export var laser_scene: PackedScene
 @export var missile_scene: PackedScene
 @export var homing_missile_scene: PackedScene
-@export var fire_rate: float = 0.3
-@export var fade_duration: float = 0.5
 @export var raygun_scene: PackedScene
 @export var lightning_beam_scene: PackedScene
 @export var impact_explosion_scene: PackedScene
 
+# --- Armas / tiempos ---
+@export var fire_rate: float = 0.3
+@export var fade_duration: float = 0.5
+
+# --- Vida (HUD) ---
+@export var max_health: int = 100
+@export var health_bar_path: NodePath   # arrastrar UI/PlayerHealthBar aquí
+var health: int = max_health
+@onready var health_bar: TextureProgressBar = get_node_or_null(health_bar_path)
+
+# --- Referencias de escena ---
+@onready var sprite: Sprite2D = $Sprite2D
+@onready var flame_center: Node2D = $Flame_Center
+@onready var flame_left: Node2D = $Flame_Left
+@onready var flame_right: Node2D = $Flame_Right
+@onready var beam_timer := $BeamTimer
+@onready var laser_beam = $LaserBeam2D
+@onready var lightning_beam = $LightningBeam
+@onready var weapon_manager = get_tree().root.get_node("Game/WeaponManager")
+@onready var shot_point = $ShotPoint
+
+# --- Estado general ---
 var screen_size: Vector2
 var can_shoot: bool = true
 var fading: bool = false
 var fade_timer: float = 0.0
 var fade_target_position: Vector2
-var health: float = 100
 var controls_disabled = false
 var current_weapon_index: int = 0
 var current_weapon: Node
@@ -32,31 +54,32 @@ var damage_cooldown := 1.0
 var time_since_last_damage := 0.0
 var is_invulnerable := false
 
-@onready var sprite: Sprite2D = $Sprite2D
-@onready var flame_center: Node2D = $Flame_Center
-@onready var flame_left: Node2D = $Flame_Left
-@onready var flame_right: Node2D = $Flame_Right
-@onready var beam_timer := $BeamTimer
-@onready var laser_beam = $LaserBeam2D
-@onready var lightning_beam = $LightningBeam
-@onready var weapon_manager = get_tree().root.get_node("Game/WeaponManager")
-@onready var shot_point = $ShotPoint
-@onready var flame_animator: AnimationPlayer = $Flame_Center/AnimationPlayer
-
 func _ready() -> void:
 	update_screen_size()
 	get_viewport().connect("size_changed", Callable(self, "update_screen_size"))
+
+	# estado visual inicial de llamas
 	flame_center.visible = false
 	flame_left.visible = false
-	flame_right.visible = false	
+	flame_right.visible = false
 
-	beam_timer = Timer.new()
-	beam_timer.wait_time = 1.5
-	beam_timer.one_shot = true
-	beam_timer.timeout.connect(_on_beam_timeout)
-	add_child(beam_timer)
+	# Timer para el raygun/beam
+	if not beam_timer:
+		beam_timer = Timer.new()
+		beam_timer.wait_time = 1.5
+		beam_timer.one_shot = true
+		beam_timer.timeout.connect(_on_beam_timeout)
+		add_child(beam_timer)
+	else:
+		beam_timer.wait_time = 1.5
+		beam_timer.one_shot = true
+		if not beam_timer.timeout.is_connected(_on_beam_timeout):
+			beam_timer.timeout.connect(_on_beam_timeout)
 
 	add_to_group("player")
+
+	# UI de vida
+	_init_health_ui()
 
 func update_screen_size() -> void:
 	screen_size = get_viewport_rect().size
@@ -98,17 +121,16 @@ func handle_flames(moving: bool, rotating_left: bool, rotating_right: bool):
 	check_screen_wrap()
 
 func receive_impact(force: float, collision_direction: Vector2, source: Node):
-	var rebound_force = -collision_direction * force * 2
+	var rebound_force = -collision_direction * force * 2.0
 	velocity += rebound_force
 
-	if velocity.length() < 50:
-		velocity = -collision_direction * 100
+	if velocity.length() < 50.0:
+		velocity = -collision_direction * 100.0
 
-	if source.has_method("take_damage"):
+	if source and source.has_method("take_damage"):
 		source.take_damage(5, global_position)  # opcional
 
 	disable_controls(0.3)
-
 
 func _input(event):
 	if event.is_action_pressed("shoot") and can_shoot:
@@ -117,18 +139,24 @@ func _input(event):
 		fire_missile()
 	if event.is_action_pressed("homing_missile") and can_shoot:
 		fire_homing_missile()
+
+	# Raygun toggle
 	if event.is_action_pressed("shoot_raygun") and not beam_active and not beam_cooldown:
 		toggle_beam(true)
 	elif event.is_action_released("shoot_raygun"):
 		toggle_beam(false)
 		beam_cooldown = false
 		beam_timer.stop()
+
+	# Láser continuo (RayCast2D externo)
 	if laser_beam == null:
 		return
 	if event.is_action_pressed("laser_beam"):
 		laser_beam.is_casting = true
 	elif event.is_action_released("laser_beam"):
 		laser_beam.is_casting = false
+
+	# Rayo en cadena
 	if event.is_action_pressed("lightning_beam") and lightning_beam:
 		lightning_beam.shoot()
 
@@ -136,27 +164,31 @@ func toggle_beam(active: bool):
 	if active and not beam_active:
 		beam_active = true
 		beam_cooldown = true
-		energy_beam = raygun_scene.instantiate()
-		add_child(energy_beam)
-		energy_beam.activate()
+		if raygun_scene:
+			energy_beam = raygun_scene.instantiate()
+			add_child(energy_beam)
+			if energy_beam.has_method("activate"):
+				energy_beam.activate()
 		beam_timer.start()
 	elif not active and beam_active:
 		beam_active = false
-		energy_beam.deactivate()
-		energy_beam.queue_free()
+		if energy_beam:
+			if energy_beam.has_method("deactivate"):
+				energy_beam.deactivate()
+			energy_beam.queue_free()
 
 func _on_beam_timeout():
 	toggle_beam(false)
 
 func shoot():
-	if not weapon_manager.can_shoot:
+	if not weapon_manager or not weapon_manager.can_shoot:
 		return
 	var weapon_data = weapon_manager.get_current_weapon_data()
 	if weapon_data.is_empty():
 		return
 	var laser = weapon_data["scene"].instantiate() as Area2D
 	get_parent().add_child(laser)
-	var offset_distance = 60
+	var offset_distance = 60.0
 	var shoot_position = global_position + Vector2.UP.rotated(rotation) * offset_distance
 	laser.global_position = shoot_position
 	laser.direction = Vector2.UP.rotated(rotation)
@@ -168,7 +200,7 @@ func fire_missile():
 	if missile_scene:
 		var missile = missile_scene.instantiate()
 		get_parent().add_child(missile)
-		var offset_distance = -30
+		var offset_distance = -30.0
 		var shoot_position = global_position + Vector2.UP.rotated(rotation) * offset_distance
 		missile.global_position = shoot_position
 		missile.direction = Vector2.UP.rotated(rotation)
@@ -176,36 +208,58 @@ func fire_missile():
 
 func fire_homing_missile():
 	if homing_missile_scene:
-		var num_missiles = 5
-		var spread_angle = deg_to_rad(100)
-		var start_angle = -spread_angle / 2
+		var num_missiles := 5
+		var spread_angle := deg_to_rad(100.0)
+		var start_angle := -spread_angle / 2.0
 		for i in range(num_missiles):
 			await get_tree().create_timer(i * 0.05).timeout
 			var missile = homing_missile_scene.instantiate()
 			get_parent().add_child(missile)
-			var angle = rotation + start_angle + (spread_angle / (num_missiles - 1)) * i + randf_range(-0.1, 0.1)
-			var shoot_position = global_position + Vector2.UP.rotated(angle) * -50
+			var angle := rotation + start_angle + (spread_angle / float(num_missiles - 1)) * i + randf_range(-0.1, 0.1)
+			var shoot_position := global_position + Vector2.UP.rotated(angle) * -50.0
 			missile.global_position = shoot_position
 			missile.direction = Vector2.UP.rotated(angle)
 			missile.rotation = angle
 
+# --- VIDA / DAÑO ---
+
+func _init_health_ui() -> void:
+	if health_bar:
+		health_bar.max_value = max_health
+		health_bar.value = health
+
+func _update_health_ui() -> void:
+	if health_bar:
+		health_bar.value = clamp(health, 0, max_health)
+
 func take_damage(damage: int = 10, impact_position: Vector2 = Vector2.ZERO):
 	if is_invulnerable:
-		print("Daño ignorado por invulnerabilidad")
 		return
-	print("Recibiendo daño: ", damage)
-	health -= damage
-	print("Vida actual: ", health)
+
+	health = clamp(health - damage, 0, max_health)
+	_update_health_ui()
+
+	# Knockback por impacto
 	if impact_position != Vector2.ZERO:
 		var knockback_direction = (global_position - impact_position).normalized()
-		velocity += knockback_direction * 150
-	var impact = impact_explosion_scene.instantiate()
-	get_parent().add_child(impact)
-	impact.global_position = global_position
+		velocity += knockback_direction * 150.0
+
+	# FX de impacto
+	if impact_explosion_scene:
+		var impact = impact_explosion_scene.instantiate()
+		get_parent().add_child(impact)
+		impact.global_position = global_position
+
 	get_viewport().get_camera_2d().shake_camera(13.0, 0.2, 5)
+
 	activate_invulnerability()
+
 	if health <= 0:
 		die()
+
+func heal(amount: int) -> void:
+	health = clamp(health + amount, 0, max_health)
+	_update_health_ui()
 
 func activate_invulnerability():
 	is_invulnerable = true
@@ -227,22 +281,24 @@ func die():
 			await get_tree().create_timer(randf_range(0.05, 0.1)).timeout
 	queue_free()
 
+# --- Wrap / Fade ---
+
 func check_screen_wrap():
 	if fading:
 		return
 	var new_position = global_position
 	var crossed = false
-	if global_position.x < 0:
+	if global_position.x < 0.0:
 		new_position.x = screen_size.x
 		crossed = true
 	elif global_position.x > screen_size.x:
-		new_position.x = 0
+		new_position.x = 0.0
 		crossed = true
-	if global_position.y < 0:
+	if global_position.y < 0.0:
 		new_position.y = screen_size.y
 		crossed = true
 	elif global_position.y > screen_size.y:
-		new_position.y = 0
+		new_position.y = 0.0
 		crossed = true
 	if crossed:
 		start_fade_out(new_position)
@@ -261,7 +317,9 @@ func start_fade_in():
 	fade_timer = 0.0
 	sprite.modulate.a = 1.0
 
-func disable_controls(duration):
+# --- Utilidad ---
+
+func disable_controls(duration: float):
 	controls_disabled = true
 	await get_tree().create_timer(duration).timeout
 	controls_disabled = false

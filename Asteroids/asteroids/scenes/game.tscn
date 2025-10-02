@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bwg8nv26pboxx"]
+[gd_scene load_steps=20 format=3 uid="uid://bwg8nv26pboxx"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_2qbox"]
 [ext_resource type="PackedScene" uid="uid://brybpla2237kk" path="res://scenes/player.tscn" id="1_2qsk6"]
@@ -15,22 +15,10 @@
 [ext_resource type="Script" path="res://scripts/camera_2d.gd" id="12_0v6u7"]
 [ext_resource type="PackedScene" uid="uid://piix8c8y04wl" path="res://scenes/asteroid_third_1.tscn" id="12_fwfoa"]
 [ext_resource type="Script" path="res://scripts/weapon_manager.gd" id="16_amnn2"]
-[ext_resource type="Texture2D" uid="uid://bh2ldm2ihymuu" path="res://assets/enemy/parasite(1).png" id="17_7g6hf"]
-[ext_resource type="Texture2D" uid="uid://bknym8wqub1ni" path="res://assets/enemy/powerful(1).png" id="18_hhs20"]
-[ext_resource type="Texture2D" uid="uid://bovbo04sx88v3" path="res://assets/enemy/slower(1).png" id="19_f0vq6"]
-[ext_resource type="Texture2D" uid="uid://bps6s71vfuwsu" path="res://assets/enemy/slower(2).png" id="20_8ityq"]
+[ext_resource type="Texture2D" uid="uid://0if2kbd725bf" path="res://assets/Hud/SPR_SciFi_Bar_Techy01.png" id="17_q1o1q"]
+[ext_resource type="Script" path="res://scenes/canvas_layer.gd" id="17_sll6e"]
+[ext_resource type="Texture2D" uid="uid://bv5j5mqag8yeb" path="res://assets/Hud/SPR_FX_SciFi_Glow_Horizontal.png" id="19_y85wg"]
 [ext_resource type="PackedScene" uid="uid://yb2f05gub03y" path="res://scenes/asteroid_last.tscn" id="20_hvn4f"]
-[ext_resource type="Texture2D" uid="uid://cjd7f6hadpgq7" path="res://assets/enemy/sniper(1).png" id="21_iwswx"]
-[ext_resource type="Texture2D" uid="uid://b5850alhwfins" path="res://assets/enemy/sniper(2).png" id="22_mxf4s"]
-[ext_resource type="Texture2D" uid="uid://hxmnjx44nd4i" path="res://assets/enemy/parasite 2(1).png" id="23_knhdv"]
-[ext_resource type="PackedScene" uid="uid://brdnpdaf0i65l" path="res://scenes/asteroid_last_2.tscn" id="24_2f1pc"]
-
-[sub_resource type="Environment" id="Environment_k45lw"]
-glow_enabled = true
-glow_intensity = 1.2
-glow_strength = 0.8
-glow_bloom = 0.3
-glow_blend_mode = 0
 
 [node name="Game" type="Node2D"]
 scale = Vector2(0.8, 0.8)
@@ -69,6 +57,7 @@ texture = ExtResource("2_6n3gj")
 
 [node name="Player" parent="." instance=ExtResource("1_2qsk6")]
 position = Vector2(1795, 785)
+health_bar_path = NodePath("../CanvasLayer/TextureProgressBar")
 
 [node name="WeaponManager" type="Node2D" parent="."]
 position = Vector2(0.000152588, 0)
@@ -83,8 +72,23 @@ position = Vector2(-68.75, -36.25)
 [node name="AsteroidMain" parent="." instance=ExtResource("9_myrf7")]
 position = Vector2(1096.25, 642.5)
 
+[node name="AsteroidMain3" parent="." instance=ExtResource("9_myrf7")]
+position = Vector2(2378.75, 86.2501)
+
+[node name="AsteroidMain4" parent="." instance=ExtResource("9_myrf7")]
+position = Vector2(1105, 1246.25)
+
+[node name="AsteroidMain2" parent="." instance=ExtResource("9_myrf7")]
+position = Vector2(1520, 203.75)
+
 [node name="AsteroidSecond1" parent="." instance=ExtResource("8_g1d7c")]
 position = Vector2(642.5, 938.75)
+
+[node name="AsteroidSecond2" parent="." instance=ExtResource("8_g1d7c")]
+position = Vector2(2157.5, 372.5)
+
+[node name="AsteroidSecond3" parent="." instance=ExtResource("8_g1d7c")]
+position = Vector2(1608.75, 1130)
 
 [node name="Asteroidthird1" parent="." instance=ExtResource("12_fwfoa")]
 position = Vector2(1893.75, 265)
@@ -96,52 +100,26 @@ position = Vector2(1273.75, 228.75)
 position = Vector2(1205, 680)
 script = ExtResource("12_0v6u7")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_k45lw")
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("17_sll6e")
 
-[node name="Parasite(1)" type="Sprite2D" parent="."]
-position = Vector2(1232.5, 215)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("17_7g6hf")
-
-[node name="Powerful(1)" type="Sprite2D" parent="."]
-position = Vector2(256.25, 845)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("18_hhs20")
-
-[node name="Slower(1)" type="Sprite2D" parent="."]
-position = Vector2(1337.5, 965)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("19_f0vq6")
-
-[node name="Slower(2)" type="Sprite2D" parent="."]
-position = Vector2(933.75, 295)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("20_8ityq")
-
-[node name="Sniper(1)" type="Sprite2D" parent="."]
-position = Vector2(2158.75, 318.75)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("21_iwswx")
-
-[node name="Sniper(2)" type="Sprite2D" parent="."]
-position = Vector2(1495, 486.25)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("22_mxf4s")
-
-[node name="Parasite2(1)" type="Sprite2D" parent="."]
-position = Vector2(1542.5, 87.5)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("23_knhdv")
-
-[node name="AsteroidLast2" parent="." instance=ExtResource("20_hvn4f")]
-position = Vector2(1266.25, 1151.25)
-
-[node name="AsteroidLast3" parent="." instance=ExtResource("24_2f1pc")]
-position = Vector2(460, 1180)
-
-[node name="AsteroidLast4" parent="." instance=ExtResource("20_hvn4f")]
-position = Vector2(547.5, 610)
-
-[node name="AsteroidLast5" parent="." instance=ExtResource("24_2f1pc")]
-position = Vector2(2147.5, 638.75)
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer"]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 1632.0
+offset_top = 437.0
+offset_right = 632.0
+offset_bottom = 757.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.305, 0.305)
+size_flags_stretch_ratio = 0.0
+nine_patch_stretch = true
+stretch_margin_top = 100
+stretch_margin_right = 100
+texture_over = ExtResource("17_q1o1q")
+texture_progress = ExtResource("19_y85wg")
+tint_under = Color(0, 0, 0, 1)
+tint_progress = Color(3.10443e-06, 0.598737, 0.271988, 1)
