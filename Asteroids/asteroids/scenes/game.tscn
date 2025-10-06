@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bwg8nv26pboxx"]
+[gd_scene load_steps=159 format=3 uid="uid://bwg8nv26pboxx"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_2qbox"]
 [ext_resource type="PackedScene" uid="uid://brybpla2237kk" path="res://scenes/player.tscn" id="1_2qsk6"]
@@ -19,6 +19,145 @@
 [ext_resource type="Script" path="res://scenes/canvas_layer.gd" id="17_sll6e"]
 [ext_resource type="Texture2D" uid="uid://bv5j5mqag8yeb" path="res://assets/Hud/SPR_FX_SciFi_Glow_Horizontal.png" id="19_y85wg"]
 [ext_resource type="PackedScene" uid="uid://yb2f05gub03y" path="res://scenes/asteroid_last.tscn" id="20_hvn4f"]
+[ext_resource type="Texture2D" uid="uid://247xc7virhgi" path="res://assets/player/Spaceships/EAP_Spaceships_01.png" id="20_iksh4"]
+[ext_resource type="Texture2D" uid="uid://b3sc2elg86lkn" path="res://assets/player/Spaceships/EAP_Spaceships_02.png" id="21_xlnyd"]
+[ext_resource type="Texture2D" uid="uid://cbqxp5oyxvuh3" path="res://assets/player/Spaceships/EAP_Spaceships_03.png" id="22_s1icg"]
+[ext_resource type="Texture2D" uid="uid://cxpsliuwh7nd4" path="res://assets/player/Spaceships/EAP_Spaceships_04.png" id="23_vhy1m"]
+[ext_resource type="Texture2D" uid="uid://b725jjvofre4l" path="res://assets/player/Spaceships/EAP_Spaceships_05.png" id="24_qxrl3"]
+[ext_resource type="Texture2D" uid="uid://dfctsscx7l31a" path="res://assets/player/Spaceships/EAP_Spaceships_06.png" id="25_g0tpm"]
+[ext_resource type="Texture2D" uid="uid://11ksjytr40dx" path="res://assets/player/Spaceships/EAP_Spaceships_07.png" id="26_vpkrx"]
+[ext_resource type="Texture2D" uid="uid://u3o006yk4bjh" path="res://assets/player/Spaceships/EAP_Spaceships_08.png" id="27_tdcpw"]
+[ext_resource type="Texture2D" uid="uid://bkq7imr21epxh" path="res://assets/player/Spaceships/EAP_Spaceships_09.png" id="28_bq8ep"]
+[ext_resource type="Texture2D" uid="uid://dkbq2xb8dukdd" path="res://assets/player/Spaceships/EAP_Spaceships_10.png" id="29_o3i52"]
+[ext_resource type="Texture2D" uid="uid://0we1e1caxsoc" path="res://assets/player/Spaceships/EAP_Spaceships_11.png" id="30_wjo3f"]
+[ext_resource type="Texture2D" uid="uid://cxvckogiou018" path="res://assets/player/Spaceships/EAP_Spaceships_12.png" id="31_r48wm"]
+[ext_resource type="Texture2D" uid="uid://ovp33rutn2p6" path="res://assets/player/Spaceships/EAP_Spaceships_13.png" id="32_qvcqn"]
+[ext_resource type="Texture2D" uid="uid://cm87kf6ck6g7e" path="res://assets/player/Spaceships/EAP_Spaceships_14.png" id="33_hmw4y"]
+[ext_resource type="Texture2D" uid="uid://cknp5wcknabaq" path="res://assets/player/Spaceships/EAP_Spaceships_15.png" id="34_2hlht"]
+[ext_resource type="Texture2D" uid="uid://br7rwmetcy272" path="res://assets/player/Spaceships/EAP_Spaceships_16.png" id="35_ibcus"]
+[ext_resource type="Texture2D" uid="uid://cr8lynk2b53q3" path="res://assets/player/Spaceships/EAP_Spaceships_17.png" id="36_aw8es"]
+[ext_resource type="Texture2D" uid="uid://dawmtmflb5ju8" path="res://assets/player/Spaceships/EAP_Spaceships_18.png" id="37_0ficj"]
+[ext_resource type="Texture2D" uid="uid://dhtqf8bu2gcno" path="res://assets/player/Spaceships/EAP_Spaceships_19.png" id="38_3f5kl"]
+[ext_resource type="Texture2D" uid="uid://yphqd5bgiyhw" path="res://assets/player/Spaceships/EAP_Spaceships_20.png" id="39_m1kuo"]
+[ext_resource type="Texture2D" uid="uid://uy2pengbvwdr" path="res://assets/player/Spaceships/EAP_Spaceships_21.png" id="40_l6eem"]
+[ext_resource type="Texture2D" uid="uid://cquusx6cjpfr5" path="res://assets/player/Spaceships/EAP_Spaceships_22.png" id="41_vkrka"]
+[ext_resource type="Texture2D" uid="uid://bibejn0xnnbfi" path="res://assets/player/Spaceships/EAP_Spaceships_23.png" id="42_6odsw"]
+[ext_resource type="Texture2D" uid="uid://dvhkvgldh3ri5" path="res://assets/player/Spaceships/EAP_Spaceships_24.png" id="43_3hmp1"]
+[ext_resource type="Texture2D" uid="uid://ci5aasnpwq2ty" path="res://assets/player/Spaceships/EAP_Spaceships_25.png" id="44_e7p5i"]
+[ext_resource type="Texture2D" uid="uid://b7eilvvljsd24" path="res://assets/player/Spaceships/EAP_Spaceships_26.png" id="45_scott"]
+[ext_resource type="Texture2D" uid="uid://by5vv3yq7jh7x" path="res://assets/player/Spaceships/EAP_Spaceships_27.png" id="46_uog2n"]
+[ext_resource type="Texture2D" uid="uid://d10yv4trencq8" path="res://assets/player/Spaceships/EAP_Spaceships_28.png" id="47_ulwoc"]
+[ext_resource type="Texture2D" uid="uid://cdbqr3dsurn74" path="res://assets/player/Spaceships/EAP_Spaceships_29.png" id="48_gkyor"]
+[ext_resource type="Texture2D" uid="uid://blfgkm1jqxwj6" path="res://assets/player/Spaceships/EAP_Spaceships_30.png" id="49_ufit0"]
+[ext_resource type="Texture2D" uid="uid://djv0ciwml4jek" path="res://assets/player/Spaceships/EAP_Spaceships_31.png" id="50_orgcp"]
+[ext_resource type="Texture2D" uid="uid://bevgffo84ogtt" path="res://assets/player/Spaceships/EAP_Spaceships_32.png" id="51_cyiph"]
+[ext_resource type="Texture2D" uid="uid://jfbdg5xhg047" path="res://assets/player/Spaceships/EAP_Spaceships_33.png" id="52_kkjmo"]
+[ext_resource type="Texture2D" uid="uid://7p63cywxo2qi" path="res://assets/player/Spaceships/EAP_Spaceships_34.png" id="53_sw3hk"]
+[ext_resource type="Texture2D" uid="uid://b5eyytdosl8x3" path="res://assets/player/Spaceships/EAP_Spaceships_35.png" id="54_ulijx"]
+[ext_resource type="Texture2D" uid="uid://ccrkyga1bxxs8" path="res://assets/player/Spaceships/EAP_Spaceships_36.png" id="55_6hg5f"]
+[ext_resource type="Texture2D" uid="uid://76xy7tmvjj4u" path="res://assets/player/Spaceships/EAP_Spaceships_37.png" id="56_hnkra"]
+[ext_resource type="Texture2D" uid="uid://nlxut6ti0jkx" path="res://assets/player/Spaceships/EAP_Spaceships_38.png" id="57_8orq5"]
+[ext_resource type="Texture2D" uid="uid://by3hy54cjeadl" path="res://assets/player/Spaceships/EAP_Spaceships_39.png" id="58_alxqw"]
+[ext_resource type="Texture2D" uid="uid://dd3m6ej7iotux" path="res://assets/player/Spaceships/EAP_Spaceships_40.png" id="59_aeolw"]
+[ext_resource type="Texture2D" uid="uid://cs2uallylexci" path="res://assets/player/Spaceships/EAP_Spaceships_41.png" id="60_ob1yr"]
+[ext_resource type="Texture2D" uid="uid://cg2x6fnw80w56" path="res://assets/player/Spaceships/EAP_Spaceships_42.png" id="61_d4ghk"]
+[ext_resource type="Texture2D" uid="uid://dy5r7vlo1gq35" path="res://assets/player/Spaceships/EAP_Spaceships_43.png" id="62_sq2yu"]
+[ext_resource type="Texture2D" uid="uid://dddg43grh3d8k" path="res://assets/player/Spaceships/EAP_Spaceships_44.png" id="63_4xsuw"]
+[ext_resource type="Texture2D" uid="uid://8tsqfartykqt" path="res://assets/player/Spaceships/EAP_Spaceships_45.png" id="64_t4q8f"]
+[ext_resource type="Texture2D" uid="uid://dgu7mlwml4xw7" path="res://assets/player/Spaceships/EAP_Spaceships_46.png" id="65_3n3uf"]
+[ext_resource type="Texture2D" uid="uid://br426uilrpibo" path="res://assets/player/Spaceships/EAP_Spaceships_47.png" id="66_2qwn6"]
+[ext_resource type="Texture2D" uid="uid://br6h0g21yxwyn" path="res://assets/player/Spaceships/EAP_Spaceships_48.png" id="67_80274"]
+[ext_resource type="Texture2D" uid="uid://d22gocxx46ako" path="res://assets/player/Spaceships/EAP_Spaceships_49.png" id="68_wy7nv"]
+[ext_resource type="Texture2D" uid="uid://dpkne4uw8eabk" path="res://assets/player/Spaceships/EAP_Spaceships_50.png" id="69_31f62"]
+[ext_resource type="Texture2D" uid="uid://drqc8odijx1br" path="res://assets/player/Spaceships/EAP_Spaceships_51.png" id="70_lkyhu"]
+[ext_resource type="Texture2D" uid="uid://c8fabklfvu886" path="res://assets/player/Spaceships/EAP_Spaceships_52.png" id="71_kjf4k"]
+[ext_resource type="Texture2D" uid="uid://duvep0f22oitr" path="res://assets/player/Spaceships/EAP_Spaceships_53.png" id="72_hiex4"]
+[ext_resource type="Texture2D" uid="uid://cs3haqnwagn8e" path="res://assets/player/Spaceships/EAP_Spaceships_54.png" id="73_mmer6"]
+[ext_resource type="Texture2D" uid="uid://b2plnprmwtwow" path="res://assets/player/Spaceships/EAP_Spaceships_55.png" id="74_b06mo"]
+[ext_resource type="Texture2D" uid="uid://btqe32r14apmx" path="res://assets/player/Spaceships/EAP_Spaceships_56.png" id="75_arfrf"]
+[ext_resource type="Texture2D" uid="uid://dfp6tw8upkc68" path="res://assets/player/Spaceships/EAP_Spaceships_57.png" id="76_x28ty"]
+[ext_resource type="Texture2D" uid="uid://bw3ermtgm5p8u" path="res://assets/player/Spaceships/EAP_Spaceships_58.png" id="77_vx84f"]
+[ext_resource type="Texture2D" uid="uid://dsgc4e6tycelj" path="res://assets/player/Spaceships/EAP_Spaceships_59.png" id="78_2311o"]
+[ext_resource type="Texture2D" uid="uid://dvumhxtkcbfk8" path="res://assets/player/Spaceships/EAP_Spaceships_60.png" id="79_vv585"]
+[ext_resource type="Texture2D" uid="uid://c7phw20j4dome" path="res://assets/player/Spaceships/EAP_Spaceships_61.png" id="80_vmwdj"]
+[ext_resource type="Texture2D" uid="uid://6xeqb2rvy1l2" path="res://assets/player/Spaceships/EAP_Spaceships_62.png" id="81_wjswm"]
+[ext_resource type="Texture2D" uid="uid://8u1k7k4l5xhd" path="res://assets/player/Spaceships/EAP_Spaceships_63.png" id="82_c7c27"]
+[ext_resource type="Texture2D" uid="uid://bqcgkep87lddv" path="res://assets/player/Spaceships/EAP_Spaceships_64.png" id="83_gje6q"]
+[ext_resource type="Texture2D" uid="uid://bfemvlyt2iw5y" path="res://assets/player/Spaceships/EAP_Spaceships_65.png" id="84_ho1bx"]
+[ext_resource type="Texture2D" uid="uid://jlwkrn5eyipv" path="res://assets/player/Spaceships/EAP_Spaceships_66.png" id="85_66wfc"]
+[ext_resource type="Texture2D" uid="uid://cy0go8ff6xp45" path="res://assets/player/Spaceships/EAP_Spaceships_67.png" id="86_24mme"]
+[ext_resource type="Texture2D" uid="uid://1v14d542wgdd" path="res://assets/player/Spaceships/EAP_Spaceships_68.png" id="87_r066d"]
+[ext_resource type="Texture2D" uid="uid://qysa8epcj11j" path="res://assets/player/Spaceships/EAP_Spaceships_69.png" id="88_cn2qk"]
+[ext_resource type="Texture2D" uid="uid://cf0uq5tewldv6" path="res://assets/player/Spaceships/EAP_Spaceships_70.png" id="89_toi52"]
+[ext_resource type="Texture2D" uid="uid://bm4yyupb6j1ft" path="res://assets/player/Spaceships/EAP_Spaceships_71.png" id="90_nr4mm"]
+[ext_resource type="Texture2D" uid="uid://yo26qsyptk1s" path="res://assets/player/Spaceships/EAP_Spaceships_72.png" id="91_hq5xf"]
+[ext_resource type="Texture2D" uid="uid://toc6tgwph817" path="res://assets/player/Spaceships/EAP_Spaceships_73.png" id="92_rrl0r"]
+[ext_resource type="Texture2D" uid="uid://da5nwfhvm56n5" path="res://assets/player/Spaceships/EAP_Spaceships_74.png" id="93_jf88f"]
+[ext_resource type="Texture2D" uid="uid://yupuyiapcd08" path="res://assets/player/Spaceships/EAP_Spaceships_75.png" id="94_n3rx2"]
+[ext_resource type="Texture2D" uid="uid://de7oekirkmik4" path="res://assets/player/Spaceships/EAP_Spaceships_76.png" id="95_x33h8"]
+[ext_resource type="Texture2D" uid="uid://baeqe1n6v06v8" path="res://assets/player/Spaceships/EAP_Spaceships_77.png" id="96_qxbqa"]
+[ext_resource type="Texture2D" uid="uid://4yqe0uisfjfi" path="res://assets/player/Spaceships/EAP_Spaceships_78.png" id="97_142li"]
+[ext_resource type="Texture2D" uid="uid://dp6imsi726dv" path="res://assets/player/Spaceships/EAP_Spaceships_79.png" id="98_v1sl1"]
+[ext_resource type="Texture2D" uid="uid://bwamt46nlifeq" path="res://assets/player/Spaceships/EAP_Spaceships_80.png" id="99_n6iak"]
+[ext_resource type="Texture2D" uid="uid://bbqd3ll4ueo7b" path="res://assets/player/Spaceships/EAP_Spaceships_81.png" id="100_pf3qg"]
+[ext_resource type="Texture2D" uid="uid://baj7epbyby1n" path="res://assets/player/Spaceships/EAP_Spaceships_82.png" id="101_kv4vt"]
+[ext_resource type="Texture2D" uid="uid://c4eco2i2n8au" path="res://assets/player/Spaceships/EAP_Spaceships_83.png" id="102_kafpd"]
+[ext_resource type="Texture2D" uid="uid://b5yys5cocea5f" path="res://assets/player/Spaceships/EAP_Spaceships_84.png" id="103_coiuh"]
+[ext_resource type="Texture2D" uid="uid://c8cno8c41fg21" path="res://assets/player/Spaceships/EAP_Spaceships_85.png" id="104_h6u6y"]
+[ext_resource type="Texture2D" uid="uid://b0nlgthhmrvja" path="res://assets/player/Spaceships/EAP_Spaceships_86.png" id="105_pct2g"]
+[ext_resource type="Texture2D" uid="uid://cxvkxey6bxy46" path="res://assets/player/Spaceships/EAP_Spaceships_87.png" id="106_4usc6"]
+[ext_resource type="Texture2D" uid="uid://dssdjfd3lxahw" path="res://assets/player/Spaceships/EAP_Spaceships_88.png" id="107_x3l00"]
+[ext_resource type="Texture2D" uid="uid://cg766kad0old0" path="res://assets/player/Spaceships/EAP_Spaceships_89.png" id="108_ay05o"]
+[ext_resource type="Texture2D" uid="uid://ddhda7kfniaml" path="res://assets/player/Spaceships/EAP_Spaceships_90.png" id="109_emk1f"]
+[ext_resource type="Texture2D" uid="uid://dhocqwentswqf" path="res://assets/player/Spaceships/EAP_Spaceships_91.png" id="110_3jhuy"]
+[ext_resource type="Texture2D" uid="uid://bcbu0kchn4mk5" path="res://assets/player/Spaceships/EAP_Spaceships_92.png" id="111_7g7ti"]
+[ext_resource type="Texture2D" uid="uid://hv2a328v4lxe" path="res://assets/player/Spaceships/EAP_Spaceships_93.png" id="112_iom7w"]
+[ext_resource type="Texture2D" uid="uid://tjtkcygey65u" path="res://assets/player/Spaceships/EAP_Spaceships_94.png" id="113_rygtr"]
+[ext_resource type="Texture2D" uid="uid://ccs1erl0ao3tx" path="res://assets/player/Spaceships/EAP_Spaceships_95.png" id="114_ihj88"]
+[ext_resource type="Texture2D" uid="uid://dsgxines4gexd" path="res://assets/player/Spaceships/EAP_Spaceships_96.png" id="115_rqhle"]
+[ext_resource type="Texture2D" uid="uid://cnmffrw8wq820" path="res://assets/player/Spaceships/EAP_Spaceships_97.png" id="116_7fe2t"]
+[ext_resource type="Texture2D" uid="uid://bf7afmjr5nwwu" path="res://assets/player/Spaceships/EAP_Spaceships_98.png" id="117_nmxbf"]
+[ext_resource type="Texture2D" uid="uid://b0yvd4be468ul" path="res://assets/player/Spaceships/EAP_Spaceships_99.png" id="118_bpha7"]
+[ext_resource type="Texture2D" uid="uid://c5rqqe5xnk7hy" path="res://assets/player/Spaceships/EAP_Spaceships_100.png" id="119_1v6u2"]
+[ext_resource type="Texture2D" uid="uid://y0sv2kc6qdck" path="res://assets/player/Spaceships/EAP_Spaceships_101.png" id="120_a6031"]
+[ext_resource type="Texture2D" uid="uid://t2s5t1ktyats" path="res://assets/player/Spaceships/EAP_Spaceships_102.png" id="121_3i63x"]
+[ext_resource type="Texture2D" uid="uid://7ja2eovoaeqh" path="res://assets/player/Spaceships/EAP_Spaceships_103.png" id="122_hyqfj"]
+[ext_resource type="Texture2D" uid="uid://c4426isuq3v5e" path="res://assets/player/Spaceships/EAP_Spaceships_104.png" id="123_2e0my"]
+[ext_resource type="Texture2D" uid="uid://ds0nerd6ug0px" path="res://assets/player/Spaceships/EAP_Spaceships_105.png" id="124_4ne3x"]
+[ext_resource type="Texture2D" uid="uid://y7lxc53b0ihx" path="res://assets/player/Spaceships/EAP_Spaceships_106.png" id="125_onf7p"]
+[ext_resource type="Texture2D" uid="uid://8k3qfcec20lu" path="res://assets/player/Spaceships/EAP_Spaceships_107.png" id="126_2t35y"]
+[ext_resource type="Texture2D" uid="uid://boyhj4nj85wxm" path="res://assets/player/Spaceships/EAP_Spaceships_109.png" id="127_4rv02"]
+[ext_resource type="Texture2D" uid="uid://pljnqdabctyg" path="res://assets/player/Spaceships/EAP_Spaceships_110.png" id="128_44x3u"]
+[ext_resource type="Texture2D" uid="uid://cwysueklmf4h0" path="res://assets/player/Spaceships/EAP_Spaceships_111.png" id="129_7wuak"]
+[ext_resource type="Texture2D" uid="uid://bfdbb4mjidv67" path="res://assets/player/Spaceships/EAP_Spaceships_112.png" id="130_ask4s"]
+[ext_resource type="Texture2D" uid="uid://117rtyxqf666" path="res://assets/player/Spaceships/EAP_Spaceships_114.png" id="131_rwts1"]
+[ext_resource type="Texture2D" uid="uid://d0pbuji3taun8" path="res://assets/player/Spaceships/EAP_Spaceships_115.png" id="132_duloc"]
+[ext_resource type="Texture2D" uid="uid://dei8kr73e6wd6" path="res://assets/player/Spaceships/EAP_Spaceships_116.png" id="133_vhfdw"]
+[ext_resource type="Texture2D" uid="uid://duu5krn2gjlfq" path="res://assets/player/Spaceships/EAP_Spaceships_117.png" id="134_xbx8i"]
+[ext_resource type="Texture2D" uid="uid://yudfx2ewnm1w" path="res://assets/player/Spaceships/EAP_Spaceships_118.png" id="135_ltjnr"]
+[ext_resource type="Texture2D" uid="uid://cd2hfvteex77f" path="res://assets/player/Spaceships/EAP_Spaceships_119.png" id="136_la2ab"]
+[ext_resource type="Texture2D" uid="uid://bl3orhpqvjykc" path="res://assets/player/Spaceships/EAP_Spaceships_120.png" id="137_uedqn"]
+[ext_resource type="Texture2D" uid="uid://ddado7vw3mpgn" path="res://assets/player/Spaceships/EAP_Spaceships_121.png" id="138_hef13"]
+[ext_resource type="Texture2D" uid="uid://7oy0itdwipkg" path="res://assets/player/Spaceships/EAP_Spaceships_122.png" id="139_h0ai8"]
+[ext_resource type="Texture2D" uid="uid://bx22x7bwtytuj" path="res://assets/player/Spaceships/EAP_Spaceships_123.png" id="140_2rnwo"]
+[ext_resource type="Texture2D" uid="uid://bslf008cpjrs5" path="res://assets/player/Spaceships/EAP_Spaceships_124.png" id="141_0c5du"]
+[ext_resource type="Texture2D" uid="uid://b7ifma4hk51c5" path="res://assets/player/Spaceships/EAP_Spaceships_125.png" id="142_dwha8"]
+[ext_resource type="Texture2D" uid="uid://de6gqdc46c0yl" path="res://assets/player/Spaceships/EAP_Spaceships_126.png" id="143_j8e05"]
+[ext_resource type="Texture2D" uid="uid://cwddthqcnos6i" path="res://assets/player/Spaceships/EAP_Spaceships_127.png" id="144_ye8cu"]
+[ext_resource type="Texture2D" uid="uid://dbwnur7rlwqpt" path="res://assets/player/Spaceships/EAP_Spaceships_128.png" id="145_q2b4c"]
+[ext_resource type="Texture2D" uid="uid://lwom2axq3q6c" path="res://assets/player/Spaceships/EAP_Spaceships_129.png" id="146_g0eu4"]
+[ext_resource type="Texture2D" uid="uid://beaovr2lda5v1" path="res://assets/player/Spaceships/EAP_Spaceships_130.png" id="147_uawe2"]
+[ext_resource type="Texture2D" uid="uid://cvsqyludljlcl" path="res://assets/player/Spaceships/EAP_Spaceships_131.png" id="148_81bcd"]
+[ext_resource type="Texture2D" uid="uid://cxg4b3qimh02g" path="res://assets/player/Spaceships/EAP_Spaceships_132.png" id="149_1eq3j"]
+[ext_resource type="Texture2D" uid="uid://cbr1jhx3416hs" path="res://assets/player/Spaceships/EAP_Spaceships_133.png" id="150_8o23c"]
+[ext_resource type="Texture2D" uid="uid://bm5bqvn0373i3" path="res://assets/player/Spaceships/EAP_Spaceships_134.png" id="151_hfk64"]
+[ext_resource type="Texture2D" uid="uid://c1lex5y61ct42" path="res://assets/player/Spaceships/EAP_Spaceships_135.png" id="152_jjw0j"]
+[ext_resource type="Texture2D" uid="uid://5sfxrsxsj8x1" path="res://assets/player/Spaceships/EAP_Spaceships_136.png" id="153_b0w8y"]
+[ext_resource type="Texture2D" uid="uid://bkqhbpgn8dx6h" path="res://assets/player/Spaceships/EAP_Spaceships_137.png" id="154_kylr5"]
+[ext_resource type="Texture2D" uid="uid://cusrj64wtyuww" path="res://assets/player/Spaceships/EAP_Spaceships_138.png" id="155_l3i75"]
+[ext_resource type="Texture2D" uid="uid://bvj8trrx5hgut" path="res://assets/player/Spaceships/EAP_Spaceships_139.png" id="156_puqjy"]
+[ext_resource type="Texture2D" uid="uid://bhul0k55eguii" path="res://assets/player/Spaceships/EAP_Spaceships_ 113.png" id="157_uxleb"]
+[ext_resource type="Texture2D" uid="uid://o0hwyqg6euuw" path="res://assets/player/Spaceships/EAP_Spaceships_ 115.png" id="158_a03ef"]
 
 [node name="Game" type="Node2D"]
 scale = Vector2(0.8, 0.8)
@@ -28,19 +167,20 @@ script = ExtResource("1_2qbox")
 
 [node name="Background" type="TextureRect" parent="."]
 z_index = -10
-offset_left = -16.25
-offset_top = -253.75
-offset_right = 2431.75
-offset_bottom = 1682.25
+offset_left = -1168.75
+offset_top = -1402.5
+offset_right = 1279.25
+offset_bottom = 533.5
+scale = Vector2(2, 2)
 texture = ExtResource("1_7erqy")
 stretch_mode = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="Background"]
-position = Vector2(2128.75, 1476.25)
+position = Vector2(1944.38, 1280)
 texture = ExtResource("3_w5vi2")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Background"]
-position = Vector2(465, 391.25)
+position = Vector2(999.375, 515.625)
 texture = ExtResource("4_43oqr")
 
 [node name="Sprite2D3" type="Sprite2D" parent="Background"]
@@ -48,11 +188,11 @@ position = Vector2(1222.5, 935)
 texture = ExtResource("5_t6m8w")
 
 [node name="Sprite2D4" type="Sprite2D" parent="Background"]
-position = Vector2(411.25, 517.5)
+position = Vector2(707.5, 831.25)
 texture = ExtResource("3_bun0b")
 
 [node name="Background01Parallax03" type="Sprite2D" parent="Background"]
-position = Vector2(952.5, 1578.75)
+position = Vector2(803.75, 1413.75)
 texture = ExtResource("2_6n3gj")
 
 [node name="Player" parent="." instance=ExtResource("1_2qsk6")]
@@ -64,7 +204,7 @@ position = Vector2(0.000152588, 0)
 script = ExtResource("16_amnn2")
 
 [node name="Enemy_small" parent="." instance=ExtResource("6_egpld")]
-position = Vector2(232.5, 287.5)
+position = Vector2(405, 162.5)
 
 [node name="Enemy_small2" parent="." instance=ExtResource("6_egpld")]
 position = Vector2(223.75, 1098.75)
@@ -82,7 +222,6 @@ position = Vector2(2378.75, 86.2501)
 position = Vector2(1105, 1246.25)
 
 [node name="AsteroidMain2" parent="." instance=ExtResource("9_myrf7")]
-visible = false
 position = Vector2(1520, 203.75)
 
 [node name="AsteroidSecond1" parent="." instance=ExtResource("8_g1d7c")]
@@ -127,3 +266,822 @@ texture_over = ExtResource("17_q1o1q")
 texture_progress = ExtResource("19_y85wg")
 tint_under = Color(0, 0, 0, 1)
 tint_progress = Color(3.10443e-06, 0.598737, 0.271988, 1)
+
+[node name="EapSpaceships01" type="Sprite2D" parent="."]
+position = Vector2(1600, 757.5)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("20_iksh4")
+
+[node name="EapSpaceships02" type="Sprite2D" parent="."]
+position = Vector2(2077.5, 791.25)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("21_xlnyd")
+
+[node name="EapSpaceships03" type="Sprite2D" parent="."]
+position = Vector2(1792.5, 423.75)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("22_s1icg")
+
+[node name="EapSpaceships04" type="Sprite2D" parent="."]
+position = Vector2(1790, 1093.75)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("23_vhy1m")
+
+[node name="EapSpaceships05" type="Sprite2D" parent="."]
+position = Vector2(1302.5, 1135)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("24_qxrl3")
+
+[node name="EapSpaceships06" type="Sprite2D" parent="."]
+position = Vector2(903.75, 1151.25)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("25_g0tpm")
+
+[node name="EapSpaceships07" type="Sprite2D" parent="."]
+position = Vector2(510, 1136.25)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("26_vpkrx")
+
+[node name="EapSpaceships08" type="Sprite2D" parent="."]
+position = Vector2(520, 626.25)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("27_tdcpw")
+
+[node name="EapSpaceships09" type="Sprite2D" parent="."]
+position = Vector2(932.5, 635)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("28_bq8ep")
+
+[node name="EapSpaceships10" type="Sprite2D" parent="."]
+position = Vector2(1263.75, 480)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("29_o3i52")
+
+[node name="EapSpaceships11" type="Sprite2D" parent="."]
+position = Vector2(756.25, 336.25)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("30_wjo3f")
+
+[node name="EapSpaceships12" type="Sprite2D" parent="."]
+position = Vector2(1190, 837.5)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("31_r48wm")
+
+[node name="EapSpaceships13" type="Sprite2D" parent="."]
+position = Vector2(156.25, 852.5)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("32_qvcqn")
+
+[node name="EapSpaceships14" type="Sprite2D" parent="."]
+position = Vector2(1486.25, 183.75)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("33_hmw4y")
+
+[node name="EapSpaceships15" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1030, 402.5)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("34_2hlht")
+
+[node name="EapSpaceships16" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(616.25, 366.25)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("35_ibcus")
+
+[node name="EapSpaceships17" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(206.25, 383.75)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("36_aw8es")
+
+[node name="EapSpaceships18" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1652.5, 382.5)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("37_0ficj")
+
+[node name="EapSpaceships19" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1210, 625)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("38_3f5kl")
+
+[node name="EapSpaceships20" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(850, 651.25)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("39_m1kuo")
+
+[node name="EapSpaceships21" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(510, 655)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("40_l6eem")
+
+[node name="EapSpaceships22" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(165, 662.5)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("41_vkrka")
+
+[node name="EapSpaceships23" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(2096.25, 1045)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("42_6odsw")
+
+[node name="EapSpaceships24" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1875, 1085)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("43_3hmp1")
+
+[node name="EapSpaceships25" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(2192.5, 703.75)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("44_e7p5i")
+
+[node name="EapSpaceships26" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(2202.5, 290)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("45_scott")
+
+[node name="EapSpaceships27" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1838.75, 270)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("46_uog2n")
+
+[node name="EapSpaceships28" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1465, 247.5)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("47_ulwoc")
+
+[node name="EapSpaceships29" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1455, 661.25)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("48_gkyor")
+
+[node name="EapSpaceships30" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1368.75, 1061.25)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("49_ufit0")
+
+[node name="EapSpaceships31" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1011.25, 1035)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("50_orgcp")
+
+[node name="EapSpaceships32" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1161.25, 621.25)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("51_cyiph")
+
+[node name="EapSpaceships33" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(955, 597.5)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("52_kkjmo")
+
+[node name="EapSpaceships34" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1057.5, 227.5)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("53_sw3hk")
+
+[node name="EapSpaceships35" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(253.75, 1041.25)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("54_ulijx")
+
+[node name="EapSpaceships36" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(731.25, 1047.5)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("55_6hg5f")
+
+[node name="EapSpaceships37" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(733.75, 631.25)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("56_hnkra")
+
+[node name="EapSpaceships38" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(731.25, 217.5)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("57_8orq5")
+
+[node name="EapSpaceships39" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(517.5, 573.75)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("58_alxqw")
+
+[node name="EapSpaceships40" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(337.5, 537.5)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("59_aeolw")
+
+[node name="EapSpaceships41" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(116.25, 523.75)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("60_ob1yr")
+
+[node name="EapSpaceships42" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1922.5, 1147.5)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("61_d4ghk")
+
+[node name="EapSpaceships43" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(2252.5, 1051.25)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("62_sq2yu")
+
+[node name="EapSpaceships44" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(2258.75, 833.75)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("63_4xsuw")
+
+[node name="EapSpaceships45" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(2258.75, 621.25)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("64_t4q8f")
+
+[node name="EapSpaceships46" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1591.25, 667.5)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("65_3n3uf")
+
+[node name="EapSpaceships47" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1215, 681.25)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("66_2qwn6")
+
+[node name="EapSpaceships48" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(2228.75, 297.5)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("67_80274")
+
+[node name="EapSpaceships49" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1908.75, 280)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("68_wy7nv")
+
+[node name="EapSpaceships50" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1625, 263.75)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("69_31f62")
+
+[node name="EapSpaceships51" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1235, 263.75)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("70_lkyhu")
+
+[node name="EapSpaceships52" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(903.75, 243.75)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("71_kjf4k")
+
+[node name="EapSpaceships53" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(561.25, 440)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("72_hiex4")
+
+[node name="EapSpaceships54" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(203.75, 433.75)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("73_mmer6")
+
+[node name="EapSpaceships55" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(843.75, 707.5)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("74_b06mo")
+
+[node name="EapSpaceships56" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(503.75, 757.5)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("75_arfrf")
+
+[node name="EapSpaceships57" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(210, 807.5)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("76_x28ty")
+
+[node name="EapSpaceships58" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1408.75, 1181.25)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("77_vx84f")
+
+[node name="EapSpaceships59" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1095, 1007.5)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("78_2311o")
+
+[node name="EapSpaceships60" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(763.75, 987.5)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("79_vv585")
+
+[node name="EapSpaceships61" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(773.75, 1235)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("80_vmwdj")
+
+[node name="EapSpaceships62" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(353.75, 1191.25)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("81_wjswm")
+
+[node name="EapSpaceships63" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(550, 947.5)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("82_c7c27")
+
+[node name="EapSpaceships64" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(561.25, 1121.25)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("83_gje6q")
+
+[node name="EapSpaceships65" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(587.5, 1277.5)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("84_ho1bx")
+
+[node name="EapSpaceships66" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(130, 1215)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("85_66wfc")
+
+[node name="EapSpaceships67" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(2216.25, 1135)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("86_24mme")
+
+[node name="EapSpaceships68" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(2202.5, 793.75)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("87_r066d")
+
+[node name="EapSpaceships69" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1625, 911.25)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("88_cn2qk")
+
+[node name="EapSpaceships70" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(861.25, 1075)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("89_toi52")
+
+[node name="EapSpaceships71" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1385, 1115)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("90_nr4mm")
+
+[node name="EapSpaceships72" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(2192.5, 557.5)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("91_hq5xf")
+
+[node name="EapSpaceships73" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1375, 881.25)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("92_rrl0r")
+
+[node name="EapSpaceships74" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1137.5, 1077.5)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("93_jf88f")
+
+[node name="EapSpaceships75" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1157.5, 857.5)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("94_n3rx2")
+
+[node name="EapSpaceships76" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(911.25, 761.25)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("95_x33h8")
+
+[node name="EapSpaceships77" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(527.5, 737.5)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("96_qxbqa")
+
+[node name="EapSpaceships78" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(190, 737.5)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("97_142li")
+
+[node name="EapSpaceships79" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(2106.25, 176.25)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("98_v1sl1")
+
+[node name="EapSpaceships80" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1832.5, 297.5)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("99_n6iak")
+
+[node name="EapSpaceships81" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1491.25, 337.5)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("100_pf3qg")
+
+[node name="EapSpaceships82" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1007.5, 347.5)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("101_kv4vt")
+
+[node name="EapSpaceships83" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(550, 337.5)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("102_kafpd")
+
+[node name="EapSpaceships84" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(156.25, 360)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("103_coiuh")
+
+[node name="EapSpaceships85" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(2163.75, 725)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("104_h6u6y")
+
+[node name="EapSpaceships86" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(2021.25, 1043.75)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("105_pct2g")
+
+[node name="EapSpaceships87" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1442.5, 951.25)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("106_4usc6")
+
+[node name="EapSpaceships88" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1525, 606.25)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("107_x3l00")
+
+[node name="EapSpaceships89" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(618.75, 957.5)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("108_ay05o")
+
+[node name="EapSpaceships90" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(226.25, 936.25)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("109_emk1f")
+
+[node name="EapSpaceships91" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1026.25, 963.75)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("110_3jhuy")
+
+[node name="EapSpaceships92" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1007.5, 571.25)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("111_7g7ti")
+
+[node name="EapSpaceships93" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1328.75, 523.75)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("112_iom7w")
+
+[node name="EapSpaceships94" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(2122.5, 243.75)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("113_rygtr")
+
+[node name="EapSpaceships95" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1805, 226.25)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("114_ihj88")
+
+[node name="EapSpaceships96" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1528.75, 213.75)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("115_rqhle")
+
+[node name="EapSpaceships97" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1320, 196.25)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("116_7fe2t")
+
+[node name="EapSpaceships98" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1035, 196.25)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("117_nmxbf")
+
+[node name="EapSpaceships99" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(642.5, 571.25)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("118_bpha7")
+
+[node name="EapSpaceships100" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(662.5, 207.5)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("119_1v6u2")
+
+[node name="EapSpaceships101" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(258.75, 511.25)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("120_a6031")
+
+[node name="EapSpaceships102" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(446.25, 1141.25)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("121_3i63x")
+
+[node name="EapSpaceships103" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(862.5, 1117.5)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("122_hyqfj")
+
+[node name="EapSpaceships104" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1876.25, 270)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("123_2e0my")
+
+[node name="EapSpaceships105" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-2302.5, 750)
+texture = ExtResource("124_4ne3x")
+
+[node name="EapSpaceships106" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1028.75, 270)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("125_onf7p")
+
+[node name="EapSpaceships107" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(638.75, 258.75)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("126_2t35y")
+
+[node name="EapSpaceships109" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(222.5, 265)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("127_4rv02")
+
+[node name="EapSpaceships110" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1406.25, 630)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("128_44x3u")
+
+[node name="EapSpaceships111" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1093.75, 662.5)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("129_7wuak")
+
+[node name="EapSpaceships112" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(647.5, 633.75)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("130_ask4s")
+
+[node name="EapSpaceships114" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(196.25, 657.5)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("131_rwts1")
+
+[node name="EapSpaceships115" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1515, 632.5)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("132_duloc")
+
+[node name="EapSpaceships116" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1181.25, 648.75)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("133_vhfdw")
+
+[node name="EapSpaceships117" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(858.75, 636.25)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("134_xbx8i")
+
+[node name="EapSpaceships118" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(492.5, 665)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("135_ltjnr")
+
+[node name="EapSpaceships119" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(175, 702.5)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("136_la2ab")
+
+[node name="EapSpaceships120" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1032.5, 1096.25)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("137_uedqn")
+
+[node name="EapSpaceships121" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(2213.75, 1048.75)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("138_hef13")
+
+[node name="EapSpaceships122" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1682.5, 1086.25)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("139_h0ai8")
+
+[node name="EapSpaceships123" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1936.25, 1056.25)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("140_2rnwo")
+
+[node name="EapSpaceships124" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1385, 1065)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("141_0c5du")
+
+[node name="EapSpaceships125" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(656.25, 1112.5)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("142_dwha8")
+
+[node name="EapSpaceships126" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(227.5, 1122.5)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("143_j8e05")
+
+[node name="EapSpaceships127" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(2045, 302.5)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("144_ye8cu")
+
+[node name="EapSpaceships128" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1626.25, 293.75)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("145_q2b4c")
+
+[node name="EapSpaceships129" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1228.75, 275)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("146_g0eu4")
+
+[node name="EapSpaceships130" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(795, 272.5)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("147_uawe2")
+
+[node name="EapSpaceships131" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(333.75, 272.5)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("148_81bcd")
+
+[node name="EapSpaceships132" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(2002.5, 710)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("149_1eq3j")
+
+[node name="EapSpaceships133" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1528.75, 681.25)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("150_8o23c")
+
+[node name="EapSpaceships134" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1093.75, 693.75)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("151_hfk64")
+
+[node name="EapSpaceships135" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(625, 653.75)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("152_jjw0j")
+
+[node name="EapSpaceships136" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(191.25, 720)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("153_b0w8y")
+
+[node name="EapSpaceships137" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1941.25, 1138.75)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("154_kylr5")
+
+[node name="EapSpaceships138" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1505, 1155)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("155_l3i75")
+
+[node name="EapSpaceships139" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1027.5, 1152.5)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("156_puqjy")
+
+[node name="EapSpaceships113" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(611.25, 1141.25)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("157_uxleb")
+
+[node name="EapSpaceships140" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(215, 1133.75)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("158_a03ef")
